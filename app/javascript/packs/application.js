@@ -7,11 +7,21 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+// Add css and image modules to Webpack
 require.context('../stylesheets/', true, /^\.\/[^_].*\.(css|scss|sass)$/i)
 require.context('../images/', true, /\.(gif|jpg|jpeg|png|svg)$/i)
 
+// Add jQuery
 import $ from 'jquery'
 global.$ = $
 global.jQuery = $
+
+// Add JS Ulgifier
+import Rails from 'rails-ujs'
+Rails.start()
+
+// Add Turbolinks
+import Turbolinks from 'turbolinks'
+Turbolinks.start()
 
 console.log('Webpacker succesfully compiled assets!')
