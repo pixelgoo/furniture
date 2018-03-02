@@ -27,3 +27,6 @@ yarn-debug.log*
 config/secrets.yml.key
 
 config/secrets.yml
+
+# Ignore parsed data
+lib/products.json
