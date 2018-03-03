@@ -8,8 +8,8 @@
 // layout file, like app/views/layouts/application.html.erb
 
 // Add css and image modules to Webpack
-require.context('../stylesheets/', true, /^\.\/[^_].*\.(css|scss|sass)$/i)
 require.context('../images/', true, /\.(gif|jpg|jpeg|png|svg)$/i)
+require.context('../stylesheets/', true, /\.(css|scss|sass)$/i)
 
 // Add jQuery
 import $ from 'jquery'

@@ -1,7 +1,19 @@
 {
-  "application.css": "/packs/application-4646c84c4c3faa7b75deeec4d8df2d8e.css",
-  "application.css.map": "/packs/application-4646c84c4c3faa7b75deeec4d8df2d8e.css.map",
-  "application.js": "/packs/application-8688051021503e375f2f.js",
-  "application.js.map": "/packs/application-8688051021503e375f2f.js.map",
-  "images/chair.jpeg": "/packs/images/chair-1457acd876b0d94fcd01ada3e7c03296.jpeg"
+  "application.css": "/packs/application-e597c8e01c6b1de1a86156723faa9ae0.css",
+  "application.css.map": "/packs/application-e597c8e01c6b1de1a86156723faa9ae0.css.map",
+  "application.js": "/packs/application-fe18b802b5f03d26d8c7.js",
+  "application.js.map": "/packs/application-fe18b802b5f03d26d8c7.js.map",
+  "images/about.jpg": "/packs/images/about-7f8c0f99beea5deedb5eec159dd51349.jpg",
+  "images/checked.svg": "/packs/images/checked-e66fc63d86c1d4b4a636264be56664b9.svg",
+  "images/product_customer.jpg": "/packs/images/product_customer-325da9263420ef7fe1d3ff730b5e73ea.jpg",
+  "images/setaltLogo.svg": "/packs/images/setaltLogo-6d2574eeb3ceabcaf9ac108932350d4a.svg",
+  "images/startscreen.jpg": "/packs/images/startscreen-0e2fda96e8f087de55b2e3e5d9cf7379.jpg",
+  "images/top__item_1.jpg": "/packs/images/top__item_1-c1289384a35e8e01bd1cbb1b172df880.jpg",
+  "images/top__item_2.jpg": "/packs/images/top__item_2-c255110e45ac55eab7dd24eb155cb66a.jpg",
+  "images/user.png": "/packs/images/user-57a7cbc348e6b16b52e10e4396095379.png",
+  "stylesheets/fonts/Simple-Line-Icons.eot?v=2.4.0": "/packs/stylesheets/fonts/Simple-Line-Icons-f33df365d6d0255b586f2920355e94d7.eot",
+  "stylesheets/fonts/Simple-Line-Icons.svg?v=2.4.0": "/packs/stylesheets/fonts/Simple-Line-Icons-2fe2efe63441d830b1acd106c1fe8734.svg",
+  "stylesheets/fonts/Simple-Line-Icons.ttf?v=2.4.0": "/packs/stylesheets/fonts/Simple-Line-Icons-d2285965fe34b05465047401b8595dd0.ttf",
+  "stylesheets/fonts/Simple-Line-Icons.woff2?v=2.4.0": "/packs/stylesheets/fonts/Simple-Line-Icons-0cb0b9c589c0624c9c78dd3d83e946f6.woff2",
+  "stylesheets/fonts/Simple-Line-Icons.woff?v=2.4.0": "/packs/stylesheets/fonts/Simple-Line-Icons-78f07e2c2a535c26ef21d95e41bd7175.woff"
 }
