@@ -8,6 +8,9 @@
 // layout file, like app/views/layouts/application.html.erb
 
 // Add css and image modules to Webpack
+
+'use strict';
+
 require.context('../images/', true, /\.(gif|jpg|jpeg|png|svg)$/i)
 require.context('../stylesheets/', true, /\.(css|scss|sass)$/i)
 
@@ -16,7 +19,10 @@ import $ from 'jquery'
 global.$ = $
 global.jQuery = $
 
-// Add JS Ulgifier
+// Add Bootstrap
+import 'bootstrap';
+
+// Add JS Uglifier
 import Rails from 'rails-ujs'
 Rails.start()
 
