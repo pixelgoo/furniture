@@ -9,7 +9,6 @@ development:
   <<: *default
   database: furniture_development
   username: furniture_development
-  <% p Rails.application.secrets %>
   password: <%= Rails.application.secrets.psql_password %>
   host: localhost
   port: 5432
