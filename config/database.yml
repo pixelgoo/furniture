@@ -24,6 +24,3 @@ test:
 
 production:
   <<: *default
-  database: furniture_production
-  username: furniture
-  password: <%= ENV['FURNITURE_DATABASE_PASSWORD'] %>
