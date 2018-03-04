@@ -1,89 +1,89 @@
 
 <div class="action">
 
-  <a href="#" class="action__link back">
-      <div class="back__logo logo">
-          <span>Woodmister</span>
-      </div>
-      <div class="back__label">
-          <span class="icon-arrow-left-circle item__icon"></span>
-          <span>Назад</span>
-      </div>
-  </a>
-
-  <main class="action__container registration">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
-      html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
-
-      <%= devise_error_messages! %>
-
-      <p class="form__header">Регистрация</p>
-
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" name="user[first_name]" id="user_first_name"
-              required placeholder="Имя" class="form-control input-field">     
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" name="user[last_name]" id="user_last_name"
-              required placeholder="Фамилия" class="form-control input-field">
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" name="user[phone]" id="user_phone"
-              required placeholder="Контактный телефон" class="form-control input-field">
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autofocus="autofocus" autocomplete="email" type="email" value="" name="user[email]" id="user_email" 
-              required placeholder="Адрес электронной почты" class="form-control input-field">
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" name="user[city]" id="user_city"
-              required placeholder="Ваш город" class="form-control input-field">
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" type="password" name="user[password]" id="user_password"
-              required placeholder="Введите пароль" class="form-control input-field">
-          </div>
-      </div>
-      <div class="select-wrapper">
-          <div class="select form-group">
-              <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation"
-              required placeholder="Подтвердите пароль" class="form-control input-field">
-          </div>
-      </div>
-      <div class="">
-          <input type="checkbox" value="1" id="user_terms_of_service" name="user[terms_of_service]" checked />
-          <div class="checkbox__label">Я принимаю условия пользовательского <a target="_blank" href="#" class="link_blue">соглашения</a></div>
-      </div>
-      <div class="">
-          <input type="checkbox" value="1" id="user_subscribe" name="user[subscribe]" checked />
-          <div class="checkbox__label">Подписаться на рассылку новостей</div>
-      </div>
-      <button class="form__btn box">
-          <span class="box__content_wrap">
-              <span class="icon-pencil icon"></span>
-              <div class="actions">
-                <input type="submit" name="commit" value="Регистрация" data-disable-with="Регистрируем..." 
-                    class="box__content" id="user_sign_up">
-              </div>
-          </span>
-      </button>
-      <div class="form__footer">
-          <%= render "devise/shared/links" %>
-
-          <p>Уже есть аккаунт?<a href="#" target="_blank" class="link_blue"> Войдите!</a></p>
-      </div>
+    <%= link_to root_path, class: 'action__link back' do %>
+        <div class="back__logo logo">
+            <span>Woodmister</span>
+        </div>
+        <div class="back__label">
+            <span class="icon-arrow-left-circle item__icon"></span>
+            <span>Назад</span>
+        </div>
     <% end %>
-  </main>
+
+    <main class="action__container registration">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
+        html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
+
+        <%= devise_error_messages! %>
+
+        <p class="form__header">Регистрация</p>
+
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= text_field_tag 'user[first_name]', nil, id: 'user_first_name', class: 'form-control input-field', 
+                placeholder: 'Имя', required: true, autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= text_field_tag 'user[last_name]', nil, id: 'user_last_name', class: 'form-control input-field', 
+                placeholder: 'Фамилия', autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= text_field_tag 'user[phone]', nil, id: 'user_phone', class: 'form-control input-field', 
+                placeholder: 'Телефон', autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field', 
+                placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= text_field_tag 'user[city]', nil, id: 'user_city', class: 'form-control input-field', 
+                placeholder: 'Город', autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= password_field_tag 'user[password]', nil, id: 'user_password', class: 'form-control input-field', 
+                placeholder: 'Пароль', required: true, autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
+                <%= password_field_tag 'user[password_confirmation]', nil, id: 'user_password_confirmation', class: 'form-control input-field', 
+                placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
+            </div>
+        </div>
+        <div class="">
+                <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
+                <div class="checkbox__label">Я принимаю условия пользовательского <a target="_blank" href="#" class="link_blue">соглашения</a></div>
+        </div>
+        <div class="">
+                <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
+                <div class="checkbox__label">Подписаться на рассылку новостей</div>
+        </div>
+        <button class="form__btn box">
+            <span class="box__content_wrap">
+                <span class="icon-pencil icon"></span>
+                <div class="actions">
+                    <input type="submit" name="commit" value="Регистрация" data-disable-with="Регистрируем..." 
+                        class="box__content" id="user_sign_up">
+                </div>
+            </span>
+        </button>
+        <div class="form__footer">
+            <%= render "devise/shared/links" %>
+
+            <p>Уже есть аккаунт?<a href="#" target="_blank" class="link_blue"> Войдите!</a></p>
+        </div>
+        <% end %>
+    </main>
 
 </div>

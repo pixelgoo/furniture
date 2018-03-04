@@ -24,8 +24,7 @@ yarn-debug.log*
 .yarn-integrity
 
 # Some development/editor files
-launch.json
-settings.json
+.vscode
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key

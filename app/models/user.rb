@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   attr_accessor :terms_of_service
 
+  validates :first_name, presence: true
   validates :phone, numericality: { only_integer: true, allow_nil: true }
   validates :email, uniqueness: true, format: { with: Devise.email_regexp }
   validates :password, confirmation: true
