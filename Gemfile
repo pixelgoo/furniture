@@ -35,6 +35,14 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+
+  gem 'awesome_rails_console'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :development do
