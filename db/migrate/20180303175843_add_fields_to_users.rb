@@ -5,5 +5,6 @@ class AddFieldsToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :phone, :string
     add_column :users, :city, :string
     add_column :users, :subscribe, :boolean, null: false, default: false
+    add_monetize :users, :account
   end
 end

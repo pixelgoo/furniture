@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User registers" do
+feature "User can sign up" do
 
   scenario "with valid details" do
     visit "/"

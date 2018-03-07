@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
   validates_acceptance_of :terms_of_service
+
+  monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
 end

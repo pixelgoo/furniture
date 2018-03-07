@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180306192156) do
     t.string "phone"
     t.string "city"
     t.boolean "subscribe", default: false, null: false
+    t.integer "account_cents", default: 0, null: false
+    t.string "account_currency", default: "UAH", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
