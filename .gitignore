@@ -26,6 +26,7 @@ yarn-debug.log*
 # Some development/editor files
 .vscode
 .pryrc
+.idea
 
 # Ignore encrypted secrets key file
 config/secrets.yml.key
@@ -33,3 +34,5 @@ config/secrets.yml
 
 # Ignore parsed data
 lib/products.json
+# Ignore encrypted secrets key file.
+config/secrets.yml.key
