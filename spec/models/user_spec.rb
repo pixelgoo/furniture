@@ -18,4 +18,17 @@ feature "User" do
   scenario "has 0 UAH initially" do
     expect(create(:user).account).to eq(0)
   end
+
+  scenario "has role initially" do
+    role = create(:role)
+    user = create(:user)
+    expect(user.role.name).to eq('Role')
+  end
+
+  scenario "can have a tariff" do
+    role = create(:role)
+    user = create(:user)
+    p user.tariff.price.methods 
+    expect(user.tariff.price).to eq(100)
+  end
 end

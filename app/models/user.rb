@@ -12,4 +12,7 @@ class User < ApplicationRecord
   validates_acceptance_of :terms_of_service
 
   monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
+
+  belongs_to :role
+  belongs_to :tariff
 end
