@@ -14,5 +14,13 @@ class User < ApplicationRecord
   monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :role
-  belongs_to :tariff
+  belongs_to :tariff, required: false
+
+  def role_name=(name)
+    self.role = Role.where(name: name).first
+  end
+
+  def role_name
+     self.role.name
+  end
 end

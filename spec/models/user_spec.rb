@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 feature "User" do
+  include MoneyRails::ActionViewExtension
 
   scenario "is not valid initially" do
-    user = User.new()
-    expect(user).to_not be_valid
+    expect(User.new()).to_not be_valid
   end
 
-  scenario "is valid with nesseccary atributes" do
+  scenario "is valid with necessary atributes" do
     expect(create(:user)).to be_valid
   end
 
@@ -20,15 +20,12 @@ feature "User" do
   end
 
   scenario "has role initially" do
-    role = create(:role)
-    user = create(:user)
+    user = create(:user, role: create(:role))
     expect(user.role.name).to eq('Role')
   end
 
   scenario "can have a tariff" do
-    role = create(:role)
-    user = create(:user)
-    p user.tariff.price.methods 
-    expect(user.tariff.price).to eq(100)
+    user = create(:user, role: create(:role), tariff: create(:tariff))
+    expect(humanized_money(user.tariff.price).to_i).to eq(100)
   end
 end

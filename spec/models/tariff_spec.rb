@@ -1,5 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Tariff, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+feature "Tariff" do
+
+  scenario "cah have many users" do
+    tariff = create(:tariff)
+    create_list(:user, 5, tariff: tariff)
+    
+    expect(tariff.users.length).to eq(5)
+  end
+
 end

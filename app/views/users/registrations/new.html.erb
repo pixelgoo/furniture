@@ -69,6 +69,7 @@
                 <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
                 <div class="checkbox__label">Подписаться на рассылку новостей</div>
         </div>
+        <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'user_role_name' %>
         <button class="form__btn box">
             <span class="box__content_wrap">
                 <span class="icon-pencil icon"></span>

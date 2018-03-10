@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature "Role" do
 
-  scenario "cah have many users" do
-    create(:role)
-    create_list(:user, 5)
+  scenario "can have many users" do
+    role = create(:role)
+    create_list(:user, 5, role: role)
 
-    expect(User.all.length).to eq(5)
+    expect(role.users.length).to eq(5)
   end
   
 end

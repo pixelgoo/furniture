@@ -45,4 +45,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:all) do
+    Rails.application.load_seed
+  end
+
 end
