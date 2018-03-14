@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   
   # Root
   root to: 'pages#show', page: 'index'
 
   # Static pages
-  get "/pages/:page" => "pages#show"
+  get '/pages/:page', to: 'pages#show'
 
-  # Users
-  # get "profile" => "users#profile"
+  # Profile
+  get '/profile', to: 'profiles#show'
 
 end

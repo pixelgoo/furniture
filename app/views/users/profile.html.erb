@@ -1,0 +1,65 @@
+<div class="container_lg">
+
+    <%= render "layouts/navigation_left" %>
+
+    <main id="cabinetCustomerOffers" class="page page_right">
+        <div class="page__head">
+            <a href="#" class="page__back item">
+                <span class="icon-arrow-left-circle item__icon"></span>
+                <span>Назад</span>
+            </a>
+            <a href="#" class="page__exit item">
+                <span class="icon-logout item__icon"></span>
+                <span>Выход</span>
+            </a>
+        </div>
+        <section id="profileInfo" class="section">
+            <div class="profile">
+                <div class="profile__avatar">
+                    <div class="profile__avatar_wrap"><img src="img/user.png" alt=""></div>
+                    <button class="form__btn box">
+                        <span class="box__content_wrap">
+                            <span class="icon-picture icon"></span>
+                            <span class="box__content">Загрузить аватар</span>
+                        </span>
+                    </button>
+                </div>
+                <div class="profile__data">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>Имя<span class="icon-question icon_help"></span></td>
+                            <td><%= @user.full_name %></td>
+                        </tr>
+                        <tr>
+                            <td>Номер телефона<span class="icon-question icon_help"></span></td>
+                            <td><%= @user.phone %></td>
+                        </tr>
+                        <tr>
+                            <td>Статус<span class="icon-question icon_help"></span></td>
+                            <td>Активен</td>
+                        </tr>
+                        <tr>
+                            <td>Тариф<span class="icon-question icon_help"></span></td>
+                            <td>722 грн/день (Стандарт)</td>
+                        </tr>
+                        <tr>
+                            <td>Репутация<span class="icon-question icon_help"></span></td>
+                            <td><span>73</span>/100</td>
+                        </tr>
+                        <tr>
+                            <td>Области поиска<span class="icon-question icon_help"></span></td>
+                            <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
+                        </tr>
+                        <tr>
+                            <td>Ваши товары<span class="icon-question icon_help"></span></td>
+                            <td>Диваны, Кровати, Стулья, Столы</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</div>
