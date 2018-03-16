@@ -1,0 +1,60 @@
+@import "../variables.scss";
+
+header {
+    position: relative;
+    background-color: $light-white;
+    box-shadow: 0 0 1px 1px #b4b4b4;
+    z-index: 10;
+
+    .navigation-top {
+        display: flex;
+        justify-content: space-between;
+        max-width: $body-width;
+        margin: 0 auto;
+        background-color: $light-white;
+    
+        &__logo {
+            width: 100px;
+            height: $header-height;
+            background: url('../../images/logo.png') center no-repeat;
+            background-size: 80%;
+        }
+
+        @media screen and (max-width: $body-width) {
+            padding: 0 20px;
+        }
+    }
+}
+
+.top-menu-item {
+    display: inline-block;
+    height: $header-height;
+    line-height: $header-height;
+    vertical-align: middle;
+    padding: 0 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+    transition: 0.2s;
+    animation-timing-function: ease;
+
+    &:hover {
+        background-color: #eee;
+        transition: 0.2s;
+        animation-timing-function: ease;
+    }
+
+    &.current {
+        border-bottom: 2px solid $pastel-yellow;
+    }
+
+    &_outside {
+        margin-right: auto;
+        cursor: default;
+
+        &:hover {
+            background-color: #fff;
+            border: none;
+        }
+    }
+}

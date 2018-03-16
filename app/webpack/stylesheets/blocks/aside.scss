@@ -1,0 +1,59 @@
+@import "../variables.scss";
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding-top: calc(#{$header-height} + 30px);
+    width: $aside-width;
+    background-color: $light-white;
+    box-shadow: 0 0 2px 1px #b4b4b4;
+
+    .navigation-left {
+        padding-left: 0;
+        
+        &__login-wrap {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 0 20px;
+
+            img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                margin-bottom: 8px;
+            }
+            
+            span {
+
+            }
+        }
+
+        &__controls {
+            padding-left: 0;
+        }
+    }
+}
+
+.left-menu-item {
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    padding: 0 15px 0 25px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+    transition: 0.2s;
+    animation-timing-function: ease;
+
+    &:hover {
+        background-color: #eee;
+        transition: 0.2s;
+        animation-timing-function: ease;
+    }
+
+    &.current {
+        border-right: 2px solid $pastel-yellow;
+    }
+}

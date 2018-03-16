@@ -1,0 +1,56 @@
+<aside>
+    <nav class="navigation-left">
+
+        <div class="navigation-left__login-wrap">
+            <%= image_tag(asset_pack_path('images/user.png')) %>
+            <span><%= current_user.full_name %></span>
+        </div>
+
+        <ul class="navigation-left__controls">
+
+            <li class="navigation-left__controls-item">
+                <%= link_to profile_home_path, class: 'left-menu-item' do %>
+                    <span class='icon icon-key'></span>
+                    <span><%= t('menu.home') %></span>
+                <% end %>
+            </li>
+
+            <% if current_user.role_name == 'Manufacturer' then %>
+                <li class="navigation-left__controls-item">
+                    <%= link_to requests_path, class: 'left-menu-item' do %>
+                        <span class='icon icon-bell'></span>
+                        <span><%= t('menu.requests') %></span>
+                    <% end %>
+                </li>
+            <% end %>
+
+            <li class="navigation-left__controls-item">
+                <%= link_to products_path, class: 'left-menu-item' do %>
+                    <span class='icon icon-list'></span>
+                    <span><%= t('menu.catalog') %></span>
+                <% end %>
+            </li>
+
+            <li class="navigation-left__controls-item">
+                <%= link_to account_path, class: 'left-menu-item' do %>
+                    <span class='icon icon-wallet'></span>
+                    <span><%= t('menu.wallet') %></span>
+                <% end %>
+            </li>
+
+            <li class="navigation-left__controls-item">
+                <%= link_to '/pages/help', class: 'left-menu-item' do %>
+                    <span class='icon icon-question'></span>
+                    <span><%= t('menu.help') %></span>
+                <% end %>
+            </li>
+
+            <li class="navigation-left__controls-item">
+                <%= link_to settings_path, class: 'left-menu-item' do %>
+                    <span class='icon icon-settings'></span>
+                    <span><%= t('menu.settings') %></span>
+                <% end %>
+            </li>
+        </ul>
+    </nav>
+</aside>

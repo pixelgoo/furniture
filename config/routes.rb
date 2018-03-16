@@ -9,6 +9,17 @@ Rails.application.routes.draw do
   get '/pages/:page', to: 'pages#show'
 
   # Profile
-  get '/profile', to: 'profiles#show'
+  get '/profile/home', to: 'profiles#show'
+
+  scope :profile do
+    get '/account', to: 'accounts#show'
+    get '/settings', to: 'profiles#settings'
+  end
+
+  # Products
+  resources :products
+
+  # Requests
+  resources :requests
 
 end

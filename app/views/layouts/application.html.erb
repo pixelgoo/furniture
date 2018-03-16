@@ -12,7 +12,11 @@
   </head>
 
   <body>
-    <%= render "layouts/navigation" %>
+  <% byebug %>
+    <% unless hide_header? then %>
+        <%= render "layouts/header" %>
+    <% end %>
+
     <%= render 'layouts/messages' %>
 
     <%= yield %>

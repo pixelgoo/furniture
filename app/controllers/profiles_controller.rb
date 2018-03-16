@@ -5,4 +5,8 @@ class ProfilesController < ApplicationController
         @user = User.find(current_user.id)
         render template: "users/profile"
     end
+
+    def settings
+
+    end
 end

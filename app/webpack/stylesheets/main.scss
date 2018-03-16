@@ -1,0 +1,27 @@
+/* Z-index table
+* 10: header
+*
+*/
+
+@import "variables.scss";
+
+body {
+    margin: 0;
+    font-family: 'Fira Sans', sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: $light-white;
+    color: $light-black;
+    position: relative;
+    min-height: 100vh;
+}
+
+textarea {
+    resize: none !important;
+}
+
+.turbolinks-progress-bar {
+    height: 5px;
+    background-color: $pastel-yellow;
+}

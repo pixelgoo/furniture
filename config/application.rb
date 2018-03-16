@@ -26,5 +26,8 @@ module Furniture
     # -- all .rb files in that directory are automatically loaded.
 
     config.read_encrypted_secrets = true 
+
+    I18n.available_locales = [ :ru ]
+    I18n.default_locale = :ru
   end
 end
