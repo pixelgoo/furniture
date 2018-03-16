@@ -30,4 +30,11 @@ Rails.start()
 import Turbolinks from 'turbolinks'
 Turbolinks.start()
 
-console.log('Webpacker succesfully compiled assets!')
+// Add application modules
+import App from '../javascript/App'
+
+$(document).ready(function() {
+    let woodmister = new App()
+    woodmister.init()
+})
+

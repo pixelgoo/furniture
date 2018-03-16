@@ -7,6 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Role.create([
-    { name: 'User' },
+    { name: 'Customer' },
     { name: 'Manufacturer' }
 ])

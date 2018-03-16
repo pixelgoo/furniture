@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20180308193443) do
     t.string "phone"
     t.string "city"
     t.boolean "subscribe", default: false, null: false
+    t.integer "score", default: 0
+    t.integer "tariff_status"
     t.integer "account_cents", default: 0, null: false
     t.string "account_currency", default: "UAH", null: false
     t.bigint "role_id"

@@ -15,7 +15,7 @@
                 <% end %>
             </li>
 
-            <% if current_user.role_name == 'Manufacturer' then %>
+            <% if current_user.manufacturer? then %>
                 <li class="navigation-left__controls-item">
                     <%= link_to requests_path, class: 'left-menu-item' do %>
                         <span class='icon icon-bell'></span>

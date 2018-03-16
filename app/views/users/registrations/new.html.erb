@@ -22,13 +22,13 @@
         <div class="select-wrapper">
             <div class="select form-group">
                 <%= text_field_tag 'user[first_name]', nil, id: 'user_first_name', class: 'form-control input-field', 
-                placeholder: 'Имя', required: true, autocomplete: 'off' %>
+                placeholder: 'Имя', required: true, autocomplete: 'off', maxlength: 14 %>
             </div>
         </div>
         <div class="select-wrapper">
             <div class="select form-group">
                 <%= text_field_tag 'user[last_name]', nil, id: 'user_last_name', class: 'form-control input-field', 
-                placeholder: 'Фамилия', autocomplete: 'off' %>
+                placeholder: 'Фамилия', autocomplete: 'off', maxlength: 14 %>
             </div>
         </div>
         <div class="select-wrapper">

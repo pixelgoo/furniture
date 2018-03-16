@@ -1,5 +1,6 @@
 /* Z-index table
 * 10: header
+* 9:  .alert
 *
 */
 
@@ -24,4 +25,9 @@ textarea {
 .turbolinks-progress-bar {
     height: 5px;
     background-color: $pastel-yellow;
+}
+
+.alert {
+    z-index: 9;
+    position: relative;
 }

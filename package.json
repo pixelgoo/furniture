@@ -2,11 +2,15 @@
   "name": "furniture",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.2.2",
+    "@rails/webpacker": "^3.3.1",
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "rails-ujs": "^5.1.5",
     "turbolinks": "^5.1.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^2.11.1"
   }
 }

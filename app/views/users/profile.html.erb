@@ -3,16 +3,18 @@
     <%= render "layouts/aside" %>
 
     <main id="cabinetCustomerOffers" class="page page_right">
+
         <div class="page__head">
-            <a href="#" class="page__back item">
+            <%= link_to :back, class: 'page__back item' do %>
                 <span class="icon-arrow-left-circle item__icon"></span>
-                <span>Назад</span>
-            </a>
-            <a href="#" class="page__exit item">
+                <span><%= t('profile.back') %></span>
+            <% end %>
+            <%= link_to destroy_user_session_path, class: 'page__exit item', method: :delete do %>
                 <span class="icon-logout item__icon"></span>
-                <span>Выход</span>
-            </a>
+                <span><%= t('menu.exit') %></span>
+            <% end %>
         </div>
+
         <section id="profileInfo" class="section">
             <div class="profile">
                 <div class="profile__avatar">
@@ -28,33 +30,48 @@
                     <table class="table">
                         <tbody>
                         <tr>
-                            <td>Имя<span class="icon-question icon_help"></span></td>
+                            <td><%= t('profile.name') %><span class="icon-question icon_help"></span></td>
                             <td><%= @user.full_name %></td>
                         </tr>
                         <tr>
-                            <td>Номер телефона<span class="icon-question icon_help"></span></td>
+                            <td><%= t('profile.phone') %><span class="icon-question icon_help"></span></td>
                             <td><%= @user.phone %></td>
                         </tr>
-                        <tr>
-                            <td>Статус<span class="icon-question icon_help"></span></td>
-                            <td>Активен</td>
-                        </tr>
-                        <tr>
-                            <td>Тариф<span class="icon-question icon_help"></span></td>
-                            <td>722 грн/день (Стандарт)</td>
-                        </tr>
-                        <tr>
-                            <td>Репутация<span class="icon-question icon_help"></span></td>
-                            <td><span>73</span>/100</td>
-                        </tr>
-                        <tr>
-                            <td>Области поиска<span class="icon-question icon_help"></span></td>
-                            <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
-                        </tr>
-                        <tr>
-                            <td>Ваши товары<span class="icon-question icon_help"></span></td>
-                            <td>Диваны, Кровати, Стулья, Столы</td>
-                        </tr>
+
+                        <% if current_user.manufacturer? then %>
+                            <tr>
+                                <td><%= t('profile.tariff') %><span class="icon-question icon_help"></span></td>
+                                <% if current_user.tariff.nil? %>
+                                    <td><%= t('profile.no_tariff') %></td>
+                                <% else %>
+                                    <td><%= humanized_money current_user.tariff.price %> грн/день (<%= current_user.tariff.name %>)</td>
+                                <% end %>
+                            </tr>
+                            <tr>
+                                <td><%= t('profile.status') %><span class="icon-question icon_help"></span></td>
+                                <td>
+                                    <% if current_user.tariff_active? then %>
+                                        <%= t('profile.active') %>
+                                    <% else %>
+                                        <%= t('profile.inactive') %>
+                                    <% end %>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><%= t('profile.score') %><span class="icon-question icon_help"></span></td>
+                                <td><span><%= current_user.score %></span> ❤️</td>
+                            </tr>
+                            <tr>
+                                <td><%= t('profile.search_area') %><span class="icon-question icon_help"></span></td>
+                                <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
+                            </tr>
+                            <tr>
+                                <td><%= t('profile.your_products') %><span class="icon-question icon_help"></span></td>
+                                <td>Диваны, Кровати, Стулья, Столы</td>
+                            </tr>
+                        <% end %>
+                        
                         </tbody>
                     </table>
                 </div>
