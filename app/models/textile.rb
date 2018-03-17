@@ -1,0 +1,2 @@
+class Textile < ApplicationRecord
+end

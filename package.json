@@ -1,5 +1,5 @@
 {
-  "name": "furniture",
+  "name": "woodmister",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.3.1",

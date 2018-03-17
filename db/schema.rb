@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308193443) do
+ActiveRecord::Schema.define(version: 20180317211221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.bigint "furniture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["furniture_id"], name: "index_categories_on_furniture_id"
+  end
+
+  create_table "furnitures", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

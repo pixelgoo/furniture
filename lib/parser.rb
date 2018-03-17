@@ -1,6 +1,6 @@
 require 'watir'
 require 'selenium-webdriver'
-require 'chromedriver/helper'
+# require 'chromedriver/helper'
 require 'open-uri'
 require 'fileutils'
 
@@ -28,6 +28,8 @@ def parse_item(browser, link)
         ]
       end
 
+    elsif
+
     else
       parsed_item[item.div(:class, 'name').inner_html.chomp(':')] = item.div(:class, 'value').inner_html
     end
@@ -42,7 +44,7 @@ end
 # ============================================================================
 
 # An array of required catalogs
-catalogs = [ 30, 73, 75 ]
+catalogs = [ 57 ]
 
 # All products will be written into this
 products = {}
