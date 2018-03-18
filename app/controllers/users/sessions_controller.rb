@@ -5,7 +5,7 @@ class Users::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-    dfasdfroot_url
+    root_url
   end
 
   def after_sign_out_path_for(resource_or_scope)
