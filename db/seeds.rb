@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create([{ title: 'Star Wars' }, { title: 'Lord of the Rings' }])
+#   Character.create(title: 'Luke', movie: movies.first)
 
 Role.create([
     { name: 'Customer' },
@@ -12,16 +12,16 @@ Role.create([
 ])
 
 Furniture.create([
-    { name: 'Кровати' }
-    { name: 'Мягкая мебель' }
-    { name: 'Деревянная мебель' }
-    { name: 'Шкафы' }
-    { name: 'Комоды и тумбы' }
+    { title: 'Кровати' },
+    { title: 'Мягкая мебель' },
+    { title: 'Деревянная мебель' },
+    { title: 'Шкафы' },
+    { title: 'Комоды и тумбы' },
     # TODO:
-    { name: 'Столы и стулья' }
-    { name: 'Мебель для ванной' }
-    { name: 'Мебель для гостиной' }
-    { name: 'Мебель для прихожей' }
+    { title: 'Столы и стулья' },
+    { title: 'Мебель для ванной' },
+    { title: 'Мебель для гостиной' },
+    { title: 'Мебель для прихожей' }
 ])
 
 Category.create([
@@ -59,3 +59,33 @@ Category.create([
     { furniture_id: 5, id: 184, title: "Обувные тумбы" }
 
 ])
+
+Dir.foreach('../lib/products') do |file|
+    next if item == '.' or item == '..'
+
+    ActiveSupport::JSON.decode(File.read(file).each do |product|
+    
+        cleaned_product = {}
+    
+        cleaned_product['title'] = product['title']
+        cleaned_product['factory'] = product['Производитель']
+
+        cleaned_product['width'] = product['Размеры']['width']
+        cleaned_product['height'] = product['Размеры']['height']
+        cleaned_product['depth'] = product['Размеры']['depth']
+
+        cleaned_product['style'] = product['Стиль']
+        cleaned_product['facade'] = product['Фасад']
+        cleaned_product['structure'] = product['Корпус']
+
+        %w('Тип шкафа-купе' 'Тип односпальной кровати').each do |type|
+            unless type.nil? then
+                cleaned_product['type'] = product[type]
+            end
+        end
+
+        cleaned_product['transformation_type'] = product['Тип трансформации']
+    
+        Product.create!(cleaned_product)
+    end
+  end
