@@ -37,3 +37,7 @@ config/secrets.yml
 lib/products.json
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+
+lib/assets
+lib/products
