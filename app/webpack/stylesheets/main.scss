@@ -1,10 +1,16 @@
 /* Z-index table
 * 10: header
-* 9:  .alert
+* 9:  aside
+* 8:  .alert
 *
 */
 
 @import "variables.scss";
+
+html {
+    min-height: 100%;
+    height: 100%;
+}
 
 body {
     margin: 0;
@@ -15,7 +21,8 @@ body {
     background-color: $light-white;
     color: $light-black;
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
+    height: 100%;
 }
 
 textarea {
@@ -28,6 +35,6 @@ textarea {
 }
 
 .alert {
-    z-index: 9;
+    z-index: 8;
     position: relative;
 }

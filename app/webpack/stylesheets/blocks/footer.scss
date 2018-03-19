@@ -1,0 +1,37 @@
+@import "../variables.scss";
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex !important;
+    justify-content: space-between;
+    width: 100%;
+    height: $footer-height;
+    line-height: $footer-height;
+    background: $light-grey;
+    color: $light-black;
+
+    &.content-container_aside {
+        width: calc(100% - #{$aside-width});
+        margin-left: $aside-width;
+    }
+
+    > div {
+        padding: 0 20px;
+        color: $light-black;
+    }
+
+
+    .social {
+       &__item {
+           margin: 0 10px;
+
+           span {
+                color: #bc770e;
+                font-size: 22px;
+                line-height: $footer-height;
+           }
+       }
+    }
+}

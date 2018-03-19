@@ -2,11 +2,14 @@ class ProfilesController < ApplicationController
     before_action :authenticate_user!
 
     def show
-        @user = User.find(current_user.id)
-        render template: "users/profile"
+        render template: "profile"
     end
 
     def settings
+        render template: "settings"
+    end
 
+    def account
+        render template: "account"
     end
 end

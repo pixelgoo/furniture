@@ -1,0 +1,18 @@
+@import "../variables.scss";
+
+.small-navigation-top {
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 10px;
+    color: $light-black;
+    background: $light-grey;
+    
+    &__item {
+        padding: 0 20px;
+        
+        &:first-of-type {
+            margin-right: auto;
+        }
+    }
+}

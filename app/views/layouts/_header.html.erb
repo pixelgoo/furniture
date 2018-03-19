@@ -13,7 +13,7 @@
 
             <% if user_signed_in? %>
 
-                <%= link_to profile_home_path, class: "top-menu-item #{current_path(profile_home_path)}" do %>
+                <%= link_to profile_path, class: "top-menu-item #{current_path(profile_path)}" do %>
                     <span class='icon icon-key'></span>
                     <span><%= t('menu.profile') %></span>
                 <% end %>

@@ -5,29 +5,29 @@ aside {
     top: 0;
     left: 0;
     height: 100vh;
-    padding-top: calc(#{$header-height} + 30px);
     width: $aside-width;
     background-color: $light-white;
     box-shadow: 0 0 2px 1px #b4b4b4;
+    z-index: 9;
 
     .navigation-left {
-        padding-left: 0;
         
-        &__login-wrap {
+        &__logo {
+            margin: 20px 0;
             text-align: center;
-            margin-bottom: 25px;
-            padding: 0 20px;
 
             img {
-                border-radius: 50%;
                 width: 100px;
-                height: 100px;
-                margin-bottom: 8px;
+                height: $header-height;
             }
-            
-            span {
+        }
 
-            }
+        &__login-wrap {
+            margin-bottom: 16px;
+            padding: 0px 10px;
+            text-align: center;
+            text-decoration: underline dotted;
+            cursor: default;
         }
 
         &__controls {
@@ -48,12 +48,13 @@ aside {
     animation-timing-function: ease;
 
     &:hover {
-        background-color: #eee;
+        background-color: $light-grey;
         transition: 0.2s;
         animation-timing-function: ease;
     }
 
     &.current {
+        background-color: $light-grey;
         border-right: 2px solid $pastel-yellow;
     }
 }

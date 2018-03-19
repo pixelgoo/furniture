@@ -6,15 +6,14 @@ Rails.application.routes.draw do
   root to: 'pages#show', page: 'index'
 
   # Static pages
-  get '/pages/:page', to: 'pages#show'
+  %w(help).each do |page|
+    get "/pages/${page}", to: 'pages#show', as: page, page: page
+  end
 
   # Profile
-  get '/profile/home', to: 'profiles#show'
-
-  scope :profile do
-    get '/account', to: 'accounts#show'
-    get '/settings', to: 'profiles#settings'
-  end
+  get '/profile', to: 'profiles#show'
+  get '/settings', to: 'profiles#settings'
+  get '/account', to: 'profiles#account'
 
   # Products
   resources :products

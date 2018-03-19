@@ -1,0 +1,11 @@
+@import "../variables.scss";
+
+.content-container {
+    position: relative;
+    min-height: 100%;
+
+    &.content-container_aside {
+        width: calc(100% - #{$aside-width});
+        margin: 0 0 0 $aside-width;
+    }
+}

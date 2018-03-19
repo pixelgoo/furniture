@@ -1,0 +1,47 @@
+<main id="cabinetCustomerWallet" class="page page_right">
+
+    <%= render "layouts/small-navigation-top" %>
+
+    <section id="wallet" class="section">
+        <div class="wallet">
+            <div class="wallet__division money">
+                <div class="money__header"><%= t('profile.your_account') %>:</div>
+                <div class="money__data data"><span><%= humanized_money current_user.account %></span><span> <%= currency_symbol %></span></div>
+                <button class="form__btn box">
+                    <span class="box__content_wrap">
+                        <span class="icon-credit-card icon"></span>
+                        <span class="box__content"><%= t('profile.add_money') %></span>
+                    </span>
+                </button>
+            </div>
+            <div class="wallet__division status">
+                <div class="status__header"><%= t('profile.status') %>:</div>
+                <div class="status__data data"><span><%= current_user.tariff_active? ? t('profile.active') : t('profile.inactive') %></span></div>
+                <button class="form__btn box">
+                    <span class="box__content_wrap">
+                        <span class="icon-power icon"></span>
+                        <span class="box__content"><%= t('profile.suspend') %></span>
+                    </span>
+                </button>
+            </div>
+            <div class="wallet__division rate">
+                <div class="rate__header"><%= t('profile.tariff') %></div>
+                <% if current_user.tariff.nil? then %>
+                    <div class="rate__data data"><span><%= t('profile.no_tariff') %></span></div>
+                <% else %>
+                    <div class="rate__data data"><span><%= current_user.tariff.price + " " + currency_symbol + t('profile.per_day') %> <span class="md-regular">(<%= current_user.tariff.name %>)</span></span></div>
+                <% end %>
+                <button class="form__btn box">
+                    <span class="box__content_wrap">
+                        <span class="icon-directions icon"></span>
+                        <span class="box__content"><%= t('profile.choose_tariff') %></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="text_sm" align="justify">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+
+
+</main>

@@ -17,8 +17,12 @@
     <% end %>
 
     <%= render 'layouts/messages' %>
+    
+    <%= render "layouts/aside" if controller_name == 'profiles' %>
 
-    <%= yield %>
+    <div class="content-container <%= 'content-container_aside' if controller_name == 'profiles' %>">
+      <%= yield %>
+    </div>
 
     <%= render "layouts/footer" %>
   </body>

@@ -1,3 +1,3 @@
-class AccountsController < ApplicationController
+class ProductsController < ApplicationController
    
 end
