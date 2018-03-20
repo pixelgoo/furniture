@@ -1,9 +1,9 @@
 <aside>
     <nav class="navigation-left">
 
-        <div class="navigation-left__logo">
+        <%= link_to root_path, class: 'navigation-left__logo' do %>
             <%= image_tag(asset_pack_path('images/logo.png')) %>
-        </div>
+        <% end %>
 
         <div class="navigation-left__login-wrap">
             <span><%= current_user.full_name %></span>
