@@ -2,10 +2,8 @@ require 'rails_helper'
 
 feature "Category" do
 
-  scenario "is valid with category id" do
-    category = Category.new(id: 33).save
-    product = Product.new(category_id: 33)
-    expect(product).to be_valid
+  scenario "is not valid without furniture" do
+    expect(Category.new(title: 'Chairs')).to_not be_valid
   end
 
   scenario "can have multiple products" do

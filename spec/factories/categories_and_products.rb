@@ -1,5 +1,9 @@
 FactoryBot.define do
 
+  factory :furniture do
+    title "Furniture"
+  end
+
   factory :product do
     title "Nice Couch"
     category
@@ -7,8 +11,10 @@ FactoryBot.define do
 
   factory :category do
     title "Couches"
+    furniture
 
     factory :category_with_products do
+      
       transient do
         products_count 10
       end

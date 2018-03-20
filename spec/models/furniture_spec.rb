@@ -1,5 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Furniture, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+feature "Furniture" do
+
+  scenario "can have multiple categories" do
+    furniture = create(:furniture)
+    expect(create_list(:category, 10, furniture: furniture).length).to eq(10)
+  end
+  
 end

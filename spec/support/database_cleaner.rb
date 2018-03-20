@@ -46,7 +46,7 @@ RSpec.configure do |config|
   end
 
   config.before(:all) do
-    Rails.application.load_seed
+    # Rails.application.load_seed
   end
 
 end
