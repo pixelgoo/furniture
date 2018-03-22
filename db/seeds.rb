@@ -11,6 +11,12 @@ Role.create([
     { name: 'Manufacturer' }
 ])
 
+Tariff.create([
+    { name: 'Пробный' },
+    { name: 'Стандарт' },
+    { name: 'Люкс' }
+])
+
 Furniture.create([
     { title: 'Кровати' },
     { title: 'Мягкая мебель' },

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317221632) do
+ActiveRecord::Schema.define(version: 20180322011930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20180317221632) do
     t.index ["color_id"], name: "index_products_on_color_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_requests_on_product_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -67,6 +76,17 @@ ActiveRecord::Schema.define(version: 20180317221632) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "request_id"
+    t.string "action"
+    t.integer "amount"
+    t.string "currency", default: "UAH"
+    t.string "confirm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_transactions_on_request_id"
   end
 
   create_table "users", force: :cascade do |t|

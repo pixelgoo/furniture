@@ -17,6 +17,9 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :tariff, required: false
 
+  has_many :requests
+  has_many :transactions, through: :requests
+
   # =====================================================================================
   # General
   # =====================================================================================

@@ -1,7 +1,7 @@
 FactoryBot.define do
 
-  factory :textiles do
-    name "Textile"
+  factory :request do
+    user
     product
   end
 
