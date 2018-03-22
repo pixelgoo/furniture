@@ -1,6 +1,6 @@
 FactoryBot.define do
 
-  factory :textiles do
+  factory :textile do
     name "Textile"
     product
   end

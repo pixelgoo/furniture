@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/account', to: 'profiles#account'
 
   # Tariff payment
-  post '/tariff', to: 'transactions#tariff_payment', as: 'tariff_payment'
+  post '/tariff', to: 'payments#tariff_payment', as: 'tariff_payment'
 
   # Products
   resources :products

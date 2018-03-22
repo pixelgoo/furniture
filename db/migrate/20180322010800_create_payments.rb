@@ -1,6 +1,6 @@
-class CreateTransactions < ActiveRecord::Migration[5.1]
+class CreatePayments < ActiveRecord::Migration[5.1]
   def change
-    create_table :transactions do |t|
+    create_table :payments do |t|
 
       t.belongs_to :request, index: true
       t.string :action

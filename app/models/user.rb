@@ -18,7 +18,7 @@ class User < ApplicationRecord
   belongs_to :tariff, required: false
 
   has_many :requests
-  has_many :transactions, through: :requests
+  has_many :payments, through: :requests
 
   # =====================================================================================
   # General

@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "request_id"
+    t.string "action"
+    t.integer "amount"
+    t.string "currency", default: "UAH"
+    t.string "confirm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_payments_on_request_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.bigint "category_id"
     t.bigint "color_id"
@@ -73,20 +84,11 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   end
 
   create_table "textiles", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.bigint "request_id"
-    t.string "action"
-    t.integer "amount"
-    t.string "currency", default: "UAH"
-    t.string "confirm"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["request_id"], name: "index_transactions_on_request_id"
+    t.index ["product_id"], name: "index_textiles_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|

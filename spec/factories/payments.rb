@@ -1,6 +1,6 @@
 FactoryBot.define do
   
-  factory :transaction do
+  factory :payment do
     request
     action "pay"
     amount 1

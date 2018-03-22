@@ -7,8 +7,9 @@ feature "Product" do
   end
 
   scenario "can have a textile" do
-    product = create(:product, textile: create(:textile))
-    expect(product.textile.title).to eq("Textile")
+    product = create(:product)
+    textile = create(:textile, product: product)
+    expect(product.textiles.first.name).to eq("Textile")
   end
   
 end
