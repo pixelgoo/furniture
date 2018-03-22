@@ -15,9 +15,12 @@ Rails.application.routes.draw do
   get '/settings', to: 'profiles#settings'
   get '/account', to: 'profiles#account'
 
-  # Tariff payment
-  post '/tariff', to: 'payments#tariff_payment', as: 'tariff_payment'
+  # Payments
+  get '/payment/:type/:id', to: 'payments#new', as: 'payment'
+  post '/payment', to: 'payments#create'
+  get '/payment/pending', to: 'payments#pending'
 
+  
   # Products
   resources :products
 

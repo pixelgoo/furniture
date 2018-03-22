@@ -265,6 +265,9 @@ ru:
       short: "%d %b, %H:%M"
     pm: вечера
 
+  controllers:
+    payment_exception: "Произошла ошибка при платеже. Пожалуйста, обратитесь к нам на почту help@woodmister.com и опишите проблему."
+
   # Menu & navigation
   menu:
     phone: "093 98 244 11"
@@ -296,3 +299,8 @@ ru:
     suspend: "Приостановить"
     per_day: "/день"
     choose_tariff: "Выбрать тарифф"
+
+  # Payment
+  payment:
+    tariff_title: "Подписка на тариф"
+    request_title: "Покупка товара"
