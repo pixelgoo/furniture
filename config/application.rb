@@ -29,7 +29,5 @@ module Woodmister
 
     I18n.available_locales = [ :ru ]
     I18n.default_locale = :ru
-
-    Rails.logger = Logger.new(STDOUT)
   end
 end

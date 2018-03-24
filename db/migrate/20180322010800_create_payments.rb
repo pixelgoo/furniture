@@ -3,8 +3,7 @@ class CreatePayments < ActiveRecord::Migration[5.1]
     create_table :payments do |t|
 
       t.string :type
-      t.belongs_to :request, index: true
-      t.belongs_to :tariff, index: true
+      t.belongs_to :user, index: true
       t.string :action
       t.string :amount
       t.string :currency, default: "UAH"

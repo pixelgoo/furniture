@@ -302,5 +302,10 @@ ru:
 
   # Payment
   payment:
-    tariff_title: "Подписка на тариф"
-    request_title: "Покупка товара"
+    subscribe_description: "WOODMISTER: подписка на тариф "
+    new_title: "Подписка на тариф "
+
+  tariff:
+    test: "Тест"
+    standart: "Стандарт"
+    premium: "Премиум +"

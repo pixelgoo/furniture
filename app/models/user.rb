@@ -15,10 +15,9 @@ class User < ApplicationRecord
   monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :role
-  belongs_to :tariff, required: false
-
+  belongs_to :tariff, optional: true
+  has_many :payments
   has_many :requests
-  has_many :payments, through: :requests
 
   # =====================================================================================
   # General
@@ -70,6 +69,7 @@ class User < ApplicationRecord
       else
         raise 'Unrecognized tariff exception'
     end
+    self.save
   end
 
 end

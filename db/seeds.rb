@@ -12,9 +12,9 @@ Role.create([
 ])
 
 Tariff.create([
-    { name: 'Пробный' },
-    { name: 'Стандарт' },
-    { name: 'Люкс' }
+    { name: 'test', price: '1' },
+    { name: 'standart', price: '1200' },
+    { name: 'premium', price: '2400' }
 ])
 
 Furniture.create([

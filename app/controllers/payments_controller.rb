@@ -1,99 +1,40 @@
 
 class PaymentsController < ApplicationController
+    before_action :authenticate_user!
 
-    def new
-        if payment_type_permitted?(params[:type]) then
+    def subscribe
+        if Tariff.all.map(&:name).exclude? params[:tariff] then
+            redirect_to root_path
+            return
+        end
+
+        if current_user.tariff.nil? then
             @payment = Payment.new
+            @payment.user = current_user
+            @payment.action = 'subscribe'
+            current_user.set_tariff params[:tariff]
+            @payment.amount = ActionController::Base.helpers.humanized_money(current_user.tariff.price).delete(' ')
+          
+            @payment.save
 
-            case params[:type]
-            when 'request'
-                @payment.action = 'pay'
-                @payment.request = Request.find(params[:request])
-                @payment.amount = ActionController::Base.helpers.humanized_money(payment.request.amount)
-            when 'tariff'
-                @payment.action = 'subscribe'
-                @payment.tariff = Tariff.find(params[:tariff])
-                @payment.amount = ActionController::Base.helpers.humanized_money(payment.tariff.price)
-            else
-            end
-
+            liqpay = Liqpay.new
+            payment_params = {
+                action:         @payment.action,
+                version:        '3',
+                email:          current_user.email,
+                amount:         @payment.amount,
+                currency:       'UAH',
+                description:    I18n.t('payment.subscribe_description') + I18n.t("tariff." + current_user.tariff.name),
+                order_id:       @payment.id.to_s,
+                subscribe:      '1',
+                subscribe_date_start:  Time.now.to_s[0...-6],
+                subscribe_periodicity: 'month'
+            }
+    
+            @liqpay_button = liqpay.cnb_form(payment_params)
         else
-            raise ActionController::RoutingError.new('Not Found')        
+            redirect_to profile_path
+            return
         end
-    end
-
-    def create
-
-        case params[:type]
-        when 'request'
-            payment.action = 'pay'
-            payment.request = Request.find(params[:request])
-            if(ActionController::Base.helpers.humanized_money(payment.request.amount) == params[:amount])
-                payment.amount = params[:amount]
-            else 
-                raise InvalidAmountException
-            end
-        when 'tariff'
-            payment.action = 'subscribe'
-            payment.tariff = Tariff.find(params[:tariff])
-            if(ActionController::Base.helpers.humanized_money(payment.tariff.price) == params[:amount])
-                payment.amount = params[:amount]
-            else 
-                raise InvalidAmountException
-            end
-        else
-            raise WrongPaymentTypeException
-        end
-
-        if payment.save
-            redirect_to "/payments/pending"
-        else
-            flash[:notice] = "#{payment}"
-            render :template => "payments/new"
-        end
-        
-
-        liqpay = Liqpay.new
-        liqpay.api('request', {
-          action:         payment.action,
-          version:       '3',
-          email:          current_user.email,
-          amount:         payment.amount,
-          currency:      'UAH',
-          order_id:       payment.id
-          card:           params[:card],
-          card_exp_month: params[:card_exp_month],
-          card_exp_year:  params[:card_exp_year],
-          card_cvv:       params[:card_cvv],
-          receiver_card:  Rails.application.secrets.receiver_card,
-          sandbox: "1"
-        })
-    end
-   
-    def pending
-
-    end
-
-    # Error handling
-
-    class WrongPaymentTypeException < StandardError
-    end
-
-    class InvalidAmountException < StandardError
-    end
-  
-    rescue_from WrongPaymentTypeException, :with => :payment_exception_handler
-    rescue_from InvalidAmountException, :with => :payment_exception_handler
-
-    def payment_exception_handler(exception)
-      flash[:notice] = I18n.t controllers.payment_exception
-      Rails.logger.warn "Something bad happend in the PaymentsController: #{exception}"
-      redirect_to "/"
-    end
-
-    private
-
-    def payment_type_permitted?
-        (params & %w(request tariff)).any?
     end
 end

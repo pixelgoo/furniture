@@ -31,21 +31,18 @@ ActiveRecord::Schema.define(version: 20180322011930) do
 
   create_table "payments", force: :cascade do |t|
     t.string "type"
-    t.bigint "request_id"
-    t.bigint "tariff_id"
+    t.bigint "user_id"
     t.string "action"
     t.string "amount"
     t.string "currency", default: "UAH"
     t.string "confirm", default: "no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["request_id"], name: "index_payments_on_request_id"
-    t.index ["tariff_id"], name: "index_payments_on_tariff_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.bigint "category_id"
-    t.bigint "color_id"
     t.string "title"
     t.string "factory"
     t.string "style"
@@ -59,7 +56,6 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["color_id"], name: "index_products_on_color_id"
   end
 
   create_table "requests", force: :cascade do |t|
