@@ -32,7 +32,7 @@ import Turbolinks from 'turbolinks'
 Turbolinks.start()
 
 // Add application modules
-import App from '../javascript/App'
+import App from '../javascript/app'
 
 $(document).ready(function() {
     let woodmister = new App()

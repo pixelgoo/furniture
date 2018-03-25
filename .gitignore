@@ -38,6 +38,9 @@ lib/products.json
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
 
-
 lib/assets
 lib/products
+lib/postgres-data
+
+# Ignore encrypted secrets key file.
+config/secrets.yml.key
