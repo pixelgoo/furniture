@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     end
 
     def settings
-        render template: "settings"
+        @tariffs = Tariff.all
     end
 
     def account

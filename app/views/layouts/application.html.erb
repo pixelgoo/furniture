@@ -13,12 +13,15 @@
 
   <body>
     <% unless hide_header? then %>
-        <%= render "layouts/header" %>
+      <%= render "layouts/header" %>
     <% end %>
 
     <%= render 'layouts/messages' %>
-    
-    <%= render "layouts/aside" if controller_name == 'profiles' %>
+
+    <% if controller_name == 'profiles' then %>
+      <%= render "layouts/small-navigation-top" %>
+      <%= render "layouts/aside" %>
+    <% end %>
 
     <div class="content-container <%= 'content-container_aside' if controller_name == 'profiles' %>">
       <%= yield %>

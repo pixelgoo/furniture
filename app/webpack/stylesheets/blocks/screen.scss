@@ -42,26 +42,7 @@ a:focus {
 .collapse.show {
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
-.section {
-  width: 100%;
-  max-width: 1180px;
-  margin: 50px auto;
-  &__header {
-    width: 100%;
-    text-align: center;
-    font-family: 'Alegreya Sans', sans-serif;
-    font-weight: 300;
-    font-size: 44px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    &_wrap {
-      margin-bottom: 50px;
-    }
-  }
-  hr {
-    border-top-width: 2px;
-  }
-}
+
 .text {
   &__header {
     font-size: 20px;
