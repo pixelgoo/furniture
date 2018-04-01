@@ -2,7 +2,6 @@ class ProfilesController < ApplicationController
     before_action :authenticate_user!
 
     def show
-        render template: "profile"
     end
 
     def settings
@@ -10,6 +9,5 @@ class ProfilesController < ApplicationController
     end
 
     def account
-        render template: "account"
     end
 end
