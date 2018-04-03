@@ -10,6 +10,9 @@ def parse_item(browser, link, catalog)
   parsed_item['id'] = link[/\d+$/].to_i
   parsed_item['title'] = browser.div(:class, 'breadcrumbs').h1(:class, 'title').inner_html
 
+  puts "Parsing item: #{parsed_item['title']}"
+
+  # Parse general data
   browser.div(:class, 'features').divs(:class, 'item').each do |item|
 
     if item.div(:class, 'value').inner_html.include?('<i')
@@ -33,7 +36,21 @@ def parse_item(browser, link, catalog)
     end
 
   end
-  puts "Item data parsed: #{parsed_item['title']}"
+  
+  # Parse textiles
+  puts "Parsing item textiles..."
+  parsed_item['textiles'] = []
+  if browser.div(:class, 'product_color').exists? then
+    browser.div(:class, 'product_color').divs(:class, 'item').each do |textile|
+      parsed_item['textiles'].push textile.div(:class, 'name').inner_html.gsub!('/', ',')
+      from = textile.a(:class, 'link').img(:class, 'item-image').attribute_value('src')
+      to = "/assets/textiles/#{textile.div(:class, 'name').inner_html.gsub!('/', ',')}"
+      download_image(from, to)
+    end
+  end
+
+  puts "Item data parsed!"
+  # ==========================================================================================
 
   data = {}
   FileUtils.mkdir_p "./assets/#{catalog}/#{parsed_item['id']}"
@@ -47,35 +64,46 @@ def parse_item(browser, link, catalog)
     f.write JSON.pretty_generate(data)
   end
 
-  FileUtils.mkdir_p "./assets/#{catalog}/#{parsed_item['id']}"
+  puts "Category JSON updated!"
+  # ==========================================================================================
 
-  # Download images
   browser.div(:class, 'photo').imgs(:class, 'item-image').each_with_index do |image, index|
-    image_link = image.attribute_value('src')
-    puts "Image link: #{image_link}"
-    if image_link.include? "http" then
-      image = open image_link
-      bytes_expected = image.meta['content-length'].to_i
-      place = Dir.pwd + "/temp"
-      bytes_copied = IO.copy_stream image, place
-      if bytes_expected == bytes_copied then
-        puts "Image downloaded" 
-      else 
-        puts "Image download failed"
-      end
-
-      f_image = File.open('temp', 'rb')
-      is_png = f_image.read.include?('PNG')
-      f_image.close
-      is_png ? FileUtils.mv('temp', Dir.pwd + "/assets/#{catalog}/#{parsed_item['id']}/#{parsed_item['id']}_#{index}.png")
-      : FileUtils.mv('temp', Dir.pwd + "/assets/#{catalog}/#{parsed_item['id']}/#{parsed_item['id']}_#{index}.jpg")
-
-    end
+    from = image.attribute_value('src')
+    to = "/assets/#{catalog}/#{parsed_item['id']}/#{parsed_item['id']}_#{index}"
+    download_image(from, to)
   end
 
-  puts "Item images parsed. Moving on!"
+  puts "Item images parsed. 🎉  Moving on!"
+  # ==========================================================================================
 
   return parsed_item
+end
+
+# ==========================================================================================
+
+def download_image(from, to)
+  if from.include? 'http' then
+    image = open from
+    bytes_expected = image.meta['content-length'].to_i
+    place = Dir.pwd + "/temp"
+    bytes_copied = IO.copy_stream image, place
+    if bytes_expected == bytes_copied then
+      puts "✨  Image downloaded (jpeg, png)" 
+    else 
+      puts "🚨  Image download failed, image link: #{from}"
+      return
+    end
+    f_image = File.open('temp', 'rb')
+    image_type = f_image.read.include?('PNG') ? ".png" : ".jpg"
+    f_image.close
+    FileUtils.mv('temp', Dir.pwd + to + image_type)
+  else
+    File.open('temp', 'wb') do |f|
+      f.write(Base64.decode64(from))
+    end
+    FileUtils.mv('temp', Dir.pwd + to + "." + from[/image\/([a-zA-Z]*);base64,/, 1])
+    puts "✨  Image downloaded (data:image)" 
+  end
 end
 
 def scan_page_links(browser)
@@ -85,15 +113,18 @@ def scan_page_links(browser)
     items[i].a.attribute_value('href')
   end
   
-  puts "#{items.size} links collected, trying to visit next page..."
+  puts "#{items.size} links collected  👌  trying to visit next page..."
   return page_items_links
 end
 
-# ============================================================================
+# ==========================================================================================
 
-# An array of required catalogs got through console arguments
+# An array of required catalogs received through console arguments
 ARGV.map(&:to_i)
 catalogs = ARGV
+
+# Downloaded textiles come here
+FileUtils.mkdir_p "./assets/textiles"
 
 # Parse items for each catalog
 catalogs.each do |catalog|
@@ -105,7 +136,7 @@ catalogs.each do |catalog|
   end
   
   browser = Watir::Browser.new
-  puts "Chromedriver found, opening browser..."
+  puts "🚀  Chromedriver found, opening browser..."
 
   browser.goto "https://www.dybok.com.ua/ru/product/catalog/#{catalog}"
 
@@ -125,7 +156,7 @@ catalogs.each do |catalog|
     page_number += 1
   end
 
-  puts "Begin parsing process:"
+  puts "👷  Begin parsing process:"
   pages.each do |page|
     page.each do |link|
       browser.goto link
@@ -135,6 +166,6 @@ catalogs.each do |catalog|
   
   browser.close
 
-  puts "Catalog ##{catalog} is parsed. Data written in ./products/#{catalog}/#{catalog}.json. Images placed to ./products/#{catalog}/. Yay!"
+  puts "✅  Catalog ##{catalog} is parsed. Data written in ./products/#{catalog}/#{catalog}.json. Images placed to ./products/#{catalog}/. Yay 🐎!"
 
 end
