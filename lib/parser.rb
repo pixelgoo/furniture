@@ -3,6 +3,7 @@ require 'selenium-webdriver'
 # require 'chromedriver/helper'
 require 'open-uri'
 require 'fileutils'
+require 'securerandom'
 
 def parse_item(browser, link, catalog)
   parsed_item = {}
@@ -37,34 +38,27 @@ def parse_item(browser, link, catalog)
 
   end
   
+  FileUtils.mkdir_p "assets/#{catalog}/#{parsed_item['id']}"
+
   # Parse textiles
   puts "Parsing item textiles..."
   parsed_item['textiles'] = []
   if browser.div(:class, 'product_color').exists? then
     browser.div(:class, 'product_color').divs(:class, 'item').each do |textile|
-      parsed_item['textiles'].push textile.div(:class, 'name').inner_html.gsub!('/', ',')
+      name = textile.a(:class, 'link').img(:class, 'item-image').attribute_value('alt').gsub!('/', ',')
+      name = SecureRandom.urlsafe_base64(8) if name.nil? || name.empty?
+      parsed_item['textiles'].push name
+      
       from = textile.a(:class, 'link').img(:class, 'item-image').attribute_value('src')
-      to = "/assets/textiles/#{textile.div(:class, 'name').inner_html.gsub!('/', ',')}"
+      to = "/assets/textiles/#{name}"
+      puts "    #{name}"
       download_image(from, to)
     end
+  else
+    puts "No textiles for this item!"
   end
 
-  puts "Item data parsed!"
-  # ==========================================================================================
-
-  data = {}
-  FileUtils.mkdir_p "./assets/#{catalog}/#{parsed_item['id']}"
-  File.open("./products/#{catalog}/#{catalog}.json",'r') do |f|
-    data = JSON.parse(f.read)
-  end
-
-  data['products'].push parsed_item
-
-  File.open("./products/#{catalog}/#{catalog}.json",'w+') do |f|
-    f.write JSON.pretty_generate(data)
-  end
-
-  puts "Category JSON updated!"
+  puts "✔️ ✔️ ✔️  Item data parsed!"
   # ==========================================================================================
 
   browser.div(:class, 'photo').imgs(:class, 'item-image').each_with_index do |image, index|
@@ -73,7 +67,7 @@ def parse_item(browser, link, catalog)
     download_image(from, to)
   end
 
-  puts "Item images parsed. 🎉  Moving on!"
+  puts "✔️ ✔️ ✔️  Item images parsed. Moving on! 🎉"
   # ==========================================================================================
 
   return parsed_item
@@ -88,9 +82,9 @@ def download_image(from, to)
     place = Dir.pwd + "/temp"
     bytes_copied = IO.copy_stream image, place
     if bytes_expected == bytes_copied then
-      puts "✨  Image downloaded (jpeg, png)" 
+      puts "   ✨  Image downloaded" 
     else 
-      puts "🚨  Image download failed, image link: #{from}"
+      puts "🚨🚨🚨  Image download failed, image link: #{from}"
       return
     end
     f_image = File.open('temp', 'rb')
@@ -99,10 +93,10 @@ def download_image(from, to)
     FileUtils.mv('temp', Dir.pwd + to + image_type)
   else
     File.open('temp', 'wb') do |f|
-      f.write(Base64.decode64(from))
+      f.write(Base64.decode64(from[/base64,(.+)/, 1]))
     end
     FileUtils.mv('temp', Dir.pwd + to + "." + from[/image\/([a-zA-Z]*);base64,/, 1])
-    puts "✨  Image downloaded (data:image)" 
+    puts "   ✨  Image downloaded" 
   end
 end
 
@@ -128,19 +122,20 @@ FileUtils.mkdir_p "./assets/textiles"
 
 # Parse items for each catalog
 catalogs.each do |catalog|
-  catalog_data = { "id": catalog, "products": [] }
+  catalog_data = {
+    :id => catalog, 
+    :products => [] 
+  }
 
   FileUtils.mkdir_p "products/#{catalog}"
-  File.open("./products/#{catalog}/#{catalog}.json",'w') do |f|
-    f.write JSON.pretty_generate(JSON.parse "{ \"id\": #{catalog}, \"products\": [] }")
-  end
-  
+  FileUtils.mkdir_p "assets/#{catalog}"
+
   browser = Watir::Browser.new
   puts "🚀  Chromedriver found, opening browser..."
 
   browser.goto "https://www.dybok.com.ua/ru/product/catalog/#{catalog}"
 
-  puts "Parsing catalog ##{catalog}: #{browser.div(:class => "content").div(:class => "breadcrumbs").h1(:class => "title").inner_html}"
+  puts "🔮  Parsing catalog ##{catalog}: #{browser.div(:class => "content").div(:class => "breadcrumbs").h1(:class => "title").inner_html}"
 
   # Parse links from the first page then loop other pages until 404
   puts "Collecting product links"
@@ -151,7 +146,7 @@ catalogs.each do |catalog|
   page_number = 2
   loop do
     browser.goto "https://www.dybok.com.ua/ru/product/catalog/#{catalog}/page=#{page_number}"
-    break if browser.url != "https://www.dybok.com.ua/ru/404"
+    break if browser.url == "https://www.dybok.com.ua/ru/404"
     pages.push scan_page_links(browser)
     page_number += 1
   end
@@ -166,6 +161,10 @@ catalogs.each do |catalog|
   
   browser.close
 
+  File.open("./products/#{catalog}/#{catalog}.json",'w+') do |f|
+    f.write JSON.pretty_generate(catalog_data)
+  end
+  
   puts "✅  Catalog ##{catalog} is parsed. Data written in ./products/#{catalog}/#{catalog}.json. Images placed to ./products/#{catalog}/. Yay 🐎!"
 
 end
