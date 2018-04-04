@@ -165,6 +165,7 @@ catalogs.each do |catalog|
     f.write JSON.pretty_generate(catalog_data)
   end
   
+  puts "Catalog length is #{catalog_data[:products].length}"
   puts "✅  Catalog ##{catalog} is parsed. Data written in ./products/#{catalog}/#{catalog}.json. Images placed to ./products/#{catalog}/. Yay 🐎!"
 
 end
