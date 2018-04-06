@@ -42,5 +42,8 @@ lib/assets
 lib/products
 lib/postgres-data
 
+app/webpack/images/products
+app/webpack/images/textiles
+
 # Ignore encrypted secrets key file.
 config/secrets.yml.key

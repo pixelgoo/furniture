@@ -1,0 +1,44 @@
+ <section id="resultList" class="section">
+    <div class="section__header_wrap">
+        <h2 class="section__header">Результат поиска</h2>
+        <hr width="60px" size="2" align="center" color="#C8A165">
+    </div>
+    <div class="result__wrap">
+        <div class="result__list">
+          <% @products.each do |product| %>
+            <div class="result">
+                <div class="result__product product">
+                    <div class="product__image">
+                      <%= product_image(product) %>
+                    </div>
+                    <div class="product__info info">
+                        <div class="info__name"><span><%= product.title %></span></div>
+                        <div class="info__tags tag__list">
+                          <% %w(factory style facade product_type).each do |detail| %>
+                              <% unless product[detail].nil? then %>
+                                <div class="tag"><span class="icon-tag icon"></span><span><%= product[detail] %></span></div>
+                              <% end %>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+                <div class="result__action">
+                    <button class="form__btn box">
+                        <span class="box__content_wrap">
+                            <span class="icon-doc icon"></span>
+                            <span class="box__content">Подробнее</span>
+                        </span>
+                    </button>
+                    <button class="form__btn box">
+                        <span class="box__content_wrap">
+                            <span class="icon-share-alt icon"></span>
+                            <span class="box__content">Оставить заявку</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+    <%= paginate @products %>
+</section>
