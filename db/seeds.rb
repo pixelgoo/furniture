@@ -12,10 +12,13 @@ Role.create([
     { name: 'Admin' }
 ])
 
-User.create! :first_name => 'admin', :role_id => 2,
+admin = User.new :first_name => 'admin', :role_id => 2,
 :email => Rails.application.secrets.admin_login, 
 :password => Rails.application.secrets.admin_password, 
 :password_confirmation => Rails.application.secrets.admin_password
+admin.skip_confirmation!
+admin.save!
+
 
 Tariff.create([
     { name: 'test', price: '1' },
