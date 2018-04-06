@@ -127,7 +127,7 @@ catalogs.each do |catalog|
     :products => [] 
   }
 
-  FileUtils.mkdir_p "products/#{catalog}"
+  FileUtils.mkdir_p "products"
   FileUtils.mkdir_p "assets/#{catalog}"
 
   browser = Watir::Browser.new
@@ -161,7 +161,7 @@ catalogs.each do |catalog|
   
   browser.close
 
-  File.open("./products/#{catalog}/#{catalog}.json",'w+') do |f|
+  File.open("./products/#{catalog}.json",'w+') do |f|
     f.write JSON.pretty_generate(catalog_data)
   end
   
