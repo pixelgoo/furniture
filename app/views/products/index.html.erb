@@ -26,7 +26,7 @@
                     <button class="form__btn box">
                         <span class="box__content_wrap">
                             <span class="icon-doc icon"></span>
-                            <span class="box__content">Подробнее</span>
+                            <%= link_to 'Подробнее', product_path(product.id), class: 'box__content' %>
                         </span>
                     </button>
                     <button class="form__btn box">

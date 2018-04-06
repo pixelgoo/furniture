@@ -305,7 +305,20 @@ ru:
     subscribe_description: "WOODMISTER: подписка на тариф "
     new_title: "Подписка на тариф "
 
+  # Tariff
   tariff:
     test: "Тест"
     standart: "Стандарт"
     premium: "Премиум +"
+
+  # Product
+  product:
+    factory: "Производитель"
+    style: "Стиль"
+    facade: "Фасад"
+    structure: "Структура"
+    product_type: "Тип"
+    transformation_type: "Тип трансформации"
+    width: "Ширина"
+    height: "Высота"
+    depth: "Глубина"
