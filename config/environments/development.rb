@@ -61,4 +61,7 @@ Rails.application.configure do
   config.webpacker.check_yarn_integrity = false
 
   Rails.logger = Logger.new(STDOUT)
+
+  # Expose localhost to ngrok for liqpay callback testing
+  config.exposed_host = 'https://304af72a.ngrok.io'
 end

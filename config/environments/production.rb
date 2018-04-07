@@ -101,4 +101,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.read_encrypted_secrets = true 
+
+  config.exposed_host = 'https://woodmister.herokuapp.com'
 end
