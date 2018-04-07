@@ -1,0 +1,22 @@
+<div class="tariff">
+  <div class="tariff__header">
+    <div class="tariff__icon tariff__icon_<%= tariff.name %>"><span class="icon-star"></span></div>
+    <div class="tariff__name"><%= t("tariff.#{tariff.name}") %></div>
+  </div>
+  <div class="tariff__body">
+    <ul class="tariff__features">
+      <% t("tariff.#{tariff.name}_features").split(';').each do |feature| %>
+          <li class="tariff__feature"><span><%= feature.html_safe %></span></li>
+      <% end %>
+    </ul>
+    <div class="tariff__price">
+      <span><%= price_per_day(tariff) %> <%= currency_symbol + t('profile.per_day') %></span>
+    </div>
+    <button class="tariff__btn box">
+      <span class="box__content_wrap">
+        <span class="icon-wallet icon"></span>
+        <span class="box__content">Подписаться</span>
+      </span>
+    </button>
+  </div>
+</div>

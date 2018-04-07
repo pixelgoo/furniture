@@ -33,6 +33,12 @@
         </div>
         <div class="select-wrapper">
             <div class="select form-group">
+                <%= text_field_tag 'user[company]', nil, id: 'user_company', class: 'form-control input-field', 
+                placeholder: 'Название вашей компании', autocomplete: 'off', maxlength: 30 %>
+            </div>
+        </div>
+        <div class="select-wrapper">
+            <div class="select form-group">
                 <%= text_field_tag 'user[phone]', nil, id: 'user_phone', class: 'form-control input-field', 
                 placeholder: 'Телефон', autocomplete: 'off' %>
             </div>

@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.datetime "updated_at", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
+    t.string "company"
     t.string "phone"
     t.string "city"
     t.boolean "subscribe", default: false, null: false

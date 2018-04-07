@@ -21,8 +21,8 @@ admin.save!
 
 
 Tariff.create([
-    { name: 'test', price: '1' },
-    { name: 'standart', price: '1200' },
+    { name: 'basic', price: '500' },
+    { name: 'standard', price: '1200' },
     { name: 'premium', price: '2400' }
 ])
 

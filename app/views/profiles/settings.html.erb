@@ -1,47 +1,17 @@
 <% if current_user.manufacturer? then %>
 
-    <section id="walletTariffs" class="section">
-
-        <div class="tariffs__tabs tabs tabs_left">
-            <!-- Tab panels -->
-            <div class="tab-content card tabs__container_right">
-                <!--Panel 1-->
-                <% @tariffs.each do |tariff| %>
-                    <div class="tab-pane fade in show active" role="tabpanel">
-                        <div class="tariff">
-                            <div class="tariff__header_wrap">
-                                <h4 class="tariff__header"><%= tariff.name %></h4>
-                                <div class="tariff__status tariff__status_lg tariff__status_c"><span class="icon-diamond"></span></div>
-                            </div>
-                            <div class="tariff__body">
-                                <p class="tariff__description">Lorem ipsum dolor sit amet</p>
-                                <ul class="tariff__list list">
-                                    <span class="list__header">Функции:</span>
-                                    <li class="list__item"><img src="img/checked.svg" alt="" class="list__icon"><span>Ключевые слова</span></li>
-                                    <li class="list__item"><img src="img/checked.svg" alt="" class="list__icon"><span>Ремаркетинг</span></li>
-                                    <li class="list__item"><img src="img/checked.svg" alt="" class="list__icon"><span>Структура аккаунта</span></li>
-                                    <li class="list__item"><img src="img/checked.svg" alt="" class="list__icon"><span>Минус-слова</span></li>
-                                </ul>
-                                <div class="tariff__price">
-                                    <span></span>
-                                </div>
-                                <button class="tariff__btn box">
-                                    <span class="box__content_wrap">
-                                        <span class="icon-wallet icon"></span>
-                                        <span class="box__content">Подписаться</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
-            </div>
+    <section class="section">
+        <h4 class="section__header"><%= t('tariff.choose') %></h2>
+        <div class="tariff-list">
+            <% @tariffs.each do |tariff| %>
+                <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+            <% end %>
         </div>
     </section>
 
 <% end %>
 
-<section id="settings" class="section">
+<section class="section">
     <div class="settings">
         <div class="settings__password password">
             <h4 class="sm__header">Изменить пароль</h4>
