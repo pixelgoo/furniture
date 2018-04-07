@@ -14,7 +14,7 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Alegreya Sans', sans-serif !important;
     line-height: 1.5;
     font-size: 14px;
     font-weight: 400;
@@ -37,4 +37,9 @@ textarea {
 .alert {
     z-index: 8;
     position: relative;
+}
+
+.emoji {
+    font-size: 16px;
+    margin: 0 3px;
 }
