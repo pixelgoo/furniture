@@ -26,6 +26,7 @@ feature "User can" do
 
     fill_in "user_first_name", with: "Tony"
     fill_in "user_last_name", with: "Example"
+    fill_in "user_company", with: "Company"
     fill_in "user_phone", with: "+3809999999"
     fill_in "user_email", with: "tester@example.tld"
     fill_in "user_city", with: "Kiev"
