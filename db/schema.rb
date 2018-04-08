@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "type"
     t.bigint "user_id"
+    t.string "order_id"
     t.string "action"
+    t.string "tariff"
     t.string "amount"
     t.string "currency", default: "UAH"
-    t.string "confirm", default: "no"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_payments_on_user_id"

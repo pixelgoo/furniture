@@ -12,7 +12,9 @@ class PaymentsController < ApplicationController
             @payment.user = current_user
             @payment.action = 'subscribe'
             @payment.tariff = params[:tariff]
-            @payment.amount = ActionController::Base.helpers.humanized_money(current_user.tariff.price).delete(' ')
+
+            tariff = Tariff.find_by(name: @payment.tariff)
+            @payment.amount = ActionController::Base.helpers.humanized_money(tariff.price).delete(' ')
           
             @payment.save
 
@@ -24,8 +26,8 @@ class PaymentsController < ApplicationController
                 email:          current_user.email,
                 amount:         @payment.amount,
                 currency:       'UAH',
-                description:    I18n.t('payment.subscribe_description') + I18n.t("tariff." + @payment.tariff.name),
-                order_id:       Payment.generate_orded_id,
+                description:    I18n.t('payment.subscribe_description') + I18n.t("tariff." + tariff.name),
+                order_id:       Payment.generate_order_id,
                 subscribe:      '1',
                 subscribe_date_start:  Time.now.to_s[0...-6],
                 subscribe_periodicity: 'month',
@@ -50,9 +52,11 @@ class PaymentsController < ApplicationController
             case responce_hash['status']
             when 'success'
                 current_user.set_tariff payment.tariff
+                TariffPaymentJob.perform_later(current_user.id)
             when 'failure'
 
             when 'sandbox'
+            end
 
             current_user.set_tariff @payment.tariff
 

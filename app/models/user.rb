@@ -60,6 +60,10 @@ class User < ApplicationRecord
     self.tariff_status == 1
   end
 
+  def tariff_inactive?
+    self.tariff_status == 0
+  end
+
   def set_tariff_status(status)
     case status
       when :inactive
@@ -67,9 +71,18 @@ class User < ApplicationRecord
       when :active
         self.tariff_status = 1
       else
-        raise 'Unrecognized tariff exception'
+        raise 'Unrecognized tariff status exception'
     end
     self.save
+  end
+
+  def perform_tariff_payment
+    if(self.account >= self.tariff.price_per_day) then
+      self.account -= self.tariff.price_per_day
+      self.save
+    else
+      self.set_tariff_status :inactive
+    end
   end
 
 end

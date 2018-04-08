@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '/payment/:tariff', to: 'payments#subscribe', as: 'subscribe'
-  get '/payment/callback', to: 'payments#callback', as: 'callback'
+  post '/payment/callback', to: 'payments#callback', as: 'callback'
   
   # Products
   resources :products
