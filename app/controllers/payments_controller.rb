@@ -12,10 +12,9 @@ class PaymentsController < ApplicationController
             @payment.user = current_user
             @payment.action = 'subscribe'
             @payment.tariff = params[:tariff]
-
             tariff = Tariff.find_by(name: @payment.tariff)
             @payment.amount = ActionController::Base.helpers.humanized_money(tariff.price).delete(' ')
-          
+            @payment.order_id = Payment.generate_order_id
             @payment.save
 
             liqpay = Liqpay.new
@@ -27,7 +26,7 @@ class PaymentsController < ApplicationController
                 amount:         @payment.amount,
                 currency:       'UAH',
                 description:    I18n.t('payment.subscribe_description') + I18n.t("tariff." + tariff.name),
-                order_id:       Payment.generate_order_id,
+                order_id:       @payment.order_id,
                 subscribe:      '1',
                 subscribe_date_start:  Time.now.to_s[0...-6],
                 subscribe_periodicity: 'month',
@@ -48,21 +47,23 @@ class PaymentsController < ApplicationController
 
             payment = Payment.find_by(order_id: responce_hash['order_id'])
             payment.status = responce_hash['status']
+            payment.save
 
             case responce_hash['status']
             when 'success'
+            when 'sandbox'
+                current_user.account += payment.amount
                 current_user.set_tariff payment.tariff
                 TariffPaymentJob.perform_later(current_user.id)
             when 'failure'
 
-            when 'sandbox'
             end
 
-            current_user.set_tariff @payment.tariff
-
             @status = payment.status
+            logger.debug current_user
         else
             logger.warn "Liqpay: wrong signature received!"
+            redirect_to root_path
         end
     end
 end
