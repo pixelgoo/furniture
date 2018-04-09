@@ -16,8 +16,8 @@ Rails.application.configure do
       authentication: "login",
       enable_starttls_auto: true,
       openssl_verify_mode: "none",
-      user_name:      Rails.application.secrets.mail_username,
-      password:       Rails.application.secrets.mail_password,
+      user_name:      ENV["MAIL_USERNAME"],
+      password:       ENV["MAIL_PASSWORD"],
   }
   
   # Code is not reloaded between requests.
@@ -36,7 +36,9 @@ Rails.application.configure do
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
   # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
   # `config/secrets.yml.key`.
-  config.read_encrypted_secrets = true
+  config.read_encrypted_secrets = false
+
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -99,8 +101,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  config.read_encrypted_secrets = true 
 
   config.exposed_host = 'https://woodmister.herokuapp.com'
 end

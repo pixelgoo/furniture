@@ -12,12 +12,14 @@ Role.create([
     { name: 'Admin' }
 ])
 
-admin = User.new :first_name => 'admin', :role_id => 2,
-:email => Rails.application.secrets.admin_login, 
-:password => Rails.application.secrets.admin_password, 
-:password_confirmation => Rails.application.secrets.admin_password
-admin.skip_confirmation!
-admin.save!
+if Rails.env.development? then
+    admin = User.new :first_name => 'admin', :role_id => 2,
+    :email => Rails.application.secrets.admin_login, 
+    :password => Rails.application.secrets.admin_password, 
+    :password_confirmation => Rails.application.secrets.admin_password
+    admin.skip_confirmation!
+    admin.save!
+end
 
 
 Tariff.create([
