@@ -33,17 +33,6 @@ config/secrets.yml.key
 config/secrets.yml.enc
 config/secrets.yml
 
-# Ignore parsed data
-lib/products.json
-# Ignore encrypted secrets key file.
-config/secrets.yml.key
 
 lib/assets
-lib/products
 lib/postgres-data
-
-app/webpack/images/products
-app/webpack/images/textiles
-
-# Ignore encrypted secrets key file.
-config/secrets.yml.key
