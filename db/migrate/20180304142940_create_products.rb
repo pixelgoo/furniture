@@ -14,6 +14,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.integer :width
       t.integer :height
       t.integer :depth
+      t.integer :image_count
 
       t.timestamps
     end
