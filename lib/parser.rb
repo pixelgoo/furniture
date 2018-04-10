@@ -38,8 +38,6 @@ def parse_item(browser, link, catalog)
 
   end
   
-  FileUtils.mkdir_p "assets/#{catalog}/#{parsed_item['id']}"
-
   # Parse textiles
   puts "Parsing item textiles..."
   parsed_item['textiles'] = []
@@ -61,13 +59,16 @@ def parse_item(browser, link, catalog)
   puts "✔️ ✔️ ✔️  Item data parsed!"
   # ==========================================================================================
 
+  parsed_item['image_count'] = 0
+
   browser.div(:class, 'photo').imgs(:class, 'item-image').each_with_index do |image, index|
     from = image.attribute_value('src')
-    to = "/assets/#{catalog}/#{parsed_item['id']}/#{parsed_item['id']}_#{index}"
+    to = "/assets/#{catalog}/#{parsed_item['id']}_#{index}"
     download_image(from, to)
+    parsed_item['image_count'] += 1
   end
 
-  puts "✔️ ✔️ ✔️  Item images parsed. Moving on! 🎉"
+  puts "✔️ ✔️ ✔️  Item images (#{parsed_item['image_count']}) parsed. Moving on! 🎉"
   # ==========================================================================================
 
   return parsed_item
