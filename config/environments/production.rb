@@ -37,6 +37,8 @@ Rails.application.configure do
 
   config.secret_key_base = ENV["SECRET_KEY_BASE"]
 
+  config.force_ssl = true
+
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   # config.assets.enabled = true
   # config.assets.digest = true
