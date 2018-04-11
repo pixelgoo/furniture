@@ -108,6 +108,8 @@ Dir.glob("#{Rails.root}/lib/products/*.json").each do |file_path|
             end
         end
 
+        cleaned_product['image_count'] = product['image_count']
+
         database_product = Product.new(cleaned_product)
         database_product.category = category
         database_product.save!
