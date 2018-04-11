@@ -20,6 +20,11 @@
     }
   }
 
+  &__features {
+    padding-left: 0;
+    list-style-type: none;
+  }
+
   &__name {
     font-size: 28px;
   }
@@ -53,9 +58,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 25px;
+  padding: 0 10px;
 
   > div {
-    margin: 0 8px;
+    margin: 0 5px;
   }
 }
