@@ -637,10 +637,12 @@ a:focus {
   &__page {
     transition: ease 0.4s;
     background-color: #fff;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     -webkit-flex-flow: row wrap;
+    margin-right: 0px!important;
+    margin-left: 0px!important;
     &:hover {
       transition: ease 0.4s;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
@@ -943,11 +945,6 @@ a:focus {
   -webkit-flex-flow: row wrap;
   transition: ease 0.4s;
   background-color: #fff;
-  padding: 40px;
-  &:hover {
-    transition: ease 0.4s;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-  }
   &__division {
     width: 33.3%;
     padding: 0 5px;
@@ -1109,7 +1106,7 @@ a:focus {
   }
   .page_right .section {
     max-width: 1180px;
-    padding: 0 0 0 17%;
+    padding: 40px;
   }
   .page__head {
     padding: 0 0 0 17%;
