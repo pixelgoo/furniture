@@ -182,6 +182,16 @@ ru:
       create: Создать %{model}
       submit: Сохранить %{model}
       update: Сохранить %{model}
+      ru:
+    page_entries_info:
+      more_pages:
+        display_entries: "Показана %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b>"
+      one_page:
+        display_entries:
+          few: "Показаны <b>%{count}</b> %{entry_name}"
+          many: "Показаны <b>%{count}</b> %{entry_name}"
+          one: "Показано <b>%{count}</b> %{entry_name}"
+          other: "Показаны <b>все %{count}</b> %{entry_name}"
   number:
     currency:
       format:
@@ -268,6 +278,13 @@ ru:
   controllers:
     payment_exception: "Произошла ошибка при платеже. Пожалуйста, обратитесь к нам на почту help@woodmister.com и опишите проблему."
 
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      next: "Следующая &rsaquo;"
+      previous: "&lsaquo; Предыдущая"
+      truncate: "&hellip;"
   # Menu & navigation
   menu:
     phone: "093 98 244 11"
