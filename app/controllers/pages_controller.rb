@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
     def show
-        render template: "pages/#{params[:page]}"
+        case params[:page]
+        when 'index'
+            @tariffs = Tariff.all
+        end
 
-        @tariffs = Tariff.all
+        render template: "pages/#{params[:page]}"
     end
 end
