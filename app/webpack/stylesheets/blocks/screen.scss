@@ -66,6 +66,7 @@ a:focus {
   background-size: cover;
   min-height: 100vh;
   position: relative;
+  margin: 0 -30px;
   &__link {
     transition: ease 0.4s;
     position: absolute;
@@ -132,7 +133,7 @@ a:focus {
       text-transform: uppercase;
     }
     &__footer {
-      font-size: 12px;
+      font-size: 14px;
       text-align: center;
     }
   }
@@ -206,7 +207,7 @@ a:focus {
     padding-left: 6px;
     display: inline;
     max-width: initial;
-    font-size: 12px;
+    font-size: 14px;
     a {
       vertical-align: super;
     }

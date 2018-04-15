@@ -76,13 +76,10 @@
                 <div class="checkbox__label">Подписаться на рассылку новостей</div>
         </div>
         <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'user_role_name' %>
-        <button class="form__btn box">
+        <button class="form__btn box box_center">
             <span class="box__content_wrap">
                 <span class="icon-pencil icon"></span>
-                <div class="actions">
-                    <input type="submit" name="commit" value="Регистрация" data-disable-with="Регистрируем..." 
-                        class="box__content" id="user_sign_up">
-                </div>
+                <span class="actions box__content" id="user_sign_up" data-disable-with="Регистрируем..." name="commit">Регистрация</span>
             </span>
         </button>
         <div class="form__footer">
