@@ -9,7 +9,6 @@ button {
 
 .box {
   width: 100%;
-  max-width: 280px;
   height: 44px;
   background-color: #fff;
   border-radius: 0;
@@ -88,8 +87,6 @@ button {
     font-size: 18px;
   }
   &:hover {
-    box-shadow: 0 0 7px 1px #dadada;
-    transition: 0.3s;
 
     .icon {
       transition: ease 0.4s;

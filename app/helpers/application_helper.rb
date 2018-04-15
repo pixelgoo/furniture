@@ -6,7 +6,11 @@ module ApplicationHelper
 
     def hide_header?
         controller.class.name == 'ProfilesController' ||
-        controller.class.name.split("::").first == "Profile"
+        controller.class.name == 'Users::RegistrationsController'
+    end
+
+    def hide_footer?
+        controller.class.name == 'Users::RegistrationsController'
     end
 
     def product_image(product)

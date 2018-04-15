@@ -7,18 +7,12 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-// Add css and image modules to Webpack
-
 'use strict';
 
+// Add css and image modules to Webpack
 function requireAll(r) { r.keys().forEach(r) }
 requireAll(require.context('../images/', true, /\.(gif|jpg|jpeg|png|svg|webp)$/i))
 requireAll(require.context('../stylesheets/', true, /\.(css|scss|sass)$/i))
-
-// Add jQuery
-import $ from 'jquery'
-global.$ = $
-global.jQuery = $
 
 // Add Bootstrap
 import 'bootstrap';
@@ -32,10 +26,9 @@ import Turbolinks from 'turbolinks'
 Turbolinks.start()
 
 // Add application modules
-import App from '../javascript/app'
+import App from '../javascript/app.js'
 
-$(document).ready(function() {
+window.addEventListener("DOMContentLoaded", function () {
     let woodmister = new App()
     woodmister.init()
-})
-
+});

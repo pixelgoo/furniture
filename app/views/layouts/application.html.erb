@@ -27,6 +27,8 @@
       <%= yield %>
     </div>
 
-    <%= render "layouts/footer" %>
+    <% unless hide_footer? then %>
+      <%= render "layouts/footer" %>
+    <% end %>
   </body>
 </html>

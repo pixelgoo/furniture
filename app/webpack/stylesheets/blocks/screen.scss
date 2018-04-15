@@ -60,97 +60,7 @@ a:focus {
 
 
 /* Control screens grid */
-.action {
-  background: fixed url("../../images/startscreen.jpg") center no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  position: relative;
-  &__link {
-    transition: ease 0.4s;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 17%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    &:hover {
-      transition: ease 0.4s;
-      background-color: #fff;
-      text-decoration: none;
-      .back__label {
-        .item__icon {
-          transition: ease 0.4s;
-          margin-right: 13px;
-        }
-      }
-    }
-  }
-}
-.logo {
-  transition: ease 0.4s;
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  &:hover {
-    transition: ease 0.4s;
-    color: #C8A165;
-  }
-}
-.back {
-  &__logo {
-    width: 100%;
-    text-align: center;
-    margin: 20px auto;
-  }
-  &__label {
-    text-align: center;
-    .item__icon {
-      transition: ease 0.4s;
-      font-size: 18px;
-      margin-right: 5px;
-    }
-  }
-}
-.action__container {
-  min-height: 100vh;
-  width: 100%;
-  padding-left: 17%;
-  display: flex;
-}
-.registration {
-  &__form {
-    width: 100%;
-    max-width: 380px;
-    margin: auto;
-  }
-  .form {
-    &__header {
-      font-size: 26px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    &__footer {
-      font-size: 12px;
-      text-align: center;
-    }
-  }
-}
-.input-field {
-  font-family: inherit!important;
-  border-radius: 0px!important;
-  border: none!important;
-  outline: none;
-  padding-left: 20px!important;
-  padding-right: 20px!important;
-  height: 40px;
-  margin: 20px auto;
-  background-color: rgba(255, 255, 255, 0.7)!important;
-  &:focus {
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 18px rgba(102,175,233,.6);
-    background-color: rgba(255, 255, 255, 0.8)!important;
-  }
-}
+
 /* Control screens grid */
 
 /* Form button animation */
@@ -201,14 +111,10 @@ a:focus {
   }
   &__label {
     position: relative;
-    vertical-align: top;
     padding-left: 6px;
     display: inline;
     max-width: initial;
     font-size: 12px;
-    a {
-      vertical-align: super;
-    }
   }
 }
 /* Checkbox styles */

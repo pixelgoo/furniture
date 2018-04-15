@@ -3,7 +3,6 @@
 .content-container {
     position: relative;
     min-height: 100%;
-    padding: 0 30px;
 
     &.content-container_aside {
         width: calc(100% - #{$aside-width});

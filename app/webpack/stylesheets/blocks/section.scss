@@ -16,4 +16,8 @@
         font-size: 44px;
         text-transform: uppercase;
     }
+
+    @media screen and (max-width: $body-width) {
+        margin: 30px;
+    }
 }

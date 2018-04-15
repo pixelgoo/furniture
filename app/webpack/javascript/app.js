@@ -1,19 +1,16 @@
 export default class App {
 
-    constructor() {
-        
+    constructor() { }
+
+    formSubmitListener(form){
+        document.getElementById(form.getAttribute('id') + 'Submit').addEventListener("click", () => { form.submit(); });
     }
 
     init() {
-        console.log('App inited')
 
-        let $flash = $('.alert');
-
-        if($flash.length > 0) {
-            setTimeout(function() {
-                $flash.slideUp()
-            }, 2500)
+        for(var form of document.forms) {
+            this.formSubmitListener(form)
         }
+
     }
 }
- 
