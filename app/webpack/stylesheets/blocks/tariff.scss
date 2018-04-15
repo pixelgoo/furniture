@@ -55,11 +55,15 @@
 .tariff-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 0 10px;
 
   > div {
     margin: 0 5px;
+  }
+
+  &_landing {
+    margin-top: 50px;
   }
 }

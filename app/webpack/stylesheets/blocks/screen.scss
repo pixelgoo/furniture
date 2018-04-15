@@ -54,7 +54,8 @@ a:focus {
     }
   }
   &_sm {
-    font-size: 12px;
+    font-size: 14px;
+    margin-bottom: 40px;
   }
 }
 
@@ -294,6 +295,7 @@ a:focus {
 
 /* Landing main container styles */
 .main__screen {
+  margin: 0 -30px;
   .carousel {
     &__control {
       border: 30px solid transparent;
@@ -470,10 +472,6 @@ a:focus {
       margin-bottom: 1rem;
     }
   }
-  &:hover {
-    transition: ease 0.4s;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-  }
 }
 /* About us styles */
 
@@ -501,10 +499,6 @@ a:focus {
     display: flex;
     justify-content: space-between;
     -webkit-flex-flow: row wrap;
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-    }
   }
 }
 /* Clients styles */
@@ -519,10 +513,6 @@ a:focus {
     padding: 40px;
     .map {
       width: 60%;
-    }
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
     }
   }
   &__form {
@@ -649,10 +639,6 @@ a:focus {
     -webkit-flex-flow: row wrap;
     margin-right: 0px!important;
     margin-left: 0px!important;
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-    }
   }
   .row {
     margin-left: 0;
