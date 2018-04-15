@@ -1,7 +1,7 @@
 <% if current_user.manufacturer? then %>
 
     <section class="section">
-        <h4 class="section__header"><%= t('tariff.choose') %></h2>
+        <h4 class="section__header"><%= t('tariff.choose') %></h4>
         <div class="tariff-list">
             <% @tariffs.each do |tariff| %>
                 <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
@@ -14,7 +14,7 @@
 <section class="section">
     <div class="settings">
         <div class="settings__password password">
-            <h4 class="sm__header">Изменить пароль</h4>
+            <h4 class="section__header">Изменить пароль</h4>
             <div class="password__form">
                 <form id="passwordChange" class="form">
                     <div class="select-wrapper">
