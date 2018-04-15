@@ -68,7 +68,7 @@
         </div>
         <div class="">
                 <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
-                <div class="checkbox__label">Я принимаю условия пользовательского <a target="_blank" href="#" class="link_blue">соглашения</a></div>
+                <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
         </div>
         <div class="">
                 <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
@@ -79,7 +79,7 @@
         <button type="button" class="box box_center form-submit-button" id="registrationCustomerSubmit">
             <span class="box__content_wrap">
                 <span class="icon-pencil icon"></span>
-                <a href="#" class="box__content"><%= t('button.sign_up') %></a>
+                <span class="box__content"><%= t('button.sign_up') %></span>
             </span>
         </button>        
 

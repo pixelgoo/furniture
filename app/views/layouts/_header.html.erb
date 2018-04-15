@@ -30,7 +30,7 @@
 
             <% else %>
 
-                <%= link_to new_user_session_path, class: "top-menu-item #{current_path(new_user_session_path)}", id: 'sign_in' do %>
+                <%= link_to new_user_session_path, class: "top-menu-item #{current_path(new_user_session_path)}", id: 'sign_in', 'data-turbolinks': false do %>
                     <span class='icon icon-user'></span>
                     <span><%= t('menu.login') %></span>
                 <% end %>

@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates :phone, allow_blank: true, format: { with: /\d+/ }
   validates :email, uniqueness: true, format: { with: Devise.email_regexp }
   validates :password, confirmation: true
-  validates :password_confirmation, presence: true
   validates_acceptance_of :terms_of_service
 
   monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
