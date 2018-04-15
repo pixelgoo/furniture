@@ -14,6 +14,11 @@ function requireAll(r) { r.keys().forEach(r) }
 requireAll(require.context('../images/', true, /\.(gif|jpg|jpeg|png|svg|webp)$/i))
 requireAll(require.context('../stylesheets/', true, /\.(css|scss|sass)$/i))
 
+// Add jQuery
+import $ from 'jquery'
+global.$ = $
+global.jQuery = $
+
 // Add Bootstrap
 import 'bootstrap';
 
