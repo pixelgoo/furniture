@@ -301,6 +301,7 @@ ru:
 
   # Button
   button:
+    sign_up: "Регистрация"
     subscribe: "Подписаться"
     request: "Оставить заявку"
     details: "Подробнее"
