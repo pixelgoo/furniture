@@ -54,12 +54,10 @@ a:focus {
     }
   }
   &_sm {
-    font-size: 12px;
+    font-size: 14px;
+    margin-bottom: 40px;
   }
 }
-
-
-/* Control screens grid */
 
 /* Control screens grid */
 
@@ -114,7 +112,14 @@ a:focus {
     padding-left: 6px;
     display: inline;
     max-width: initial;
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 14px;
+    a {
+      vertical-align: super;
+    }
+>>>>>>> 760ed9afb6a62c11e8fea634c611b584c68fc493
   }
 }
 /* Checkbox styles */
@@ -200,6 +205,7 @@ a:focus {
 
 /* Landing main container styles */
 .main__screen {
+  margin: 0 -30px;
   .carousel {
     &__control {
       border: 30px solid transparent;
@@ -376,10 +382,6 @@ a:focus {
       margin-bottom: 1rem;
     }
   }
-  &:hover {
-    transition: ease 0.4s;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-  }
 }
 /* About us styles */
 
@@ -407,10 +409,6 @@ a:focus {
     display: flex;
     justify-content: space-between;
     -webkit-flex-flow: row wrap;
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-    }
   }
 }
 /* Clients styles */
@@ -425,10 +423,6 @@ a:focus {
     padding: 40px;
     .map {
       width: 60%;
-    }
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
     }
   }
   &__form {
@@ -555,10 +549,6 @@ a:focus {
     -webkit-flex-flow: row wrap;
     margin-right: 0px!important;
     margin-left: 0px!important;
-    &:hover {
-      transition: ease 0.4s;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
-    }
   }
   .row {
     margin-left: 0;
@@ -1134,5 +1124,46 @@ a:focus {
   }
   /* Mobile navigation styles */
 }
+
+.pagination {
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 40px;
+
+  span {
+    display: inline-block;
+    height: 30px;
+    margin: 3px;
+    text-align: center;
+    background-color: #f8f8f8;
+  }
+
+  .page {
+    width: 30px;
+    line-height: 26px;
+
+    a {
+      height: 30px;
+      width: 30px;
+      display: block;
+    }
+  }
+
+  .current {
+    background-color: #c8a165;
+    color: #fff;
+  }
+
+  .next, .last {
+    line-height: 30px;
+    padding: 0 7px;
+
+    a {
+      height: 30px;
+      display: block;
+    }
+  }
+}
+
 
 /* Responsive styles */
