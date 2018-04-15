@@ -44,6 +44,11 @@ button {
   &::after {
     left: 0;
   }
+
+  &_center {
+    max-width: 100%;
+    margin: 10px auto;
+  }
   &__content {
     &::after {
       content: "";
