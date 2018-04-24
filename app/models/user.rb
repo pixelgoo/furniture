@@ -51,7 +51,7 @@ class User < ApplicationRecord
   # =====================================================================================
 
   def set_tariff(tariff)
-    self.tariff = Tariff.where(name: tariff).first
+    self.tariff = Tariff.find_by(name: tariff)
     self.set_tariff_status :active
   end
 
@@ -89,7 +89,7 @@ class User < ApplicationRecord
   # =====================================================================================
   
   def account=(number)
-    self.account = number.delete(' ')
+    self.account_cents = number.to_i * 100
   end
 
 end

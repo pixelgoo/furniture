@@ -13,6 +13,6 @@
       <span><%= price_per_day(tariff) %> <%= currency_symbol + t('profile.per_day') %></span>
     </div>
 
-    <%= render partial: "blocks/button", locals: { text: t('button.subscribe'), path_link: subscribe_path(tariff.name) } %>
+    <%= render partial: "blocks/button", locals: { text: t('button.subscribe'), path_link: subscribe_path(tariff.name), icon: 'wallet' } %>
   </div>
 </div>

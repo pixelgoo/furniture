@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User can" do
+feature "[sessions] User can" do
 
   scenario "login with valid details" do
     create(:user, role_name: 'Manufacturer', email: "login@example.com", password: "123456", confirmed_at: DateTime.now)
@@ -13,7 +13,8 @@ feature "User can" do
     fill_in "user_email", with: "login@example.com"
     fill_in "user_password", with: "123456"
 
-    submit_form
+    form = find '#login'
+    page.submit form
 
     expect(page).to have_link(href: destroy_user_session_path)
   end
@@ -33,7 +34,8 @@ feature "User can" do
     fill_in "user_password", with: "123456"
     fill_in "user_password_confirmation", with: "123456"
 
-    click_on "user_sign_up"
+    form = find '#registrationCustomer'
+    page.submit form
 
     expect(current_path).to eq "/"
     expect(page).to have_selector ".alert-success"

@@ -18,7 +18,7 @@
 
     <%= render 'layouts/messages' %>
 
-    <% if controller_name == 'profiles' then %>
+    <% if controller_name == 'profiles' || controller_name == 'requests' then %>
       <%= render "layouts/small-navigation-top" %>
       <%= render "layouts/aside" %>
     <% end %>

@@ -23,18 +23,11 @@
                     </div>
                 </div>
                 <div class="result__action">
-                    <button class="form__btn box">
-                        <span class="box__content_wrap">
-                            <span class="icon-doc icon"></span>
-                            <%= link_to 'Подробнее', product_path(product.id), class: 'box__content' %>
-                        </span>
-                    </button>
-                    <button class="form__btn box">
-                        <span class="box__content_wrap">
-                            <span class="icon-share-alt icon"></span>
-                            <span class="box__content">Оставить заявку</span>
-                        </span>
-                    </button>
+                    <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
+                    
+                    <% if current_user.customer? %>
+                        <%= render partial: "blocks/button", locals: { text: t('button.request'), path_link: new_request_path, icon: 'share-alt' } %>
+                    <% end %>
                 </div>
             </div>
           <% end %>
