@@ -42,6 +42,11 @@ a:focus {
 .collapse.show {
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
+.font_white {
+  margin: 0;
+  font-size: 14px;
+  color: #fff;
+}
 
 .text {
   &__header {
@@ -1123,6 +1128,7 @@ a:focus {
   /* Mobile navigation styles */
 }
 
+/* pagination styles */
 .pagination {
   justify-content: center;
   flex-wrap: nowrap;
@@ -1162,6 +1168,11 @@ a:focus {
     }
   }
 }
+/* pagination styles */
+
+
+
+
 
 
 /* Responsive styles */
