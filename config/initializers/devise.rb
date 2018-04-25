@@ -10,7 +10,7 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'd64cc9082a69d7df5014726fbae8b2617a2446535cdfc88eb485cc3a4897cef2f14d7c18023dbf201cd8cf8e02f15f351a1c035f368143eddd1c0d9e05b16308'
   
-  if Rails.env.test?
+  unless Rails.env.test?
     config.secret_key = '5731d10d51e1b60217c2d43207a74b321ee54d5c42965f769d24f77b657eab5a6907519dffc2991601e4a25969e3d2b5b727de4ad3ab4c9066b7b041fb0e395f'
   else 
     config.secret_key = ENV['SECRET_KEY_BASE']
@@ -22,7 +22,9 @@ Devise.setup do |config|
   # with default "from" parameter.
   if Rails.env.test?
     config.mailer_sender = 'text@example.com'
-  else 
+  elsif Rails.env.development?
+    config.mailer_sender = Rails.application.secrets.mail_username
+  else
     config.mailer_sender = ENV["MAIL_USERNAME"]
   end
 
