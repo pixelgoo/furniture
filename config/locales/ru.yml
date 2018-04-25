@@ -351,3 +351,8 @@ ru:
     width: "Ширина"
     height: "Высота"
     depth: "Глубина"
+
+  request:
+    newest: 'Новые'
+    succesful: 'Завершенные'
+    archived: 'Корзина'

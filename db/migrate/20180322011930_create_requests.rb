@@ -4,7 +4,7 @@ class CreateRequests < ActiveRecord::Migration[5.1]
 
       t.belongs_to :user, index: true
       t.belongs_to :product, index: true
-      t.boolean :new, default: true
+      t.boolean :newest, default: true
       t.boolean :archived, default: false
       t.boolean :successful, default: false
 

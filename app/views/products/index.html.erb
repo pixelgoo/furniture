@@ -26,7 +26,13 @@
                     <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
                     
                     <% if current_user.customer? %>
-                        <%= render partial: "blocks/button", locals: { text: t('button.request'), path_link: new_request_path, icon: 'share-alt' } %>
+                        <div class="info__btn box">
+                            <span class="box__content_wrap">
+                                <span class="icon-share-alt icon"></span>
+                                <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
+                                form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'box__content' %>
+                            </span>
+                        </div>
                     <% end %>
                 </div>
             </div>

@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   create_table "requests", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "product_id"
+    t.boolean "newest", default: true
+    t.boolean "archived", default: false
+    t.boolean "successful", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_requests_on_product_id"

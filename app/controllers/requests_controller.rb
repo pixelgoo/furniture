@@ -2,15 +2,16 @@ class RequestsController < ApplicationController
     before_action :authenticate_user!
 
     def index
+        @requests = Request.newest
+        @newest_amount = @requests.length
         if params[:scope].nil?
-            @requests = Request.new
-        if Request.respond_to? method_name
-        Request.public_send(params[:]) if obj.respond_to? method_name
-        @requests = Request.scope_new
-    end
-
-    def new
-
+            @scope = 'newest'
+        elsif Request.respond_to? params[:scope]
+            @requests = Request.public_send(params[:scope])
+            @scope = params[:scope]
+        else
+            raise 'index#requests: Invalid scope parameter received'
+        end
     end
     
     def create
@@ -25,6 +26,6 @@ class RequestsController < ApplicationController
     end
 
     def destroy
-
+        # Not really destroying, just archiveing 
     end
 end
