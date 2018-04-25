@@ -354,7 +354,7 @@ a:focus {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
   }
   &_rt {
-    width: 30%;
+    width: 28%;
     align-self: baseline;
     padding: 10px 0;
     margin-left: 20px;
@@ -519,6 +519,7 @@ a:focus {
     .info {
       padding-left: 20px;
       &__name {
+        max-width: 300px;
         font-size: 16px;
         margin-bottom: 11px;
       }
@@ -1034,7 +1035,7 @@ a:focus {
     max-width: 1440px;
   }
   .section {
-    max-width: 1180px!important;
+    max-width: 1240px!important;
   }
   .page_right .section {
     max-width: 1180px;
