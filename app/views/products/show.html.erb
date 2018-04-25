@@ -26,12 +26,13 @@
             <% end %>
             </tbody>
           </table>
-          <button class="info__btn box">
+          <div class="info__btn box">
               <span class="box__content_wrap">
                   <span class="icon-share-alt icon"></span>
-                  <span class="box__content">Оставить заявку</span>
+                  <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
+                  form: { "data-type" => "json"}, params: { :product_id => @product.id }, class: 'box__content' %>
               </span>
-          </button>
+          </div>
       </div>
   </div>
 </section>

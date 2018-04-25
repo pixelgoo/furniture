@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.integer "width"
     t.integer "height"
     t.integer "depth"
+    t.integer "image_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -63,8 +64,9 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   create_table "requests", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "product_id"
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "UAH", null: false
+    t.boolean "newest", default: true
+    t.boolean "archived", default: false
+    t.boolean "successful", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_requests_on_product_id"
