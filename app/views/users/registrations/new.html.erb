@@ -15,12 +15,64 @@
             <p class="form__header">Регистрация</p>
 
             <ul class="nav nav-tabs">
-              <li><a data-toggle="tab" href="#register-customer">Продавец</a></li>
-              <li class="active"><a data-toggle="tab" href="#register-client">Пользователь</a></li>
+                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#register-client">Пользователь</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#register-customer">Продавец</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="register-customer" class="tab-pane fade">
+                <div id="register-client" class="tab-pane in active" role="tabpanel">
+                    <div class="select-wrapper">
+                        <div class="select form-group">
+                            <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field',
+                            placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
+                        </div>
+                    </div>
+                    <div class="select-wrapper">
+                        <div class="select form-group">
+                            <%= password_field_tag 'user[password]', nil, id: 'user_password', class: 'form-control input-field',
+                            placeholder: 'Пароль', required: true, autocomplete: 'off' %>
+                        </div>
+                    </div>
+                    <div class="select-wrapper">
+                        <div class="select form-group">
+                            <%= password_field_tag 'user[password_confirmation]', nil, id: 'user_password_confirmation', class: 'form-control input-field',
+                            placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
+                        </div>
+                    </div>
+                    <div class="">
+                            <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
+                            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
+                    </div>
+                    <div class="">
+                            <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
+                            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+                    </div>
+                    <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'user_role_name' %>
+
+                    <button type="button" class="box box_center form-submit-button" id="registrationCustomerSubmit">
+                        <span class="box__content_wrap">
+                            <span class="icon-pencil icon"></span>
+                            <span class="box__content"><%= t('button.sign_up') %></span>
+                        </span>
+                    </button>
+
+                    <div class="socials">
+                        <p class="font_white" align="center">или с помощью аккаунта соц. сети</p>
+
+                        <div class="socials-list">
+                            <a href="#" class="socials-list__item socials-list__item_black">
+                                <span class="icon-social-google icon"></span>
+                            </a>
+                            <a href="#" class="socials-list__item socials-list__item_black">
+                                <span class="icon-social-facebook icon"></span>
+                            </a>
+                            <a href="#" class="socials-list__item socials-list__item_black">
+                                <span class="icon-social-twitter icon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="register-customer" class="tab-pane fade" role="tabpanel">
 
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
                     html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
@@ -76,12 +128,12 @@
                         </div>
                     </div>
                     <div class="">
-                            <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
-                            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
+                        <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
+                        <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
                     </div>
                     <div class="">
-                            <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
-                            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+                        <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
+                        <div class="checkbox__label">Подписаться на рассылку новостей</div>
                     </div>
                     <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'user_role_name' %>
 
@@ -93,59 +145,6 @@
                     </button>
 
                     <% end %>
-                </div>
-
-                <div id="register-client" class="tab-pane fade in active">
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field',
-                            placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password]', nil, id: 'user_password', class: 'form-control input-field',
-                            placeholder: 'Пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password_confirmation]', nil, id: 'user_password_confirmation', class: 'form-control input-field',
-                            placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="">
-                            <%= check_box_tag 'user[terms_of_service]', "1", id: 'user_terms_of_service', checked: 'checked' %>
-                            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
-                    </div>
-                    <div class="">
-                            <%= check_box_tag 'user[subscribe]', "1", id: 'user_subscribe', checked: 'checked' %>
-                            <div class="checkbox__label">Подписаться на рассылку новостей</div>
-                    </div>
-                    <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'user_role_name' %>
-
-                    <button type="button" class="box box_center form-submit-button" id="registrationCustomerSubmit">
-                        <span class="box__content_wrap">
-                            <span class="icon-pencil icon"></span>
-                            <span class="box__content"><%= t('button.sign_up') %></span>
-                        </span>
-                    </button>
-
-                    <div class="socials">
-                        <p class="font_white" align="center">или с помощью аккаунта соц. сети</p>
-
-                        <div class="socials-list">
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-google icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-facebook icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-twitter icon"></span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
