@@ -47,6 +47,15 @@ a:focus {
   font-size: 14px;
   color: #fff;
 }
+.flex-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &_landing {
+    margin-top: 60px;
+  }
+}
 
 .text {
   &__header {
@@ -208,7 +217,6 @@ a:focus {
 
 /* Landing main container styles */
 .main__screen {
-  margin: 0 -30px;
   .carousel {
     &__control {
       border: 30px solid transparent;
@@ -336,6 +344,9 @@ a:focus {
       margin: 0 10px;
       display: inline-block;
       vertical-align: bottom;
+      &__label {
+        color: inherit;
+      }
     }
   }
   &:hover {
@@ -343,7 +354,7 @@ a:focus {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.12);
   }
   &_rt {
-    width: 30%;
+    width: 28%;
     align-self: baseline;
     padding: 10px 0;
     margin-left: 20px;
@@ -497,7 +508,7 @@ a:focus {
   .product {
     display: flex;
     justify-content: space-between;
-    -webkit-flex-flow: row wrap;
+    flex-wrap: wrap;
     &__image {
       width: 100%;
       max-width: 193px;
@@ -508,6 +519,7 @@ a:focus {
     .info {
       padding-left: 20px;
       &__name {
+        max-width: 300px;
         font-size: 16px;
         margin-bottom: 11px;
       }
@@ -533,10 +545,36 @@ a:focus {
   &__wrap {
     display: flex;
     justify-content: space-between;
-    -webkit-flex-flow: row wrap;
+    flex-wrap: wrap;
   }
   &:last-child {
     margin-bottom: 0;
+  }
+  &_card {
+    width: 100%;
+    max-width: 340px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 0 15px;
+    border: 1px solid #eee;
+    .product__image {
+      max-width: 100%;
+    }
+    .info {
+      margin: 10px auto 0 auto;
+      padding: 0;
+      padding-left: 0;
+      &__name {
+        font-size: 24px!important;
+        font-weight: 400!important;
+      }
+    }
+    .result__action {
+      max-width: 100%!important;
+      .box {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 /* Result styles */
@@ -926,7 +964,7 @@ a:focus {
     max-width: 1440px;
   }
   .section {
-    max-width: 1180px;
+    max-width: 1240px!important;
   }
   .page_right .section {
     max-width: 1180px;
