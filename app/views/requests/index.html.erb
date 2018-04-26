@@ -5,7 +5,7 @@
         <% %w(newest successful archived).each_with_index do |val, index| %>
           <li class="nav-item">
               <a class="nav-link <%= 'active' if @scope == val %>" data-toggle="tab" href="#panel<%= index %>" role="tab">
-                <%= t("request.#{val} (#{@newest_amount})"
+                <%= t("request.#{val}") %> <%= "(#{@newest_amount})" if val == 'newest' %>
               </a>
           </li>
         <% end %>
@@ -24,11 +24,22 @@
                             <div class="product__info info">
                                 <div class="product__name"><span><%= request.product.title %></span></div>
                                 <div class="product__tags tag__list">
-                                <% %w(factory style facade product_type structure transformation_type width height depth).each do |detail| %>
+                                <% %w(factory style product_type).each do |detail| %>
                                     <% unless request.product[detail].nil? then %>
-                                    <div class="tag"><span class="icon-tag icon"><%= request.product[detail] %></span></div>
+                                    <div class="tag">
+                                        <span class="icon-tag icon"></span>
+                                        <span><%= request.product[detail] %></span>
+                                    </div>
                                     <% end %>
                                 <% end %>
+                                 <div class="tag">
+                                    <span class="icon-tag icon"></span>
+                                    <span class="tag__sizes">
+                                        <% %w(width height depth).each do |detail| %>
+                                            <span class="tag__size"><%= request.product[detail] %></span>
+                                        <% end %>
+                                    </span>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -58,13 +69,25 @@
                             <button class="form__btn box">
                                 <span class="box__content_wrap">
                                     <span class="icon-share-alt icon"></span>
-                                    <span class="box__content">Ответить</span>
+                                    <div class="info__btn box">
+                                        <span class="box__content_wrap">
+                                            <span class="icon-share-alt icon"></span>
+                                            <%= button_to "Продано", { controller: 'requests', action: 'update' }, remote: false, 
+                                            form: { "data-type" => "json"}, params: { :request_id: request.id, :action: 'success' }, class: 'box__content' %>
+                                        </span>
+                                    </div>
                                 </span>
                             </button>
                             <button class="form__btn box">
                                 <span class="box__content_wrap">
                                     <span class="icon-trash icon"></span>
-                                    <span class="box__content">В корзину</span>
+                                    <div class="info__btn box">
+                                        <span class="box__content_wrap">
+                                            <span class="icon-share-alt icon"></span>
+                                            <%= button_to "В корзину", { controller: 'requests', action: 'update' }, remote: false, 
+                                            form: { "data-type" => "json"}, params: { :request_id: request.id, :action: 'archive' }, class: 'box__content' %>
+                                        </span>
+                                    </div>
                                 </span>
                             </button>
                         </div>

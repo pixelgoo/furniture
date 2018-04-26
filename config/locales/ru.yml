@@ -354,5 +354,5 @@ ru:
 
   request:
     newest: 'Новые'
-    succesful: 'Завершенные'
+    successful: 'Завершенные'
     archived: 'Корзина'

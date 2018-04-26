@@ -16,7 +16,8 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :tariff, optional: true
   has_many :payments
-  has_many :requests
+  has_many :customer_requests, :class_name => 'Request', :foreign_key => 'customer_id'
+  has_many :manufacturer_requests, :class_name => 'Request', :foreign_key => 'manufacturer_id'
 
   # =====================================================================================
   # General

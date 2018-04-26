@@ -62,15 +62,17 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "product_id"
+    t.bigint "customer_id"
+    t.bigint "manufacturer_id"
     t.boolean "newest", default: true
     t.boolean "archived", default: false
     t.boolean "successful", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_requests_on_customer_id"
+    t.index ["manufacturer_id"], name: "index_requests_on_manufacturer_id"
     t.index ["product_id"], name: "index_requests_on_product_id"
-    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -131,4 +133,6 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.index ["tariff_id"], name: "index_users_on_tariff_id"
   end
 
+  add_foreign_key "requests", "users", column: "customer_id"
+  add_foreign_key "requests", "users", column: "manufacturer_id"
 end

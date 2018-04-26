@@ -18,12 +18,12 @@
 
     <%= render 'layouts/messages' %>
 
-    <% if controller_name == 'profiles' || controller_name == 'requests' then %>
+    <% if content_aside? then %>
       <%= render "layouts/small-navigation-top" %>
       <%= render "layouts/aside" %>
     <% end %>
 
-    <div class="content-container <%= 'content-container_aside' if controller_name == 'profiles' %>">
+    <div class="content-container <%= 'content-container_aside' if content_aside? %>">
       <%= yield %>
     </div>
 

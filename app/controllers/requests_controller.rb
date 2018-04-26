@@ -25,7 +25,13 @@ class RequestsController < ApplicationController
         end
     end
 
-    def destroy
-        # Not really destroying, just archiveing 
+    def update
+        request = current_user.requests.find(params[:request_id])
+        case params[:action]
+        when 'satisfy' then
+            current_user.requests.find(params[:request_id]).satisfy!
+        when 'archive' then
+            current_user.requests.find(params[:request_id]).archive!
+        end
     end
 end
