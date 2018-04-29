@@ -1,13 +1,11 @@
 class CreateRequests < ActiveRecord::Migration[5.1]
   def change
     create_table :requests do |t|
-
+      t.string :token
       t.belongs_to :product, index: true
       t.references :customer
       t.references :manufacturer
-      t.boolean :newest, default: true
-      t.boolean :archived, default: false
-      t.boolean :successful, default: false
+      t.string :status, default: 'new'
 
       t.timestamps
     end

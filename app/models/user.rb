@@ -93,4 +93,12 @@ class User < ApplicationRecord
     self.account_cents = number.to_i * 100
   end
 
+  # =====================================================================================
+  # Requests
+  # =====================================================================================
+
+  def request(id)
+    token = Request.find(id).token
+    self.send("#{self.role_name.downcase}_requests").find_by(token: token)
+  end
 end

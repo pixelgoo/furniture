@@ -2,21 +2,23 @@ class RequestsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @requests = Request.newest
-        @newest_amount = @requests.length
-        if params[:scope].nil?
-            @scope = 'newest'
-        elsif Request.respond_to? params[:scope]
-            @requests = Request.public_send(params[:scope])
-            @scope = params[:scope]
+        @status = params[:status]
+        if Request::STATUSES.include?(@status)
+            @active_requests = current_user.manufacturer_requests.where(status: 'active')
+            if @status == 'new'
+                @requests = Request.where(status: 'new').where.not(token: current_user.manufacturer_requests.pluck(:token))
+            else
+                @requests = current_user.manufacturer_requests.where(status: @status)
+            end
         else
-            raise 'index#requests: Invalid scope parameter received'
+            logger.warn "index#requests: Invalid status parameter received"
+            redirect_to requests_path(status: 'new')
         end
     end
     
     def create
         request = Request.new
-        request.user = current_user
+        request.customer = current_user
         request.product = Product.find(params[:product_id])
         if request.save
             render 'requests/success'
@@ -26,12 +28,18 @@ class RequestsController < ApplicationController
     end
 
     def update
-        request = current_user.requests.find(params[:request_id])
-        case params[:action]
-        when 'satisfy' then
-            current_user.requests.find(params[:request_id]).satisfy!
-        when 'archive' then
-            current_user.requests.find(params[:request_id]).archive!
+        # Initially Request has 'new' status and is not attached to any Manufacturer.
+        # Activating request means duplicating Active Record object and attaching new copy to Manufacturer. 
+        # Thus each Manufacturer can have his own Request and can perform operations on it independently.
+        # Requests for same product from same user but owned by different Manufacturers can be found by request token.
+
+        request = current_user.request(params[:id]) || Request.find_by(id: params[:id]).assign_to_manufacturer(current_user)
+
+        if request.send(:set_status, params[:new_status], current_user)
+            redirect_to requests_path(status: params[:new_status])
+        else
+            logger.warn "update#requests: Invalid new_status parameter received"
+            redirect_to requests_path
         end
     end
 end

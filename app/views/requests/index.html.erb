@@ -1,101 +1,26 @@
 
-<section id="offersList" class="section">
-  <div class="offer__list">
-      <ul class="nav nav-tabs nav-justified">
-        <% %w(newest successful archived).each_with_index do |val, index| %>
-          <li class="nav-item">
-              <a class="nav-link <%= 'active' if @scope == val %>" data-toggle="tab" href="#panel<%= index %>" role="tab">
-                <%= t("request.#{val}") %> <%= "(#{@newest_amount})" if val == 'newest' %>
-              </a>
-          </li>
-        <% end %>
-      </ul>
-      <!-- Tab panels -->
-      <div class="tab-content card">
-          <!--Panel 1-->
-          <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-            <% if @requests.empty? %>
-                <div>Заявок нет</div>
+<section class="section section_no-padding">
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <% %w(new active successful archived).each_with_index do |val, index| %>
+                    <li class="nav-item">
+                        <a href="<%= requests_path(status: val) %>" class="nav-link <%= 'active' if @status == val %>">
+                            <%= t("request.#{val}") %> <%= "(#{@active_requests.length})" if val == 'active' %>
+                        </a>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><%= t("request.text_#{@status}") %></p>
+            <% if @requests.blank? %>
+                <div class="no-requests"><%= t('request.no-requests') %></div>
             <% else %>
                 <% @requests.each do |request| %>
-                    <div class="offer">
-                        <div class="offer__product product">
-                            <div class="product__image"><%= product_image(request.product) %></div>
-                            <div class="product__info info">
-                                <div class="product__name"><span><%= request.product.title %></span></div>
-                                <div class="product__tags tag__list">
-                                <% %w(factory style product_type).each do |detail| %>
-                                    <% unless request.product[detail].nil? then %>
-                                    <div class="tag">
-                                        <span class="icon-tag icon"></span>
-                                        <span><%= request.product[detail] %></span>
-                                    </div>
-                                    <% end %>
-                                <% end %>
-                                 <div class="tag">
-                                    <span class="icon-tag icon"></span>
-                                    <span class="tag__sizes">
-                                        <% %w(width height depth).each do |detail| %>
-                                            <span class="tag__size"><%= request.product[detail] %></span>
-                                        <% end %>
-                                    </span>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="offer__client client">
-                            <div class="client__name"><span><%= request.user.full_name %></span></div>
-                            <div class="contact client__phone">
-                                <a href="tel:<%= request.user.phone unless request.user.phone.nil? %>">
-                                    <div class="contact__icon"><span class="icon-phone"></span></div>
-                                    <div class="contact__info">
-                                        <span><%= request.user.phone unless request.user.phone.nil? %></span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="contact client__email">
-                                <a href="mailto:someone@yoursite.com">
-                                    <div class="contact__icon"><span class="icon-envelope"></span></div>
-                                    <div class="contact__info">
-                                        <span><%= request.user.email %></span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="offer__action">
-                            <div class="date">
-                                <span><%= I18n.localize(request.created_at, format: :long) %></span>
-                            </div>
-                            <button class="form__btn box">
-                                <span class="box__content_wrap">
-                                    <span class="icon-share-alt icon"></span>
-                                    <div class="info__btn box">
-                                        <span class="box__content_wrap">
-                                            <span class="icon-share-alt icon"></span>
-                                            <%= button_to "Продано", { controller: 'requests', action: 'update' }, remote: false, 
-                                            form: { "data-type" => "json"}, params: { :request_id: request.id, :action: 'success' }, class: 'box__content' %>
-                                        </span>
-                                    </div>
-                                </span>
-                            </button>
-                            <button class="form__btn box">
-                                <span class="box__content_wrap">
-                                    <span class="icon-trash icon"></span>
-                                    <div class="info__btn box">
-                                        <span class="box__content_wrap">
-                                            <span class="icon-share-alt icon"></span>
-                                            <%= button_to "В корзину", { controller: 'requests', action: 'update' }, remote: false, 
-                                            form: { "data-type" => "json"}, params: { :request_id: request.id, :action: 'archive' }, class: 'box__content' %>
-                                        </span>
-                                    </div>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
+                    <%= render partial: "requests/request", locals: { request: request, status: @status } %>
                 <% end %>
             <% end %>
-            
-          </div>
-      </div>
-  </div>
+        </div>
+    </div>
 </section>

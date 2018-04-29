@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   resources :products
 
   # Requests
-  resources :requests
+  get '/requests/:status', to: 'requests#index', as: 'requests'
+  resources :requests, only: [:create, :update]
 end
 
 ActiveSupport::Notifications.instrument 'routes_loaded.application'

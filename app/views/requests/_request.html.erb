@@ -1,0 +1,69 @@
+<div class="request">
+  <div class="request__product">
+      <div class="request__image"><%= product_image(request.product) %></div>
+      <div class="request__info">
+          <div class="request__product-name"><span><%= request.product.title %></span></div>
+          <div class="request__product-tags">
+              <% %w(factory style product_type).each do |detail| %>
+                  <% unless request.product[detail].nil? then %>
+                      <div class="tag">
+                          <span class="icon-tag icon"></span>
+                          <span><%= request.product[detail] %></span>
+                      </div>
+                  <% end %>
+              <% end %>
+              <div class="tag">
+                  <span class="icon-tag icon"></span>
+                  <span class="tag__sizes">
+                      <% %w(width height depth).each do |detail| %>
+                          <span class="tag__size"><%= request.product[detail] %></span>
+                      <% end %>
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
+  <% unless status == 'new' %>
+      <div class="request__customer">
+          <div class="request__customer-name"><span><%= request.customer.full_name %></span></div>
+          <div class="request__customer-contacts">
+              <div class="request__phone">
+                  <span class="icon-phone"></span>
+                  <a href="tel:<%= request.customer.phone unless request.customer.phone.nil? %>">
+                      <%= request.customer.phone unless request.customer.phone.blank? %>
+                  </a>
+              </div>
+              <div class="request__email">
+                  <span class="icon-envelope"></span>
+                  <a href="mailto:<%= request.customer.email %>">
+                      <%= request.customer.email %>
+                  </a>
+              </div>
+              <div class="request__city">
+                  <span class="icon-location-pin"></span>
+                  <a>
+                      <%= request.customer.city unless request.customer.city.blank?  %>
+                  </a>
+              </div>
+          </div>
+      </div>
+  <% end %>
+  <div class="request__action">
+      <div class="request__date">
+          <span><%= I18n.localize(request.created_at, format: :long) %></span>
+      </div>
+
+      <% if status == 'active' %>
+          <%= button_to t('request.b_success'), request_path(id: request.id), remote: false, method: 'patch',
+              form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'archived' }, class: 'btn btn-success' %>
+
+          <%= button_to t('request.b_archive'), request_path(id: request.id), remote: false, method: 'patch',
+              form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'archived' }, class: 'btn btn-danger' %>
+      <% end %>
+
+      <% if status == 'new' %>
+          <%= button_to t('request.b_active'), request_path(id: request.id), remote: false, method: 'patch',
+              form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'active' }, class: 'btn btn-success' %>
+      <% end %>
+  </div>
+</div>

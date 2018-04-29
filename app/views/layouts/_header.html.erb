@@ -13,12 +13,12 @@
 
             <% if user_signed_in? %>
 
-                <%= link_to profile_path, class: "top-menu-item #{current_path(profile_path)}" do %>
+                <%= link_to profile_path, class: "top-menu-item #{current?(profile_path)}" do %>
                     <span class='icon icon-key'></span>
                     <span><%= t('menu.profile') %></span>
                 <% end %>
 
-                <%= link_to settings_path, class: "top-menu-item #{current_path(settings_path)}" do %>
+                <%= link_to settings_path, class: "top-menu-item #{current?(settings_path)}" do %>
                     <span class='icon icon-settings'></span>
                     <span><%= t('menu.settings') %></span>
                 <% end %>
@@ -30,7 +30,7 @@
 
             <% else %>
 
-                <%= link_to new_user_session_path, class: "top-menu-item #{current_path(new_user_session_path)}", id: 'sign_in', 'data-turbolinks': false do %>
+                <%= link_to new_user_session_path, class: "top-menu-item #{current?(new_user_session_path)}", id: 'sign_in', 'data-turbolinks': false do %>
                     <span class='icon icon-user'></span>
                     <span><%= t('menu.login') %></span>
                 <% end %>

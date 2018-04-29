@@ -1,7 +1,7 @@
 module ApplicationHelper
 
-    def current_path(path)
-        "current" if current_page?(path)
+    def current?(name)
+        "current" if controller_name == name || current_page?(name)
     end
 
     def hide_header?

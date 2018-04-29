@@ -12,7 +12,7 @@
         <ul class="navigation-left__controls">
 
             <li class="navigation-left__controls-item">
-                <%= link_to profile_path, class: "left-menu-item #{current_path(profile_path)}" do %>
+                <%= link_to profile_path, class: "left-menu-item #{current?(profile_path)}" do %>
                     <span class='icon icon-key'></span>
                     <span><%= t('menu.home') %></span>
                 <% end %>
@@ -20,7 +20,7 @@
 
             <% if current_user.manufacturer? then %>
                 <li class="navigation-left__controls-item">
-                    <%= link_to requests_path, class: "left-menu-item #{current_path(requests_path)}" do %>
+                    <%= link_to requests_path(status: 'new'), class: "left-menu-item #{current?('requests')}" do %>
                         <span class='icon icon-bell'></span>
                         <span><%= t('menu.requests') %></span>
                     <% end %>
@@ -28,28 +28,28 @@
             <% end %>
 
             <li class="navigation-left__controls-item">
-                <%= link_to products_path, class: "left-menu-item #{current_path(products_path)}" do %>
+                <%= link_to products_path, class: "left-menu-item #{current?('products')}" do %>
                     <span class='icon icon-list'></span>
                     <span><%= t('menu.catalog') %></span>
                 <% end %>
             </li>
 
             <li class="navigation-left__controls-item">
-                <%= link_to account_path, class: "left-menu-item #{current_path(account_path)}" do %>
+                <%= link_to account_path, class: "left-menu-item #{current?(account_path)}" do %>
                     <span class='icon icon-wallet'></span>
                     <span><%= t('menu.wallet') %></span>
                 <% end %>
             </li>
 
             <li class="navigation-left__controls-item">
-                <%= link_to help_path, class: "left-menu-item #{current_path(help_path)}" do %>
+                <%= link_to help_path, class: "left-menu-item #{current?(help_path)}" do %>
                     <span class='icon icon-question'></span>
                     <span><%= t('menu.help') %></span>
                 <% end %>
             </li>
 
             <li class="navigation-left__controls-item">
-                <%= link_to settings_path, class: "left-menu-item #{current_path(settings_path)}" do %>
+                <%= link_to settings_path, class: "left-menu-item #{current?(settings_path)}" do %>
                     <span class='icon icon-settings'></span>
                     <span><%= t('menu.settings') %></span>
                 <% end %>

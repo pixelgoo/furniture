@@ -62,12 +62,11 @@ ActiveRecord::Schema.define(version: 20180322011930) do
   end
 
   create_table "requests", force: :cascade do |t|
+    t.string "token"
     t.bigint "product_id"
     t.bigint "customer_id"
     t.bigint "manufacturer_id"
-    t.boolean "newest", default: true
-    t.boolean "archived", default: false
-    t.boolean "successful", default: false
+    t.string "status", default: "new"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_requests_on_customer_id"
