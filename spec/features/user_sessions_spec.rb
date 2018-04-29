@@ -25,20 +25,18 @@ feature "[sessions] User can" do
     click_link "sign_up"
     expect(current_path).to eq(new_user_registration_path)
 
-    fill_in "user_first_name", with: "Tony"
-    fill_in "user_last_name", with: "Example"
-    fill_in "user_company", with: "Company"
-    fill_in "user_phone", with: "+3809999999"
-    fill_in "user_email", with: "tester@example.tld"
-    fill_in "user_city", with: "Kiev"
-    fill_in "user_password", with: "123456"
-    fill_in "user_password_confirmation", with: "123456"
+    fill_in "customer_first_name", with: "Tony"
+    fill_in "customer_last_name", with: "Example"
+    fill_in "customer_phone", with: "+3809999999"
+    fill_in "customer_email", with: "tester@example.tld"
+    fill_in "customer_city", with: "Kiev"
+    fill_in "customer_password", with: "123456"
+    fill_in "customer_password_confirmation", with: "123456"
 
     form = find '#registrationCustomer'
     page.submit form
 
     expect(current_path).to eq "/"
-    expect(page).to have_selector ".alert-success"
 
     expect(User.last.email).to eq "tester@example.tld"
   end
