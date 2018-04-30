@@ -285,6 +285,7 @@ ru:
       next: "Следующая &rsaquo;"
       previous: "&lsaquo; Предыдущая"
       truncate: "&hellip;"
+      
   # Menu & navigation
   menu:
     phone: "093 98 244 11"

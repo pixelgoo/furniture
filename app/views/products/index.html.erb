@@ -6,36 +6,36 @@
     <div class="result__wrap">
         <div class="result__list">
           <% @products.each do |product| %>
-            <div class="result">
-                <div class="result__product product">
-                    <div class="product__image">
-                      <%= product_image(product) %>
-                    </div>
-                    <div class="product__info info">
-                        <div class="info__name"><span><%= product.title %></span></div>
-                        <div class="info__tags tag__list">
-                          <% %w(factory style facade product_type).each do |detail| %>
-                              <% unless product[detail].nil? then %>
-                                <div class="tag"><span class="icon-tag icon"></span><span><%= product[detail] %></span></div>
-                              <% end %>
-                          <% end %>
+                <div class="result">
+                    <div class="result__product product">
+                        <div class="product__image">
+                            <%= image_tag product.image_path %>
+                        </div>
+                        <div class="product__info info">
+                            <div class="info__name"><span><%= product.title %></span></div>
+                            <div class="info__tags tag__list">
+                            <% %w(factory style facade product_type).each do |detail| %>
+                                <% unless product[detail].nil? then %>
+                                    <div class="tag"><span class="icon-tag icon"></span><span><%= product[detail] %></span></div>
+                                <% end %>
+                            <% end %>
+                            </div>
                         </div>
                     </div>
+                    <div class="result__action">
+                        <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
+                        
+                        <% if current_user.customer? %>
+                            <div class="info__btn box">
+                                <span class="box__content_wrap">
+                                    <span class="icon-share-alt icon"></span>
+                                    <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
+                                    form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'box__content' %>
+                                </span>
+                            </div>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="result__action">
-                    <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
-                    
-                    <% if current_user.customer? %>
-                        <div class="info__btn box">
-                            <span class="box__content_wrap">
-                                <span class="icon-share-alt icon"></span>
-                                <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
-                                form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'box__content' %>
-                            </span>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
           <% end %>
         </div>
 

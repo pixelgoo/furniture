@@ -1,12 +1,11 @@
 <section id="productInfo" class="section">
   <div class="product product__page row">
       <div class="product__image image col-md-6">
-          <%= product_image(@product) %>
+          <%= image_tag "products/#{@product.category_id}/#{@product.product_id}_0.jpg"  %>
           <div class="image__list">
-            <% Dir.glob("#{Rails.root}/app/webpack/images/products/#{@product.category_id}/#{@product.product_id}/*").each do |file_path| %>
-              <% file_path.slice!("#{Rails.root}/app/webpack/") %>
+            <% @product.image_count.times do |i| %>
               <div class="image_small">
-                <%= image_tag(asset_pack_path(file_path)) %>
+                <%= image_tag @product.image_path  %>
               </div>
             <% end %>
           </div>

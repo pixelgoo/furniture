@@ -42,11 +42,10 @@ Rails.application.configure do
 
   config.file_watcher = ActiveSupport::FileUpdateChecker
 
-  # config.assets.enabled = true
-  # config.assets.digest = true
-  # config.action_controller.asset_host = 'd239nvr10hnke3.cloudfront.net'
+  config.assets.enabled = true
+  config.assets.debug = false
+  config.assets.raise_runtime_errors = false
 
   # Expose localhost to ngrok for liqpay callback testing
   # config.exposed_host = 'http://51b4a7f7.ngrok.io'
-  
 end
