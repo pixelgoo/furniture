@@ -1,6 +1,6 @@
 <div class="request">
   <div class="request__product">
-      <div class="request__image"><%= product_image(request.product) %></div>
+      <div class="request__image"><%= cdn_image_tag "products/#{request.product.product_id}_0.jpg" %></div>
       <div class="request__info">
           <div class="request__product-name"><span><%= request.product.title %></span></div>
           <div class="request__product-tags">

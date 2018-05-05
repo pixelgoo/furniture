@@ -69,15 +69,19 @@ class User < ApplicationRecord
       when :inactive
         self.tariff_status = 0
       when :active
-        self.tariff_status = 1
+        self.tariff_status = 1 if self.enough_money?
       else
         raise 'Unrecognized tariff status exception'
     end
     self.save
   end
 
+  def enough_money?
+    self.account >= self.tariff.price_per_day
+  end
+
   def perform_tariff_payment
-    if(self.account >= self.tariff.price_per_day) then
+    if self.enough_money? then
       self.account -= self.tariff.price_per_day
       self.save
     else

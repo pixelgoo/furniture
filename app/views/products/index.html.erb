@@ -9,7 +9,7 @@
                 <div class="result">
                     <div class="result__product product">
                         <div class="product__image">
-                            <%= image_tag product.image_path %>
+                            <%= cdn_image_tag "products/#{product.product_id}_0.jpg" %>
                         </div>
                         <div class="product__info info">
                             <div class="info__name"><span><%= product.title %></span></div>
