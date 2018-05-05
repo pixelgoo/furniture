@@ -41,11 +41,4 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   config.file_watcher = ActiveSupport::FileUpdateChecker
-
-  config.assets.enabled = true
-  config.assets.debug = false
-  config.assets.raise_runtime_errors = false
-
-  # Expose localhost to ngrok for liqpay callback testing
-  # config.exposed_host = 'http://51b4a7f7.ngrok.io'
 end
