@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "UAH", null: false
     t.text "description"
+    t.integer "months"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -120,9 +121,7 @@ ActiveRecord::Schema.define(version: 20180322011930) do
     t.string "city"
     t.boolean "subscribe", default: false, null: false
     t.integer "score", default: 0
-    t.integer "tariff_status"
-    t.integer "account_cents", default: 0, null: false
-    t.string "account_currency", default: "UAH", null: false
+    t.datetime "tariff_enddate"
     t.bigint "role_id"
     t.bigint "tariff_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

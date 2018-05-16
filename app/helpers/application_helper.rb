@@ -21,8 +21,4 @@ module ApplicationHelper
         controller.class.name == 'RequestsController'
     end
 
-    def price_per_day(tariff)
-        humanized_money(tariff.price).delete(' ').to_i/30
-    end
-
 end

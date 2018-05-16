@@ -5,6 +5,7 @@ class CreateTariffs < ActiveRecord::Migration[5.1]
       t.string :name
       t.monetize :price
       t.text :description
+      t.integer :months
 
       t.timestamps
     end

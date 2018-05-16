@@ -11,8 +11,6 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates_acceptance_of :terms_of_service
 
-  monetize :account_cents, numericality: { greater_than_or_equal_to: 0 }
-
   belongs_to :role
   belongs_to :tariff, optional: true
   has_many :payments
@@ -53,48 +51,13 @@ class User < ApplicationRecord
 
   def set_tariff(tariff)
     self.tariff = Tariff.find_by(name: tariff)
-    self.set_tariff_status :active
-  end
-
-  def tariff_active?
-    self.tariff_status == 1
-  end
-
-  def tariff_inactive?
-    self.tariff_status == 0
-  end
-
-  def set_tariff_status(status)
-    case status
-      when :inactive
-        self.tariff_status = 0
-      when :active
-        self.tariff_status = 1 if self.enough_money?
-      else
-        raise 'Unrecognized tariff status exception'
-    end
+    self.save
+    self.tariff_enddate = DateTime.new + self.tariff.months.months
     self.save
   end
 
-  def enough_money?
-    self.account >= self.tariff.price_per_day
-  end
-
-  def perform_tariff_payment
-    if self.enough_money? then
-      self.account -= self.tariff.price_per_day
-      self.save
-    else
-      self.set_tariff_status :inactive
-    end
-  end
-
-  # =====================================================================================
-  # Account
-  # =====================================================================================
-  
-  def account=(number)
-    self.account_cents = number.to_i * 100
+  def tariff_active?
+    self.tariff_enddate > DateTime.now
   end
 
   # =====================================================================================

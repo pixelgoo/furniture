@@ -8,9 +8,8 @@ class AddFieldsToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :subscribe, :boolean, null: false, default: false
 
     add_column :users, :score, :integer, default: 0
-    add_column :users, :tariff_status, :integer, default: nil
+    add_column :users, :tariff_enddate, :datetime
 
-    add_monetize :users, :account
     add_reference :users, :role, index: true
     add_reference :users, :tariff, index: true
   end

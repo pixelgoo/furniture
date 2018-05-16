@@ -328,15 +328,13 @@ ru:
     score: "Репутация"
     search_area: "Области поиска"
     your_products: "Ваши товары"
-    your_account: "На вашем счету"
     add_money: "Пополнить"
-    per_day: "/день"
-    choose_tariff: "Выбрать тарифф"
+    choose_tariff: "Выбрать пакет"
 
   # Payment
   payment:
-    subscribe_description: "WOODMISTER: подписка на тариф "
-    new_title: "Подписка на тариф "
+    subscribe_description: "WOODMISTER: приобретение пакета "
+    new_title: "Выбор пакета "
 
   # Tariff
   tariff:
@@ -346,7 +344,7 @@ ru:
     standard_features: "Получение заявок на товары;Связь с покупателем через телефон или почту;20<span class='emoji'>❤️</span> очков репутации"
     premium: "Премиум +"
     premium_features: "Первоочередное получение заявок на товары;Связь с покупателем через телефон или почту;Поддержка и помощь в осуществлении сделки;50<span class='emoji'>❤️</span> очков репутации"
-    choose: "Выберите тариф"
+    choose: "Выберите пакет"
     status_changed_to_active: "Тариф был успешно возобновлён. Вы снова можете видеть заявки от покупателей."
     status_changed_to_inactive: "Тариф был успешно приостановлен. Заявки от пользователей видны не будут."
     status_changed_to_inactive_no_money: "К сожалению, у вас недостаточная сумма на аккаунте для активации тарифа. Убедитесь, что вы подписаны на нужный вам тариф."

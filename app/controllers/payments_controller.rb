@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
         if current_user.tariff.nil? then
             @payment = Payment.new
             @payment.user = current_user
-            @payment.action = 'subscribe'
+            @payment.action = 'pay'
             @payment.tariff = params[:tariff]
             tariff = Tariff.find_by(name: @payment.tariff)
             @payment.amount = ActionController::Base.helpers.humanized_money(tariff.price).delete(' ')
@@ -27,9 +27,6 @@ class PaymentsController < ApplicationController
                 currency:       'UAH',
                 description:    I18n.t('payment.subscribe_description') + I18n.t("tariff." + tariff.name),
                 order_id:       @payment.order_id,
-                subscribe:      '1',
-                subscribe_date_start:  Time.now.to_s[0...-6],
-                subscribe_periodicity: 'month',
                 result_url:     Rails.configuration.exposed_host + callback_path
             }
     
@@ -52,9 +49,7 @@ class PaymentsController < ApplicationController
             case responce_hash['status']
             when 'success'
             when 'sandbox'
-                current_user.account += payment.amount
                 current_user.set_tariff payment.tariff
-                TariffPaymentJob.perform_later(current_user.id)
             when 'failure'
 
             end

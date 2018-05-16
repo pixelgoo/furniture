@@ -18,11 +18,7 @@
                     <tr>
                         <td><span class="icon-question icon"></span> <%= t('profile.status') %></td>
                         <td>
-                            <% if current_user.tariff_active? then %>
-                                <%= t('profile.active') %>
-                            <% else %>
-                                <%= t('profile.inactive') %>
-                            <% end %>
+                            <%= current_user.tariff_endtime.strftime("Действует до %d-%m-%Y") %>
                         </td>
                     </tr>
                 <% end %>
@@ -32,7 +28,7 @@
                     <% if current_user.tariff.nil? %>
                         <td><%= t('profile.no_tariff') %> <%= link_to 'Выбрать тариф', settings_path, style: "text-decoration: underline;color:grey;" %></td> <!-- TODO -->
                     <% else %>
-                        <td><%= humanized_money current_user.tariff.price %> <%= currency_symbol + t('profile.per_day') %> (<%= current_user.tariff.name %>)</td>
+                        <td><%= current_user.tariff.name %></td>
                     <% end %>
                 </tr>
 

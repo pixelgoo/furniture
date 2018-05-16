@@ -10,7 +10,7 @@
       <% end %>
     </ul>
     <div class="tariff__price">
-      <span><%= price_per_day(tariff) %> <%= currency_symbol + t('profile.per_day') %></span>
+      <span><%= humanized_money_with_symbol tariff.price %></span>
     </div>
 
     <%= render partial: "blocks/button", locals: { text: t('button.subscribe'), path_link: subscribe_path(tariff.name), icon: 'wallet' } %>

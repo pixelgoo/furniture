@@ -23,9 +23,9 @@ end
 
 
 Tariff.create([
-    { name: 'basic', price: '500' },
-    { name: 'standard', price: '1200' },
-    { name: 'premium', price: '2400' }
+    { name: 'basic', price: '3000', months: 3 },
+    { name: 'standard', price: '5500', months: 6 },
+    { name: 'premium', price: '10000', months: 12 }
 ])
 
 Furniture.create([
