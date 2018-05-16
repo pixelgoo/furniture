@@ -40,7 +40,6 @@ Rails.application.configure do
   config.force_ssl = true
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  config.action_controller.asset_host = 'https://d3lbdc0bfetw94.cloudfront.net'
 
   config.log_level = :debug
 

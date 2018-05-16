@@ -28,8 +28,6 @@ module Woodmister
     I18n.available_locales = [ :ru ]
     I18n.default_locale = :ru
 
-    config.active_job.queue_adapter = :sidekiq
-
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Origin' => 'https://www.liqpay.ua',
       'Access-Control-Request-Method' => %w{POST}.join(",")
