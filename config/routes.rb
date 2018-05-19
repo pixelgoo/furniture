@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   controller :profiles do
     get '/profile' => :show
     get '/settings' => :settings
-    get '/account' => :account
-    patch '/update_status' => :update_status
   end
 
   get '/payment/:tariff', to: 'payments#subscribe', as: 'subscribe'

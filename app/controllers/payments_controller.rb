@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: :callback
 
     def subscribe
         if Tariff.all.map(&:name).exclude? params[:tariff] then
