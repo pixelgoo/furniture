@@ -1,12 +1,30 @@
  <section id="resultList" class="section">
+
     <div class="section__header_wrap">
-        <h2 class="section__header">Результат поиска</h2>
+        <h2 class="section__header"><%= t('product.list-title') %></h2>
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
+
+    <div class="calculator">
+        <div class="calculator__filter" id="furniture">
+            <% rarities.each do |rarity| %>
+                <% if request.query_parameters[:rarity] == rarity %>
+                    <%= link_to image_tag("back_#{rarity}.png"), cards_path(request.query_parameters.merge(rarity: '', page: 0)),
+                                class: "rarity-filter rarity-active", id: "#{rarity}", :remote => true %>
+                <% else %>
+                    <%= link_to image_tag("back_#{rarity}.png"), cards_path(request.query_parameters.merge(rarity: rarity, page: 0)),
+                                class: "rarity-filter", id: "#{rarity}", :remote => true %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
     <div class="result__wrap">
         <div class="result__list">
+
           <% @products.each do |product| %>
                 <div class="result">
+
                     <div class="result__product product">
                         <div class="product__image">
                             <%= cdn_image_tag "products/#{product.product_id}_0.jpg" %>
@@ -22,6 +40,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="result__action">
                         <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
                         
@@ -35,86 +54,13 @@
                             </div>
                         <% end %>
                     </div>
+
                 </div>
           <% end %>
+
         </div>
-
-
-        <!-- DELETE -->
-        <div class="calculator calculator_rt">
-            <span class="lg-bold">Поиск товара</span>
-
-            <form action="" method="post" class="form">
-                <div class="form-group calculator__select select">
-                    <label for="tag1">Выберите тип:</label>
-                    <select class="form-control" id="tag1">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="form-group calculator__select select">
-                    <label for="tag2">Выберите подтип:</label>
-                    <select class="form-control" id="tag2">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="form-group calculator__select select">
-                    <label for="tag3">Выберите марку:</label>
-                    <select class="form-control" id="tag3">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="form-group calculator__select select">
-                    <label for="tag4">Выберите материал:</label>
-                    <select class="form-control" id="tag4">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="form-group calculator__select select">
-                    <label for="tag5">Выберите цвет:</label>
-                    <select class="form-control" id="tag5">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="form-group calculator__select select">
-                    <label for="tag6">Выберите год:</label>
-                    <select class="form-control" id="tag6">
-                        <option value="" selected>none</option>
-                        <option value="Диван">Диван</option>
-                        <option value="Стол">Стол</option>
-                    </select>
-                </div>
-                <div class="calculator__action">
-                    <div class="checkbox">
-                        <input type="checkbox" value="None" id="rememberStatus" name="rememberStatus" checked />
-                        <label for="rememberStatus"></label>
-                        <div class="checkbox__label">Я принимаю условия</div>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" value="None" id="newStatus" name="rememberStatus" checked />
-                        <label for="newStatus"></label>
-                        <div class="checkbox__label">Подписаться</div>
-                    </div>
-                    <button class="calculator__btn box">
-                        <span class="box__content_wrap">
-                            <span class="icon-magnifier icon"></span>
-                            <span class="box__content">Поиск</span>
-                        </span>
-                    </button>
-                </div>
-            </form>
-        </div>
-        <!-- DELETE -->
-
     </div>
+
     <%= paginate @products %>
+
 </section>

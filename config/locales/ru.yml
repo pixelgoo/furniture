@@ -360,6 +360,7 @@ ru:
     width: "Ширина"
     height: "Высота"
     depth: "Глубина"
+    list-title: "СПИСОК ТОВАРОВ"
 
   request:
     new: 'Новые'

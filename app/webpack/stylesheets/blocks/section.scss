@@ -22,63 +22,6 @@
     }
 }
 
-/* main types tiles */
-.section-list {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 35px 10px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    border: 1px solid #eee;
-    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.12);
-
-    &__item {
-        text-align: center;
-        text-decoration: none;
-
-        .image {
-            transition: all 200ms ease-out;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            width: 120px;
-            height: 90px;
-            margin-bottom: 10px;
-            opacity: 0.7;
-
-            img {
-                width: 60px;
-            }
-        }
-
-        .title {
-            transition: all 200ms ease-out;
-            line-height: 1.3;
-
-            span {
-                display: inline-block;
-                max-width: 110px;
-            }
-        }
-
-        &:hover {
-            .title {
-                transition: all 200ms ease-out;
-                color: $pastel-yellow;
-                font-weight: 600;
-            }
-
-            .image {
-                transition: all 200ms ease-out;
-                transform: translateY(-4px);
-                opacity: 1;
-            }
-        }
-    }
-}
-/* main types tiles */
-
 .section_no-padding {
     padding: 0;
 }
