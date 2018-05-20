@@ -21,11 +21,26 @@
 
             <div class="tab-content">
                 <div id="register-customer" class="tab-pane in active" role="tabpanel">
-                    
+                    <div class="socials">
+                        <div class="socials-list">
+                            <a href="#" class="socials-list__item socials-list__item_gl">
+                                <span class="icon-social-google icon"></span>
+                            </a>
+                            <a href="#" class="socials-list__item socials-list__item_fb">
+                                <span class="icon-social-facebook icon"></span>
+                            </a>
+                            <a href="#" class="socials-list__item socials-list__item_tw">
+                                <span class="icon-social-twitter icon"></span>
+                            </a>
+                        </div>
+                    </div>
+
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
                     html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
 
                     <%= devise_error_messages! %>
+
+                    <p class="font_white" align="center">или с помощью этой формы</p>
 
                     <div class="select-wrapper">
                         <div class="select form-group">
@@ -88,23 +103,8 @@
                     </button>
 
                     <% end %>
-
-                    <div class="socials">
-                        <p class="font_white" align="center">или с помощью аккаунта соц. сети</p>
-
-                        <div class="socials-list">
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-google icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-facebook icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_black">
-                                <span class="icon-social-twitter icon"></span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
+
                 <div id="register-manufacturer" class="tab-pane fade" role="tabpanel">
 
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
