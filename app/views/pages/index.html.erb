@@ -49,7 +49,7 @@
 
 <section class="section-list">
     <% @furnitures.each do |furniture| %>
-        <%= link_to destroy_user_session_path, class: 'section-list__item' do %>
+        <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id)), class: 'section-list__item' do %>
             <div class="image"><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '100%' %></div>
             <div class="title"><span><%= furniture.title %></span></div>
         <% end %>
