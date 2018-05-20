@@ -8,9 +8,16 @@
             <div class="carousel-item active">
                 <div class="info_wrap">
                     <div class="info">
-                        <h3>welcome to our</h3>
-                        <h1>ELEGENT FURNITURE</h1>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there hidden in the middle of text.</p>
+                        <h3>Покупайте выгодно мебель не вставая с дивана!</h3>
+                        <h1>Сохрани свои деньги и время!</h1>
+                        <p>Чтобы купить  мебель по самой выгодной цене Вам,необходимо сделать следующие шаги:</p>
+                        <ul>
+                            <li>Вы заполняете на нашем сайте Вашу контактную информацию</li>
+                            <li>Выбираете комплект, или элемент мебели из каталога на сайте</li>
+                            <li>Обозначаете регион поиска и Ваш запрос будет разослан всем продавцам мебели этого региона</li>
+                        </ul>
+                        <p>После Вашей заявки продавцы, зарегистрированные в нашей системе, сами свяжутся с Вами и предложат свои цены и условия.</p>
+
                         <button class="info__btn box">
                             <span class="box__content_wrap">
                                 <span class="icon-pencil icon"></span>
@@ -23,9 +30,18 @@
             <div class="carousel-item">
                 <div class="info_wrap">
                     <div class="info">
-                        <h3>welcome to our</h3>
-                        <h1>ELEGENT FURNITURE</h1>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there hidden in the middle of text.</p>
+                        <h3>У Вас есть сайт, но продажи падают? <br>Услуги рекламных агенств очень дороги?</h3>
+                        <h1>Хотите поднять продажи без затрат?</h1>
+                        <p>Сегодня Вам не нужно тратиться на сайт или интернет магазин, чтобы продавать мебель. Как известно, сайт нужно не только купить, но и обслуживать, ”раскручивать”, ”продвигать”. Все стало еще проще.</p>
+                        <p>Как это работает?</p>
+                        <ul>
+                            <li>Вы регистрируетесь на сайте</li>
+                            <li>Выбираете товар из каталога, которым Вы торгуете</li>
+                            <li>Администратор нашего сервиса проверит и активирует Ваш аккаунт</li>
+                            <li>Вы получаете клиента со всех регионов, которые Вы выбрали</li>
+                            <li>При наличии у вас требуемой мебели Вы связываетесь с потенциальным покупателем напрямую и предлагаете свою цену и условия доставки</li>
+                        </ul>
+
                         <button class="info__btn box">
                             <span class="box__content_wrap">
                                 <span class="icon-pencil icon"></span>
@@ -58,13 +74,13 @@
 
 <section id="hot" class="section">
     <div class="section__header_wrap">
-        <h2 class="section__header">Выберите мебель</h2>
+        <h2 class="section__header">Топ товаров</h2>
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
     <div class="flex-list flex-list_landing">
         <div class="result result_card">
             <div class="result__product product">
-                <div class="product__image"><%= image_tag 'products/54/10411_0.jpg', width: '100%' %></div>
+                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
                 <div class="product__info info">
                     <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
                     <div class="info__tags tag__list">
@@ -92,7 +108,7 @@
         </div>
         <div class="result result_card">
             <div class="result__product product">
-                <div class="product__image"><%= image_tag 'products/54/10575_0.jpg', width: '100%' %></div>
+                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
                 <div class="product__info info">
                     <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
                     <div class="info__tags tag__list">
@@ -120,7 +136,7 @@
         </div>
         <div class="result result_card">
             <div class="result__product product">
-                <div class="product__image"><%= image_tag 'products/54/10576_0.jpg', width: '100%' %></div>
+                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
                 <div class="product__info info">
                     <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
                     <div class="info__tags tag__list">
@@ -151,19 +167,19 @@
 
 <section id="about" class="section">
     <div class="section__header_wrap">
-        <h2 class="section__header">about us</h2>
+        <h2 class="section__header">О нас</h2>
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
     <div class="about">
         <div class="about__img"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
         <div class="about__text text">
             <div class="text__header_wrap">
-                <p class="text__header">who we are</p>
+                <p class="text__header">Кто мы такие</p>
                 <hr width="30px" size="2" align="left" color="#C8A165">
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magn aliqua. Ut enim ad minim veniam, ommodo consequa. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia is be deserunt mollit anim id est laborum.</p>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit. voluptatem accusantium doloremque laudantium, totam remes aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p>Мы живем в стремительное время. Скорость интернета, скорость автомобилей, скорость течения жизни - все ускоряется. И так сложно найти свободное время для отдыха и релакса, не отвлекаясь на обыденные задачи.</p>
+            <p>Наш проект Вудмистер - это первый проект быстрых решений для одной из Ваших потребностей - потребности в комфорте, уюте, а значит и безопасности.</p>
+            <p><b>woodmister.com</b> - первый сайт в Украине по быстрому поиску новой мебели.</p>
         </div>
     </div>
 </section>
