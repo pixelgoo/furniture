@@ -5,18 +5,20 @@
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
 
-    <div class="calculator">
-        <div class="calculator__filter" id="furniture">
-            <% rarities.each do |rarity| %>
-                <% if request.query_parameters[:rarity] == rarity %>
-                    <%= link_to image_tag("back_#{rarity}.png"), cards_path(request.query_parameters.merge(rarity: '', page: 0)),
-                                class: "rarity-filter rarity-active", id: "#{rarity}", :remote => true %>
-                <% else %>
-                    <%= link_to image_tag("back_#{rarity}.png"), cards_path(request.query_parameters.merge(rarity: rarity, page: 0)),
-                                class: "rarity-filter", id: "#{rarity}", :remote => true %>
-                <% end %>
+    <div class="product-filters">
+
+        <div class="product-filters__filter" id="filter-furniture">
+            <% @furnitures.each do |furniture| %>
+                <div class="product-filters__current"><%= @chosen_furniture.title %></div>
+                <div class="product-filters__list">
+                    <% @furnitures.each do |furniture| %>
+                        <%= link_to furniture.title, products_path(request.query_parameters.merge(furniture: furniture.id)),
+                        class: "product-filters__item" %>
+                    <% end %>
+                </div>
             <% end %>
         </div>
+
     </div>
 
     <div class="result__wrap">

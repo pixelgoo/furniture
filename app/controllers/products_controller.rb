@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = apply_scopes(Product).all.page(params[:page]).per(10)
+    @furnitures = Furniture.all
+    @chosen_furniture = Furniture.chosen_furniture(request.query_parameters[:furniture])
   end
 
   def show
