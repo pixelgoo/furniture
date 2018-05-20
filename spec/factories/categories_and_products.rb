@@ -6,6 +6,7 @@ FactoryBot.define do
 
   factory :product do
     title "Nice Couch"
+    image_count 1
     category
   end
 

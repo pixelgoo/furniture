@@ -52,7 +52,7 @@ class User < ApplicationRecord
   def set_tariff(tariff)
     self.tariff = Tariff.find_by(name: tariff)
     self.save
-    self.tariff_enddate = DateTime.new + self.tariff.months.months
+    self.tariff_enddate = DateTime.now + self.tariff.months.months
     self.save
   end
 

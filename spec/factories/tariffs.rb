@@ -3,6 +3,7 @@ FactoryBot.define do
   factory :tariff do
     name "Tariff"
     price 100
+    months 3
   end
 
 end

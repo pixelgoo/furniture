@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :role do
-    name "Role"
+    name "Manufacturer"
   end
 
 end

@@ -18,7 +18,7 @@
                     <tr>
                         <td><span class="icon-question icon"></span> <%= t('profile.status') %></td>
                         <td>
-                            <%= current_user.tariff_endtime.strftime("Действует до %d-%m-%Y") %>
+                            <%= current_user.tariff_enddate.strftime("Действует до %d-%m-%Y") %>
                         </td>
                     </tr>
                 <% end %>
@@ -28,7 +28,7 @@
                     <% if current_user.tariff.nil? %>
                         <td><%= t('profile.no_tariff') %> <%= link_to 'Выбрать тариф', settings_path, style: "text-decoration: underline;color:grey;" %></td> <!-- TODO -->
                     <% else %>
-                        <td><%= current_user.tariff.name %></td>
+                        <td><%= t("tariff.#{current_user.tariff.name}") %></td>
                     <% end %>
                 </tr>
 

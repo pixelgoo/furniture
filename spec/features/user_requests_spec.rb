@@ -16,10 +16,9 @@ feature "[requests] User can" do
     product = create(:product)
     visit "/products/#{product.id}"
 
-    click_button "create_request"
+    click_button I18n.t('button.request')
 
-    expect(current_path).to eq(request_success_path)
-    expect(Request.last.user).to eq(User.last)
+    expect(Request.last.customer).to eq(User.last)
     expect(Request.last.product).to eq(product)
   end
 
