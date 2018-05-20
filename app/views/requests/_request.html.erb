@@ -55,15 +55,15 @@
 
       <% if status == 'active' %>
       
-          <%= button_to t('request.b_success'), request_path(id: request.id), remote: false, method: 'patch',
+          <%= button_to t('button.success'), request_path(id: request.id), remote: false, method: 'patch',
               form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'archived' }, class: 'btn btn-success' %>
 
-          <%= button_to t('request.b_archive'), request_path(id: request.id), remote: false, method: 'patch',
+          <%= button_to t('button.archive'), request_path(id: request.id), remote: false, method: 'patch',
               form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'archived' }, class: 'btn btn-danger' %>
       <% end %>
 
       <% if status == 'new' %>
-          <%= button_to t('request.b_active'), request_path(id: request.id), remote: false, method: 'patch',
+          <%= button_to t('button.active'), request_path(id: request.id), remote: false, method: 'patch',
               form: { "data-type" => "json"}, params: { request_id: request.id, new_status: 'active' }, class: 'btn btn-success' %>
       <% end %>
   </div>

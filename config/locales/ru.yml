@@ -311,8 +311,6 @@ ru:
     active: 'Принять заявку'
     success: 'Закрыть заявку'
     archive: 'Удалить'
-    suspend: "Приостановить"
-    activate: "Возобновить"
     choose_tariff: "Выбрать тариф"
     change_tariff: "Сменить тариф"
 
