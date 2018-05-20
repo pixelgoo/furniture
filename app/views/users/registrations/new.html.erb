@@ -79,7 +79,8 @@
                     </div>
                     <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
 
-                    <button type="button" class="box box_center form-submit-button" id="registrationCustomerSubmit">
+                    <button type="button" class="box box_center form-submit-button" id="registrationCustomerrSubmit">
+                        <%= f.submit "Логин", class: 'btn btn-primary btn-hidden' %>
                         <span class="box__content_wrap">
                             <span class="icon-pencil icon"></span>
                             <span class="box__content"><%= t('button.sign_up') %></span>

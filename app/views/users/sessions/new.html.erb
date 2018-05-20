@@ -34,14 +34,14 @@
                 <div class="checkbox__label">Запомнить меня</div>
         </div>
 
-        <%= f.submit "Логин", class: 'btn btn-primary' %>
+       <button type="button" class="box box_center form-submit-button" id="loginSubmit">
+            <%= f.submit "Логин", class: 'btn btn-primary btn-hidden' %>
 
-        <button type="button" class="box box_center form-submit-button" id="loginSubmit">
             <span class="box__content_wrap">
-                <span class="icon-key icon"></span>
-                <span class="box__content"><%= t('button.sign_in') %></span>
+                <span class="icon-pencil icon"></span>
+                <span class="box__content"><%= t('button.sign_up') %></span>
             </span>
-        </button>        
+        </button>     
 
         <% end %>
   </main>
