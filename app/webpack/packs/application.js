@@ -34,6 +34,5 @@ Turbolinks.start()
 import App from '../javascript/app.js'
 
 window.addEventListener("DOMContentLoaded", function () {
-    let woodmister = new App()
-    woodmister.init()
+    new App()
 });
