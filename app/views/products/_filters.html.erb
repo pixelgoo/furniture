@@ -1,0 +1,44 @@
+<div id="product-filters">
+
+    <div class="product-filters__filter" id="filter-furnitures">
+        <div class="product-filters__current"><%= @current_filters[:furniture].title %></div>
+        <div class="product-filters__list">
+            <% @filters[:furniture].each do |furniture| %>
+                <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
+                facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item" do %>
+                    <span><%= furniture.title %></span>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+
+    <div class="product-filters__filter" id="filter-categories">
+        <div class="product-filters__current"><%= @current_filters[:category].present? ? @current_filters[:category].title : 'Все категории' %></div>
+        <div class="product-filters__list">
+            <% @filters[:category].each do |category| %>
+                <%= link_to products_path(request.query_parameters.merge(category: category.id, factory: nil, style: nil, 
+                facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item" do %>
+                    <span><%= category.title %></span>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @current_filters[:category].present? %>
+      <% %w(factory style facade structure product_type).each do |filter| %>
+        <div class="product-filters__filter" id="filter-<%= filter %>">
+          <div class="product-filters__title"><%= t("product.#{filter}") %></div>
+          <div class="product-filters__current"><%= @current_filters[filter].present? ? @current_filters[filter] : "Все" %></div>
+          <div class="product-filters__list">
+              <% @filters[filter].each do |value| %>
+                  <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item" do %>
+                      <span><%= value %></span>
+                  <% end %>
+              <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+</div>

@@ -5,64 +5,18 @@
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
 
-    <div class="product-filters">
-
-        <div class="product-filters__filter" id="filter-furniture">
-            <% @furnitures.each do |furniture| %>
-                <div class="product-filters__current"><%= @chosen_furniture.title %></div>
-                <div class="product-filters__list">
-                    <% @furnitures.each do |furniture| %>
-                        <%= link_to furniture.title, products_path(request.query_parameters.merge(furniture: furniture.id)),
-                        class: "product-filters__item" %>
-                    <% end %>
-                </div>
-            <% end %>
-        </div>
-
-    </div>
-
+    <%= render 'filters' %>
+    
     <div class="result__wrap">
-        <div class="result__list">
+        <div class="result__list" id="products">
 
-          <% @products.each do |product| %>
-                <div class="result">
-
-                    <div class="result__product product">
-                        <div class="product__image">
-                            <%= cdn_image_tag "products/#{product.product_id}_0.jpg" %>
-                        </div>
-                        <div class="product__info info">
-                            <div class="info__name"><span><%= product.title %></span></div>
-                            <div class="info__tags tag__list">
-                            <% %w(factory style facade product_type).each do |detail| %>
-                                <% unless product[detail].nil? then %>
-                                    <div class="tag"><span class="icon-tag icon"></span><span><%= product[detail] %></span></div>
-                                <% end %>
-                            <% end %>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="result__action">
-                        <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
-                        
-                        <% if current_user.customer? %>
-                            <div class="info__btn box">
-                                <span class="box__content_wrap">
-                                    <span class="icon-share-alt icon"></span>
-                                    <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
-                                    form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'box__content' %>
-                                </span>
-                            </div>
-                        <% end %>
-                    </div>
-
-                </div>
-          <% end %>
+          <%= render @products %>
 
         </div>
     </div>
 
-    <%= paginate @products %>
+    <div class="paginator">
+        <%= paginate @products, remote: true %>
+    </div>
 
 </section>

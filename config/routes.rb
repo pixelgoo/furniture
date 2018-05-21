@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   # Products
   resources :products
 
+  # Filters API
+  get '/filters/furnitures', to: 'filters#furnitures'
+  get '/filters/categories', to: 'filters#categories'
+  get '/filters/features', to: 'filters#features'
+
   # Requests
   get '/requests/:status', to: 'requests#index', as: 'requests'
   resources :requests, only: [:create, :update]
