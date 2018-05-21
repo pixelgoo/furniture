@@ -1,33 +1,42 @@
-<div class="result">
+<div class="product animated fadeInRight">
 
-  <div class="result__product product">
-      <div class="product__image">
-          <%= cdn_image_tag "products/#{product.product_id}_0.jpg" %>
-      </div>
-      <div class="product__info info">
-          <div class="info__name"><span><%= product.title %></span></div>
-          <div class="info__tags tag__list">
+  <div class="product__data">
+    <div class="product__image">
+        <%= cdn_image_tag "products/#{product.product_id}_0.jpg" %>
+    </div>
+    <div class="product__info">
+        <div class="product__name"><span><%= product.title %></span></div>
+        <div class="product__tags">
           <% %w(factory style facade product_type).each do |detail| %>
-              <% unless product[detail].nil? then %>
-                  <div class="tag"><span class="icon-tag icon"></span><span><%= product[detail] %></span></div>
+              <% if product[detail].present? %>
+                  <div class="tag">
+                    <span class="icon-tag icon"></span><span><%= product[detail][0] == product[detail][0].upcase ? product[detail] : product[detail].capitalize %></span>
+                  </div>
               <% end %>
           <% end %>
-          </div>
-      </div>
+        </div>
+    </div>
   </div>
 
-  <div class="result__action">
-      <%= render partial: "blocks/button", locals: { text: t('button.details'), path_link: product_path(product.id), icon: 'doc' } %>
-      
-      <% if current_user.customer? %>
-          <div class="info__btn box">
-              <span class="box__content_wrap">
-                  <span class="icon-share-alt icon"></span>
-                  <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
-                  form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'box__content' %>
-              </span>
-          </div>
-      <% end %>
+  <div class="product__action">
+    <button type="button" class="box">
+        <%= link_to t('button.details'), product_path(product.id), class: 'btn-hidden' %>
+        <span class="box__content_wrap">
+            <span class="icon-pencil icon"></span>
+            <span class="box__content"><%= t('button.details') %></span>
+        </span>
+    </button>
+    
+    <% if current_user.customer? %>
+      <button type="button" class="box">
+          <%= button_to t('button.request'), { controller: "requests", action: "create" }, remote: false, 
+                form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'btn-hidden' %>
+          <span class="box__content_wrap">
+              <span class="icon-pencil icon"></span>
+              <span class="box__content"><%= t('button.request') %></span>
+          </span>
+      </button>
+    <% end %>
   </div>
 
 </div>

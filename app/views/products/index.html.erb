@@ -1,22 +1,13 @@
- <section id="resultList" class="section">
-
-    <div class="section__header_wrap">
-        <h2 class="section__header"><%= t('product.list-title') %></h2>
-        <hr width="60px" size="2" align="center" color="#C8A165">
-    </div>
+ <div class="products">
 
     <%= render 'filters' %>
     
-    <div class="result__wrap">
-        <div class="result__list" id="products">
-
+    <div class="products__list" id="products">
           <%= render @products %>
-
-        </div>
     </div>
 
-    <div class="paginator">
+    <div class="products__paginator">
         <%= paginate @products, remote: true %>
     </div>
 
-</section>
+</div>

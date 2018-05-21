@@ -31,7 +31,7 @@ import Turbolinks from 'turbolinks'
 Turbolinks.start()
 
 // Add application modules
-import App from '../javascript/app.js'
+import App from '../javascript/App.js'
 
 window.addEventListener("DOMContentLoaded", function () {
     new App()

@@ -1,3 +1,4 @@
+$('.product-filters').html('<%= escape_javascript render(partial: 'filters') %>');
 $('#products').html('<%= escape_javascript render(@products) %>');
-$('.paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
+$('.products__paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
 

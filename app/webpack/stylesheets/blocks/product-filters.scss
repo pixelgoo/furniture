@@ -1,0 +1,80 @@
+@import "../variables.scss";
+
+.product-filters {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25vw;
+  box-sizing: border-box;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 2px 2px #e7e7e7;
+
+  &.fixed {
+    position: fixed;
+    overflow: auto;
+    max-height: 100vh;
+  }
+
+  &__current {
+    position: relative;
+    color: $pastel-yellow;
+    font-weight: 700;
+    padding-left: 10px;
+
+    &::before {
+      content: '›';
+      position: absolute;
+      left: 2px;
+      line-height: 30px;
+      color: $pastel-yellow;
+    }
+  }
+
+  &__title {
+    font-size: 26px;
+    font-weight: 700;
+    color: $pastel-yellow;
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    max-height: 0;
+    overflow: hidden;
+
+    &.opened {
+      max-height: 1000px;
+      transition: ease 1s;
+    }
+  }
+}
+
+#filter-furnitures {
+  .product-filters__current {
+
+    &::before {
+      left: -10px;
+      line-height: 44px;
+    }
+
+    .icon-mask {
+      background-color: $pastel-yellow;
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  }
+
+  .filter-furnitures__item {
+    padding: 10px;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}

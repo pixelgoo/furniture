@@ -1,3 +1,5 @@
+import Filters from "./Filters";
+
 export default class App {
 
     constructor() { 
@@ -6,6 +8,7 @@ export default class App {
 
     init() {
         console.log('App inited');
+        new Filters();
     }
 
 }
