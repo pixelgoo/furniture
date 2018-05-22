@@ -39,15 +39,17 @@
         <div class="product-filters__filter" id="filter-<%= filter %>">
           <div class="product-filters__title"><%= t("product.#{filter}") %></div>
           <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
-              <% @filters[filter].each do |value| %>
-                  <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
-                      <% if @current_filters[filter].present? && @current_filters[filter] == value %>
-                        <span class="product-filters__current"><%= value %></span>
-                      <% else %>
-                        <span><%= value %></span>
-                      <% end %>
-                  <% end %>
-              <% end %>
+            <% if @filters[filter].present? %>
+                <% @filters[filter].each do |value| %>
+                    <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
+                        <% if @current_filters[filter].present? && @current_filters[filter] == value %>
+                            <span class="product-filters__current"><%= value %></span>
+                        <% else %>
+                            <span><%= value %></span>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
           </div>
         </div>
       <% end %>

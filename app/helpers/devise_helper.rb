@@ -9,7 +9,7 @@ module DeviseHelper
         <span aria-hidden="true">&times;</span>
       </button>
       <strong>
-       Произошли ошибки: #{pluralize(resource.errors.count, "error")}. Пожалуйста, исправьте их.
+       Количество ошибок: #{resource.errors.count}. Пожалуйста, исправьте их.
       </strong>
       #{messages}
     </div>

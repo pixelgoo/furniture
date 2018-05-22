@@ -1,4 +1,7 @@
-$('.product-filters').html('<%= escape_javascript render(partial: 'filters') %>');
-$('#products').html('<%= escape_javascript render(@products) %>');
-$('.products__paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
+// setTimeout will put the html replacement to the next timer tick that happens after the ajax:* events being triggered.
+setTimeout(function () {
+  $('.product-filters').html('<%= escape_javascript render(partial: 'filters') %>');
+  $('#products').html('<%= escape_javascript render(@products) %>');
+  $('.products__paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
+});
 

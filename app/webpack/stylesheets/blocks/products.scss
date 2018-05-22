@@ -1,10 +1,14 @@
 @import "../variables.scss";
 
 .products {
+  position: relative;
   background: #f9f9f9;
-
+  min-height: calc(100vh - 150px);
+  overflow: hidden;
+  
   &__list {
     margin-left: 25vw;
+    padding-top: 20px;
   }
 }
 

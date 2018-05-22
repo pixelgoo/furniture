@@ -1,3 +1,5 @@
+import Preloader from "./Preloader";
+
 export default class Filters {
 
   constructor() {
@@ -6,10 +8,31 @@ export default class Filters {
   }
 
   init() {
-    this.makeSticky($('.product-filters'));
-
     $(document).on('click', '.product-filters__title', function() {
       $(this).siblings('.product-filters__list').toggleClass('opened');
+    })
+
+    $(document).on('ajax:send', () => {
+      console.log('AJAX started');
+      $('.product').css('animation-duration', '0.2s').addClass('animated zoomOut');
+      setTimeout(() => { $('.product').remove() }, 200);
+      $("#loading").removeClass('animated fadeOutUp').addClass('animated fadeInDown').show();
+    });
+
+    $(document).on('ajax:success', () => {
+      console.log('AJAX completed');
+      this.setProductsList();
+    });
+
+    this.setProductsList();
+  }
+
+  setProductsList() {
+    this.makeSticky($('.product-filters'));
+    
+    setTimeout(function() {
+      let preloader = new Preloader();
+      preloader.init();
     })
   }
 

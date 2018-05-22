@@ -1,9 +1,19 @@
  <div class="products">
 
+    <div id="loading">
+        <div class="cssload-container">
+            <ul class="cssload-flex-container">
+                <li>
+                    <span class="cssload-loading"></span>
+                </li>
+            </ul>
+        </div>	
+    </div>
+    
     <%= render 'filters' %>
     
     <div class="products__list" id="products">
-          <%= render @products %>
+        <%= render @products %>
     </div>
 
     <div class="products__paginator">
