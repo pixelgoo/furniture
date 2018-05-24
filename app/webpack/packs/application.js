@@ -22,13 +22,17 @@ global.jQuery = $
 // Add Bootstrap
 import 'bootstrap';
 
-// Add JS Uglifier
+// Add Unobstructive JS
 import Rails from 'rails-ujs'
 Rails.start()
 
 // Add Turbolinks
 import Turbolinks from 'turbolinks'
 Turbolinks.start()
+
+// Add PerfectScrollbar
+// import PerfectScrollbar from '../javascript/vendor/perfect-scrollbar.common';
+// import '../stylesheets/vendor/perfect-scrollbar.css';
 
 // Add application modules
 import App from '../javascript/App.js'

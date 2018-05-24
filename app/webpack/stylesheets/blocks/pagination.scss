@@ -1,0 +1,38 @@
+.pagination {
+  justify-content: center;
+  flex-wrap: nowrap;
+
+  span {
+    display: inline-block;
+    height: 30px;
+    margin: 3px;
+    text-align: center;
+    background-color: #f8f8f8;
+  }
+
+  .page {
+    width: 30px;
+    line-height: 26px;
+
+    a {
+      height: 30px;
+      width: 30px;
+      display: block;
+    }
+  }
+
+  .current {
+    background-color: #c8a165;
+    color: #fff;
+  }
+
+  .next, .last {
+    line-height: 30px;
+    padding: 0 7px;
+
+    a {
+      height: 30px;
+      display: block;
+    }
+  }
+}

@@ -4,6 +4,7 @@
 * 8:  .alert
 * 5:  .product-filters
 * 4:  #loading
+* 2:  .paginator
 */
 
 @import "variables.scss";
@@ -28,6 +29,18 @@ body {
 
 textarea {
     resize: none !important;
+}
+
+a {
+  color: inherit !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  &:focus {
+    text-decoration: none !important;
+  }
 }
 
 .turbolinks-progress-bar {

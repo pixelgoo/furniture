@@ -12,14 +12,12 @@ export default class Preloader {
 
     if(this.imgCounter == 0) {
       console.log('No images, done.');
-      $("#loading").removeClass('animated fadeInDown').addClass('animated fadeOutUp').delay(200).hide(0);
+      $("#loading").removeClass('animated fadeIn').addClass('animated fadeOut').delay(200).hide(0);
       return;
     }
 
     let checkLoading = setInterval(function () {
-      console.log(this.loaded);
       if (this.loaded === this.imgCounter) {
-        $("#loading").removeClass('animated fadeInDown').addClass('animated fadeOutUp').delay(200).hide(0);
         clearInterval(checkLoading);
       }
     }, 100);
@@ -38,6 +36,7 @@ export default class Preloader {
 
     if (this.loaded === this.imgCounter) {
       console.log('Preload over');
+      $("#loading").removeClass('animated fadeIn').addClass('animated fadeOut').delay(200).hide(0);
     } else {
       this.preloadImage();
     }

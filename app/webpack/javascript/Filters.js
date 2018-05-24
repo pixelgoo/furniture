@@ -1,4 +1,6 @@
 import Preloader from "./Preloader";
+import PerfectScrollbar from '../javascript/vendor/perfect-scrollbar.common';
+import '../stylesheets/vendor/perfect-scrollbar.css';
 
 export default class Filters {
 
@@ -16,7 +18,7 @@ export default class Filters {
       console.log('AJAX started');
       $('.product').css('animation-duration', '0.2s').addClass('animated zoomOut');
       setTimeout(() => { $('.product').remove() }, 200);
-      $("#loading").removeClass('animated fadeOutUp').addClass('animated fadeInDown').show();
+      $("#loading").removeClass('animated fadeOut').addClass('animated fadeIn').show();
     });
 
     $(document).on('ajax:success', () => {
@@ -25,21 +27,14 @@ export default class Filters {
     });
 
     this.setProductsList();
+    new PerfectScrollbar('.product-filters');
+    new PerfectScrollbar('#products');
   }
 
   setProductsList() {
-    this.makeSticky($('.product-filters'));
-    
     setTimeout(function() {
       let preloader = new Preloader();
       preloader.init();
     })
-  }
-
-  makeSticky(sticky) {
-    let pos = sticky.offset().top, win = $(window);
-    win.on("scroll", function () {
-      win.scrollTop() >= pos ? sticky.addClass("fixed") : sticky.removeClass("fixed");
-    });		
   }
 }

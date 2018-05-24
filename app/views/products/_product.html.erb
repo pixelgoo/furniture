@@ -1,4 +1,4 @@
-<div class="product animated zoomIn">
+<div class="product animated fadeIn">
 
   <div class="product__data">
     <div class="product__image preload" data-preload-img="https://d3lbdc0bfetw94.cloudfront.net/products/<%= product.product_id %>_0.jpg">
@@ -9,7 +9,11 @@
           <% %w(factory style facade product_type).each do |detail| %>
               <% if product[detail].present? %>
                   <div class="tag">
-                    <span class="icon-tag icon"></span><span><%= product[detail][0] == product[detail][0].upcase ? product[detail] : product[detail].capitalize %></span>
+                    <span class="icon-tag icon"></span>
+                    <span>
+                        <span class="product__feature"><%= t("product.#{detail}") %>:</span>
+                        <%= product[detail][0] == product[detail][0].upcase ? product[detail] : product[detail].capitalize %>
+                    </span>
                   </div>
               <% end %>
           <% end %>
