@@ -8,7 +8,10 @@ export default class App {
 
     init() {
         console.log('App inited');
-        new Filters();
+
+        if($('.product-filters').length > 0) {
+            new Filters();
+        }
     }
 
 }

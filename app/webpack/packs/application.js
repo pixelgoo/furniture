@@ -30,9 +30,11 @@ Rails.start()
 import Turbolinks from 'turbolinks'
 Turbolinks.start()
 
-// Add PerfectScrollbar
-// import PerfectScrollbar from '../javascript/vendor/perfect-scrollbar.common';
-// import '../stylesheets/vendor/perfect-scrollbar.css';
+// Add File Upload
+import jqueryUI from '../javascript/vendor/jquery.ui.widget'
+import jqueryUpload from '../javascript/vendor/z.jquery.fileupload'
+jqueryUI();
+jqueryUpload();
 
 // Add application modules
 import App from '../javascript/App.js'

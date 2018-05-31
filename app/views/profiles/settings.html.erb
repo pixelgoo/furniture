@@ -1,9 +1,24 @@
 <% if current_user.manufacturer? %>
 
-    <% unless current_user.confirmed? %>
-    
+    <% if current_user.confirmed? %>
+        <section class="section">
+            Ваш аккаунт подтвержден администрацией.
+        </section>
+        
+    <% else %>
+        <section class="section">
+            Вам необходимо подтвердить.
+        </section>
+        <%= form_for(@user, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
+            'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+            <div class="field">
+                <%= f.label 'Документ' %><br>
+                <%= f.file_field :document %>
+            </div>
+        <% end %>
+
     <% end %>
-    
+
     <section class="section">
         <h4 class="section__header"><%= t('tariff.choose') %></h4>
         <div class="tariff-list">
