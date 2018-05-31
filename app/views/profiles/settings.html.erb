@@ -1,5 +1,9 @@
-<% if current_user.manufacturer? then %>
+<% if current_user.manufacturer? %>
 
+    <% unless current_user.confirmed? %>
+    
+    <% end %>
+    
     <section class="section">
         <h4 class="section__header"><%= t('tariff.choose') %></h4>
         <div class="tariff-list">

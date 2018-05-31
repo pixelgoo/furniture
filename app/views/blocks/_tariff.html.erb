@@ -13,6 +13,12 @@
       <span><%= humanized_money_with_symbol tariff.price %></span>
     </div>
 
-    <%= render partial: "blocks/button", locals: { text: t('button.subscribe'), path_link: subscribe_path(tariff.name), icon: 'wallet' } %>
+    <button type="button" class="box">
+      <%= link_to t('button.subscribe'), subscribe_path(tariff.name), class: 'btn-hidden' %>
+      <span class="box__content_wrap">
+        <span class="icon-wallet icon"></span>
+        <span class="box__content"><%= t('button.subscribe') %></span>
+      </span>
+    </button>
   </div>
 </div>
