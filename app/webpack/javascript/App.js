@@ -1,4 +1,5 @@
 import Filters from "./Filters";
+import FileUpload from "./FileUpload";
 
 export default class App {
 
@@ -11,6 +12,10 @@ export default class App {
 
         if($('.product-filters').length > 0) {
             new Filters();
+        }
+
+        if ($('.directUpload').length > 0) {
+            new FileUpload();
         }
     }
 

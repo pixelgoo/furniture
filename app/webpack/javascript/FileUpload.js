@@ -29,7 +29,7 @@ export default class FileUpload {
         },
         start: function (e) {
           submitButton.prop('disabled', true);
-
+          console.log('Uploading started...');
           progressBar.
             css('background', 'green').
             css('display', 'block').
@@ -39,6 +39,7 @@ export default class FileUpload {
         done: function (e, data) {
           submitButton.prop('disabled', false);
           progressBar.text("Файл успешно загружен");
+          console.log('Uploaded!');
 
           var key = $(data.jqXHR.responseXML).find("Key").text();
           var url = '//' + form.data('host') + '/' + key;
@@ -48,6 +49,7 @@ export default class FileUpload {
         },
         fail: function (e, data) {
           submitButton.prop('disabled', false);
+          console.log('Upload failed.');
 
           progressBar.
             css("background", "red").

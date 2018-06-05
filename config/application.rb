@@ -28,9 +28,12 @@ module Woodmister
     I18n.available_locales = [ :ru ]
     I18n.default_locale = :ru
 
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => 'https://www.liqpay.ua',
-      'Access-Control-Request-Method' => %w{POST}.join(",")
-    }
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'https://www.liqpay.ua', 'https://woodmister-uploads.s3.eu-west-3.amazonaws.com/'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
+
   end
 end
