@@ -9,6 +9,10 @@ class ProfilesController < ApplicationController
         @tariffs = Tariff.all
     end
 
+    def upload_documents
+        
+    end
+
     private
 
     def set_s3_direct_post

@@ -43,7 +43,7 @@ export default class FileUpload {
           var key = $(data.jqXHR.responseXML).find("Key").text();
           var url = '//' + form.data('host') + '/' + key;
 
-          var input = $("<input />", { type: 'hidden', name: fileInput.attr('name'), value: url })
+          var input = $("<input />", { type: 'hidden', name: fileInput.attr('documents_confirmed'), value: url })
           form.append(input);
         },
         fail: function (e, data) {
