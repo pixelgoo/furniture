@@ -312,6 +312,7 @@ ru:
     archive: 'Удалить'
     choose_tariff: "Выбрать тариф"
     change_tariff: "Сменить тариф"
+    save: "Сохранить"
 
   # Profile
   profile:

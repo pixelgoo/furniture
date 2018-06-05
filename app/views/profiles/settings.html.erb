@@ -1,34 +1,72 @@
 <% if current_user.manufacturer? %>
 
-    <% if current_user.documents_confirmed %>
-        <section class="section">
-            Ваш аккаунт подтвержден администрацией.
-        </section>
-        
-    <% else %>
-        <section class="section">
-            Вам необходимо подтвердить.
-        </section>
-        <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
-            'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+    <section class="section">
 
-            <% (4 - current_user.files_uploaded).times do |i| %>
-                <div class="field">
-                    <%= f.label 'Документ' %><br>
-                    <%= f.file_field :document, id: "user_document_#{i}"%>
-                </div>
+        <% if current_user.documents_confirmed %>
+            <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
+        <% else %>
+            <div class="status-badge status-badge_info">
+                Перед тем как использовать Woodmister вам необходимо предоставить документы, подтверждающие ваши права на торговлю товарами.
+                <ol>
+                    <li>Виписка з Єдиного державного реєстру юридичних осіб, фізичних осіб</li>
+                    <li>Витяг з реєстру платників єдиного податку, або про інші форми оподаткування</li>
+                </ol>
+            </div>
+            
+            <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
+                'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+
+                <% (4 - current_user.files_uploaded).times do |i| %>
+                    <div class="field">
+                        <%= f.label 'Фото/скан документа' %><br>
+                        <%= f.file_field :document, id: "user_document_#{i}"%>
+                    </div>
+                <% end %>
             <% end %>
+
+            <div>
+                После модерации ваших документов вы получите электронное письмо и сможете
+            </div>
         <% end %>
 
-    <% end %>
+    </section>
 
     <section class="section">
-        <h4 class="section__header"><%= t('tariff.choose') %></h4>
-        <div class="tariff-list">
-            <% @tariffs.each do |tariff| %>
-                <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+
+        <% if current_user.tariff_active? %>
+            <div "status-badge status-badge_success">Вы приобрели тарифный пакет"<%= current_user.tariff.name %>"
+            (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+            Перейдите в <span class="icon icon-bell"></span> <%= link_to 'Заявки', requests_path %> для осмотра заявок от покупателей.</div>
+        <% else %>
+            <div "status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+            <div>
+                <h4 class="section__header"><%= t('tariff.choose') %></h4>
+                <div class="tariff-list">
+                    <% @tariffs.each do |tariff| %>
+                        <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+        
+    </section>
+
+    <section class="section">
+
+        <div class="status-badge status-badge_info">Укажите заявки из каких регионов вы желаете получать заявки.</div>
+        <%= form_for(current_user, url: update_regions, html: { class: 'regions' }) do |f| %>
+            <% @regions.each do |region| %>
+                <%= f.check_box region.name, class: 'regions__chekbox' %>
             <% end %>
-        </div>
+            <button type="button" class="box">
+                <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+                <span class="box__content_wrap">
+                    <span class="icon-check icon"></span>
+                    <span class="box__content"><%= t('button.save') %></span>
+                </span>
+            </button>
+        <% end %>
+        
     </section>
 
 <% end %>

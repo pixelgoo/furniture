@@ -21,11 +21,37 @@ if Rails.env.development? then
     admin.save!
 end
 
-
 Tariff.create([
     { name: 'basic', price: '3000', months: 3 },
     { name: 'standard', price: '5500', months: 6 },
     { name: 'premium', price: '10000', months: 12 }
+])
+
+Region.create([
+    { name: 'Винницкая' },
+    { name: 'Волынская' },
+    { name: 'Днепропетровская' },
+    { name: 'Донецкая' },
+    { name: 'Житомирская' },
+    { name: 'Закарпатская' },
+    { name: 'Запорожская' },
+    { name: 'Ивано-Франковская' },
+    { name: 'Киевская' },
+    { name: 'Кировоградская' },
+    { name: 'Луганская' },
+    { name: 'Львовская' },
+    { name: 'Николаевская' },
+    { name: 'Одесская' },
+    { name: 'Полтавская' },
+    { name: 'Ровенская' },
+    { name: 'Сумская' },
+    { name: 'Тернопольская' },
+    { name: 'Харьковская' },
+    { name: 'Херсонская' },
+    { name: 'Хмельницкая' },
+    { name: 'Черкасская' },
+    { name: 'Черниговская' },
+    { name: 'Черновицкая' },
 ])
 
 Furniture.create([

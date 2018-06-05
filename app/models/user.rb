@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :payments
   has_many :customer_requests, :class_name => 'Request', :foreign_key => 'customer_id'
   has_many :manufacturer_requests, :class_name => 'Request', :foreign_key => 'manufacturer_id'
+  has_and_belongs_to_many :regions
 
   # =====================================================================================
   # General
@@ -68,4 +69,5 @@ class User < ApplicationRecord
     token = Request.find(id).token
     self.send("#{self.role_name.downcase}_requests").find_by(token: token)
   end
+
 end

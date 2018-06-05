@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
     def settings
         @tariffs = Tariff.all
+        @regions = Region.all
     end
 
     def upload_documents
