@@ -54,7 +54,7 @@
     <section class="section">
 
         <div class="status-badge status-badge_info">Укажите заявки из каких регионов вы желаете получать заявки.</div>
-        <%= form_for(current_user, url: update_regions, html: { class: 'regions' }) do |f| %>
+        <%= form_for(current_user, url: update_regions_path, html: { class: 'regions' }) do |f| %>
             <% @regions.each do |region| %>
                 <%= f.check_box region.name, class: 'regions__chekbox' %>
             <% end %>
