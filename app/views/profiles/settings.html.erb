@@ -12,7 +12,7 @@
         <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
             'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
 
-            <% (4 - current_user.documents_confirmed).times do %>
+            <% (4 - current_user.files_uploaded).times do %>
                 <div class="field">
                     <%= f.label 'Документ' %><br>
                     <%= f.file_field :document %>
