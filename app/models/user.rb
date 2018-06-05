@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def tariff_active?
-    self.tariff_enddate > DateTime.now
+    self.tariff_enddate.present? ? self.tariff_enddate > DateTime.now : false
   end
 
   # =====================================================================================
