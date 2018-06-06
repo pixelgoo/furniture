@@ -94,13 +94,13 @@
                     </div>
                     <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
 
-                    <button type="button" class="box box_center form-submit-button" id="registrationCustomerrSubmit">
+                    <div type="button" class="box form-submit-button" id="registrationCustomerrSubmit">
                         <%= f.submit "Логин", class: 'btn-hidden' %>
                         <span class="box__content_wrap">
                             <span class="icon-pencil icon"></span>
                             <span class="box__content"><%= t('button.sign_up') %></span>
                         </span>
-                    </button>
+                    </div>
 
                     <% end %>
                 </div>
@@ -170,13 +170,13 @@
                     </div>
                     <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'manufacturer_role_name' %>
 
-                    <button type="button" class="box box_center form-submit-button" id="registrationManufacturerSubmit">
+                    <div type="button" class="box form-submit-button" id="registrationManufacturerSubmit">
                         <%= f.submit "Логин", class: 'btn-hidden' %>
                         <span class="box__content_wrap">
                             <span class="icon-pencil icon"></span>
                             <span class="box__content"><%= t('button.sign_up') %></span>
                         </span>
-                    </button>
+                    </div>
 
                     <% end %>
                 </div>

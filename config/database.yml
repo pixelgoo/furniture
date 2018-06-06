@@ -3,8 +3,9 @@ default: &default
   encoding: unicode 
   pool: 5 
   timeout: 5000 
-  username: postgres 
-  host: postgres
+  username: pixelgoo
+  password: vjkjrj87 
+  host: localhost
   port: 5432
 
 development:

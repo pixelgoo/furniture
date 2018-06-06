@@ -1,0 +1,16 @@
+.status-badge {
+  padding: 20px 25px;
+  border-radius: 10px;
+  
+  &_info {
+    background: rgb(236, 248, 255);
+  }
+
+  &_success {
+    background: rgb(195, 255, 195);
+  }
+
+  ol {
+    margin: 0;
+  }
+}

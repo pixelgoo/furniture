@@ -8,4 +8,8 @@ FileLoader.test = /\.(jpg|jpeg|png|gif|webp|tiff|ico|svg|eot|otf|ttf|woff|woff2)
 // Add Vue.js
 environment.loaders.append('vue', vue)
 
+if (!module.hot) {
+    environment.loaders.get('sass').use.find(item => item.loader === 'sass-loader').options.sourceMapContents = false;
+}
+
 module.exports = environment

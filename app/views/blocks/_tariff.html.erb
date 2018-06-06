@@ -1,24 +1,32 @@
 <div class="tariff">
   <div class="tariff__header">
-    <div class="tariff__icon tariff__icon_<%= tariff.name %>"><span class="icon-star"></span></div>
+    <div class="tariff__icon"><%= image_tag asset_pack_path('images/logo.png'), width: '40px' %></div>
     <div class="tariff__name"><%= t("tariff.#{tariff.name}") %></div>
+    <div class="tariff__price">
+      <span>
+        <%= humanized_money_with_symbol tariff.price %>
+        <span class="tariff__per">за <%= tariff.months %> <%= tariff.months < 5 ? 'месяца' : 'месяцев' %></span>
+      </span>
+    </div>
   </div>
+
+  <hr>
+
   <div class="tariff__body">
     <ul class="tariff__features">
       <% t("tariff.#{tariff.name}_features").split(';').each do |feature| %>
           <li class="tariff__feature"><span><%= feature.html_safe %></span></li>
       <% end %>
     </ul>
-    <div class="tariff__price">
-      <span><%= humanized_money_with_symbol tariff.price %></span>
-    </div>
 
-    <button type="button" class="box">
+    <hr>
+
+    <div class="box">
       <%= link_to t('button.subscribe'), subscribe_path(tariff.name), class: 'btn-hidden' %>
       <span class="box__content_wrap">
         <span class="icon-wallet icon"></span>
         <span class="box__content"><%= t('button.subscribe') %></span>
       </span>
-    </button>
+    </div>
   </div>
 </div>

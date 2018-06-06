@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20180605030145) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "regions_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_regions_users_on_region_id"
+    t.index ["user_id"], name: "index_regions_users_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "token"
     t.bigint "product_id"
@@ -102,13 +109,6 @@ ActiveRecord::Schema.define(version: 20180605030145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_textiles_on_product_id"
-  end
-
-  create_table "user_regions", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "region_id"
-    t.index ["region_id"], name: "index_user_regions_on_region_id"
-    t.index ["user_id"], name: "index_user_regions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

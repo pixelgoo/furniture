@@ -13,25 +13,38 @@
                 </ol>
             </div>
             
-            <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
+            <% if Rails.env.production? %>
+              <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
                 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
 
-                <% (4 - current_user.files_uploaded).times do |i| %>
-                    <div class="field">
-                        <%= f.label 'Фото/скан документа' %><br>
-                        <%= f.file_field :document, id: "user_document_#{i}"%>
-                    </div>
-                <% end %>
+                  <% (4 - current_user.files_uploaded).times do |i| %>
+                      <div class="field">
+                          <%= f.label 'Фото/скан документа' %>
+                          <%= f.file_field :document, id: "user_document_#{i}"%>
+                      </div>
+                  <% end %>
+              <% end %>
+            <% else %>
+              <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload' }) do |f| %>
+                  <% (4 - current_user.files_uploaded).times do |i| %>
+                      <div class="field">
+                          <%= f.label 'Фото/скан документа' %>
+                          <%= f.file_field :document, id: "user_document_#{i}"%>
+                      </div>
+                  <% end %>
+              <% end %>
             <% end %>
+            
+            <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
 
             <div>
-                После модерации ваших документов вы получите электронное письмо и сможете
+                
             </div>
         <% end %>
 
     </section>
 
-    <section class="section">
+    <section class="section" id="choose-tariff">
 
         <% if current_user.tariff_active? %>
             <div class="status-badge status-badge_success">Вы приобрели тарифный пакет"<%= current_user.tariff.name %>"
@@ -54,17 +67,25 @@
     <section class="section">
 
         <div class="status-badge status-badge_info">Укажите заявки из каких регионов вы желаете получать заявки.</div>
-        <%= form_for(current_user, url: update_regions_path, html: { class: 'regions' }) do |f| %>
+
+        <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
+          <div class="form-group">
             <% @regions.each do |region| %>
-                <%= f.check_box region.name, class: 'regions__chekbox' %>
+              <div class="form-check form-check-inline">
+                <%= f.label region.id, class: 'form-check-label' do %>
+                  <%= f.check_box region.id, class: 'form-check-input' %>
+                  <%= region.name %>
+                <% end %>
+              </div>
             <% end %>
-            <button type="button" class="box">
-                <%= f.submit 'Сохранить', class: 'btn-hidden' %>
-                <span class="box__content_wrap">
-                    <span class="icon-check icon"></span>
-                    <span class="box__content"><%= t('button.save') %></span>
-                </span>
-            </button>
+          </div>
+          <div class="box">
+              <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+              <span class="box__content_wrap">
+                  <span class="icon-check icon"></span>
+                  <span class="box__content"><%= t('button.save') %></span>
+              </span>
+          </div>
         <% end %>
         
     </section>
@@ -92,12 +113,12 @@
                             <input type="password" name="newrepassword" required placeholder="Подтвердите новый пароль" class="form-control input-field">
                         </div>
                     </div>
-                    <button class="form__btn box box_center">
+                    <div class="form__btn box">
                         <span class="box__content_wrap">
                             <span class="icon-note icon"></span>
                             <span class="box__content">Сохранить изменения</span>
                         </span>
-                    </button>
+                    </div>
                 </form>
             </div>
         </div>
