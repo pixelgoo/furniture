@@ -1,12 +1,17 @@
-export default class FileUpload {
+export default class Settings {
 
-  constructor() {
+  constructor() { 
     this.init();
   }
 
   init() {
-    console.log('FileUpload inited');
+    console.log('Settings inited');
 
+    this.initDirectUpload();
+    this.initRegionsCheckboxes();
+  }
+
+  initDirectUpload() {
     $('.directUpload').find("input:file").each(function (i, elem) {
       var fileInput = $(elem);
       var form = $(fileInput.parents('form:first'));
@@ -57,6 +62,16 @@ export default class FileUpload {
         }
       });
     });
+  }
+
+  initRegionsCheckboxes() {
+    $('.form-check_all-regions').click(function() {
+      if($(this).find('.form-check-input_all-regions').prop('checked')) {
+        $('.form-check-input_region').prop('checked', true);
+      } else {
+        $('.form-check-input_region').prop('checked', false);
+      }
+    })
   }
 
 }

@@ -8,6 +8,8 @@ class ProfilesController < ApplicationController
   def settings
     @tariffs = Tariff.all
     @regions = Region.all
+    @regions_ids = Region.all.collect { |region| region.id }
+    @user_regions_ids = current_user.regions.collect { |region| region.id }
   end
 
   def upload_documents
@@ -15,8 +17,8 @@ class ProfilesController < ApplicationController
 
   def update_regions
     regions = Region.all
+    user_regions = current_user.regions
     params[:set_region].each do |index, checked|
-      user_regions = current_user.regions
       region = regions[index.to_i - 1]
       if checked == '1'
         user_regions << region unless user_regions.include? region
@@ -24,6 +26,8 @@ class ProfilesController < ApplicationController
         user_regions.delete region if user_regions.include? region
       end
     end
+    flash[:success] = I18n.t('profile.regions_changed')
+    redirect_to settings_path
   end
 
   private

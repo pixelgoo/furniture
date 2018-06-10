@@ -21,5 +21,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   config.active_support.deprecation = :stderr
-  
+
+  config.cdn_host = 'https://d3lbdc0bfetw94.cloudfront.net/'
 end

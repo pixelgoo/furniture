@@ -1,7 +1,7 @@
 class Tariff < ApplicationRecord
-    monetize :price_cents
-    has_many :users
-    has_many :payments, through: :users
+  monetize :price_cents
+  has_many :users
+  has_many :payments, through: :users
 
-    STATUSES = ['active', 'inactive']
+  STATUSES = ['active', 'inactive']
 end

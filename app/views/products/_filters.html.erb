@@ -1,58 +1,58 @@
 <div class="product-filters">
 
-    <div class="product-filters__filter" id="filter-furnitures">
-        <div class="product-filters__title">Вид мебели</div>
-        <div class="product-filters__list">
-            <% @filters[:furniture].each do |furniture| %>
-                <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
-                facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item", remote: true do %>
-                    <% if@current_filters[:furniture] == furniture %>
-                      <span class="product-filters__current"><div class="icon-mask"
-                        style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div><%= furniture.title %></span>
-                    <% else %>
-                      <span><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %><%= furniture.title %></span>
-                    <% end %>                    
-                <% end %>
-            <% end %>
-        </div>
-    </div>
-
-
-    <div class="product-filters__filter" id="filter-categories">
-        <div class="product-filters__title">Выберите категорию</div>
-        <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
-            <% @filters[:category].each do |category| %>
-                <%= link_to products_path(request.query_parameters.merge(category: category.id, factory: nil, style: nil, 
-                facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item", remote: true do %>
-                    <% if @current_filters[:category].present? && @current_filters[:category] == category %>
-                      <span class="product-filters__current"><%= category.title %></span>
-                    <% else %>
-                      <span><%= category.title %></span>
-                    <% end %>
-                <% end %>
-            <% end %>
-        </div>
-    </div>
-
-    <% if @current_filters[:category].present? %>
-      <% %w(factory style facade structure product_type).each do |filter| %>
-        <div class="product-filters__filter" id="filter-<%= filter %>">
-          <div class="product-filters__title"><%= t("product.#{filter}") %></div>
-          <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
-            <% if @filters[filter].present? %>
-                <% @filters[filter].each do |value| %>
-                    <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
-                        <% if @current_filters[filter].present? && @current_filters[filter] == value %>
-                            <span class="product-filters__current"><%= value %></span>
-                        <% else %>
-                            <span><%= value %></span>
-                        <% end %>
-                    <% end %>
-                <% end %>
-            <% end %>
-          </div>
-        </div>
+  <div class="product-filters__filter" id="filter-furnitures">
+    <div class="product-filters__title">Вид мебели</div>
+    <div class="product-filters__list">
+      <% @filters[:furniture].each do |furniture| %>
+        <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
+        facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item", remote: true do %>
+          <% if@current_filters[:furniture] == furniture %>
+            <span class="product-filters__current"><div class="icon-mask"
+            style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div><%= furniture.title %></span>
+          <% else %>
+            <span><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %><%= furniture.title %></span>
+          <% end %>                    
+        <% end %>
       <% end %>
+    </div>
+  </div>
+
+
+  <div class="product-filters__filter" id="filter-categories">
+    <div class="product-filters__title">Выберите категорию</div>
+    <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
+      <% @filters[:category].each do |category| %>
+        <%= link_to products_path(request.query_parameters.merge(category: category.id, factory: nil, style: nil, 
+        facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item", remote: true do %>
+          <% if @current_filters[:category].present? && @current_filters[:category] == category %>
+            <span class="product-filters__current"><%= category.title %></span>
+          <% else %>
+            <span><%= category.title %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @current_filters[:category].present? %>
+    <% %w(factory style facade structure product_type).each do |filter| %>
+    <div class="product-filters__filter" id="filter-<%= filter %>">
+      <div class="product-filters__title"><%= t("product.#{filter}") %></div>
+      <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
+      <% if @filters[filter].present? %>
+        <% @filters[filter].each do |value| %>
+          <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
+            <% if @current_filters[filter].present? && @current_filters[filter] == value %>
+              <span class="product-filters__current"><%= value %></span>
+            <% else %>
+              <span><%= value %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
     <% end %>
+  <% end %>
 
 </div>

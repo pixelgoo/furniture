@@ -1,47 +1,47 @@
 <div class="action">
 
-    <%= link_to root_path, class: 'action__link back' do %>
-        <div class="back__logo"></div>
-            
-        <div class="back__label">
-            <span class="icon-arrow-left-circle item__icon"></span>
-            <span>Назад</span>
-        </div>
-    <% end %>
+  <%= link_to root_path, class: 'action__link back' do %>
+    <div class="back__logo"></div>
+      
+    <div class="back__label">
+      <span class="icon-arrow-left-circle item__icon"></span>
+      <span>Назад</span>
+    </div>
+  <% end %>
 
   <main class="action__container registration">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name),
-        html: { id: "login", class: "registration__form form" }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name),
+    html: { id: "login", class: "registration__form form" }) do |f| %>
 
-        <%= devise_error_messages! %>
+    <%= devise_error_messages! %>
 
-        <p class="form__header">Войти в систему</p>
+    <p class="form__header">Войти в систему</p>
 
-        <div class="select-wrapper">
-            <div class="select form-group">
-                <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field', 
-                placeholder: 'Электронная почта', autofocus: true, autocomplete: 'email' %>
-            </div>
-        </div>
-        <div class="select-wrapper">
-            <div class="select form-group">
-                <%= password_field_tag 'user[password]', nil, id: 'user_password', class: 'form-control input-field', 
-                placeholder: 'Пароль', required: true, autocomplete: 'off' %>
-            </div>
-        </div>
-        <div class="">
-                <%= check_box_tag 'user[remember_me]', id: 'user_remember_me' %>
-                <div class="checkbox__label">Запомнить меня</div>
-        </div>
+    <div class="select-wrapper">
+      <div class="select form-group">
+        <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field', 
+        placeholder: 'Электронная почта', autofocus: true, autocomplete: 'email' %>
+      </div>
+    </div>
+    <div class="select-wrapper">
+      <div class="select form-group">
+        <%= password_field_tag 'user[password]', nil, id: 'user_password', class: 'form-control input-field', 
+        placeholder: 'Пароль', required: true, autocomplete: 'off' %>
+      </div>
+    </div>
+    <div class="">
+        <%= check_box_tag 'user[remember_me]', id: 'user_remember_me' %>
+        <div class="checkbox__label">Запомнить меня</div>
+    </div>
 
-       <div class="box form-submit-button" id="loginSubmit">
-            <%= f.submit "Логин", class: 'btn-hidden' %>
-            <span class="box__content_wrap">
-                <span class="icon-pencil icon"></span>
-                <span class="box__content"><%= t('button.sign_up') %></span>
-            </span>
-        </div>     
+     <div class="box form-submit-button" id="loginSubmit">
+      <%= f.submit "Логин", class: 'btn-hidden' %>
+      <span class="box__content_wrap">
+        <span class="icon-pencil icon"></span>
+        <span class="box__content"><%= t('button.sign_up') %></span>
+      </span>
+    </div>     
 
-        <% end %>
+    <% end %>
   </main>
 </div>

@@ -1,26 +1,26 @@
 
 <section class="section section_no-padding">
-    <div class="card text-center">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <% %w(new active successful archived).each_with_index do |val, index| %>
-                    <li class="nav-item">
-                        <a href="<%= requests_path(status: val) %>" class="nav-link <%= 'active' if @status == val %>">
-                            <%= t("request.#{val}") %> <%= "(#{@active_requests.length})" if val == 'active' %>
-                        </a>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
-        <div class="card-body">
-            <p class="card-text"><%= t("request.text_#{@status}") %></p>
-            <% if @requests.blank? %>
-                <div class="no-requests"><%= t('request.no-requests') %></div>
-            <% else %>
-                <% @requests.each do |request| %>
-                    <%= render partial: "requests/request", locals: { request: request, status: @status } %>
-                <% end %>
-            <% end %>
-        </div>
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <% %w(new active successful archived).each_with_index do |val, index| %>
+          <li class="nav-item">
+            <a href="<%= requests_path(status: val) %>" class="nav-link <%= 'active' if @status == val %>">
+              <%= t("request.#{val}") %> <%= "(#{@active_requests.length})" if val == 'active' %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
     </div>
+    <div class="card-body">
+      <p class="card-text"><%= t("request.text_#{@status}") %></p>
+      <% if @requests.blank? %>
+        <div class="no-requests"><%= t('request.no-requests') %></div>
+      <% else %>
+        <% @requests.each do |request| %>
+          <%= render partial: "requests/request", locals: { request: request, status: @status } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </section>

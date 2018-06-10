@@ -8,16 +8,23 @@
   
   &__list {
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     height: calc(100vh - 226px);
-    margin-left: 25vw;
-    padding-top: 20px;
+    margin-left: 20vw;
     overflow: auto;
+  }
+
+  &__not-found {
+    padding-top: 50px;
+    font-size: 20px;
   }
 
   &__paginator {
     position: relative;
     padding: 20px;
-    margin-left: 25vw;
+    margin-left: 20vw;
     box-shadow: 0 -25px 30px -25px #cacaca;
     z-index: 2;
   }
@@ -25,37 +32,31 @@
 
 .product {
   display: flex;
-  margin: 20px;
+  flex-direction: column;
+  max-width: 324px;
+  margin: 15px;
   padding: 20px;
   background: white;
   box-shadow: 0 0 4px 1px #e7e7e7;
   background-color: white;
   transition: ease 0.3s;
+  cursor: default;
   
   @for $i from 1 through 10 {
     &:nth-child(#{$i}) {
       animation-delay: $i * 0.1s + 0.1s;
     }
   }
-  
-  &:first-child {
-    margin-top: 0;
-  }
 
   &:hover {
-    box-shadow: 0 0 20px 2px #e3e3e3;
+    box-shadow: 0 0 20px 2px #c7c7c7;
     transition: ease 0.3s;
   }
 
   &__image {
     img {
-      width: 300px;
+      width: 284px;
     }
-  }
-
-  &__data {
-    display: flex;
-    align-items: center;
   }
 
   &__info {
@@ -64,8 +65,9 @@
 
   &__name {
     max-width: 400px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     font-weight: 700;
+    text-align: center;
   }
 
   &__tags {
@@ -74,20 +76,18 @@
     }
 
     .tag {
-      span:last-child {
-        vertical-align: 4px;
-        margin-left: 4px;
-      }
+      line-height: 30px;
     }
   }
 
+  &__feature {
+    background: rgba(255, 239, 217, 0.6);
+    color: #50210b;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
   &__action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 200px;
-    margin-left: auto;
-    margin-right: 5%;
+    margin-top: auto;
   }
 }

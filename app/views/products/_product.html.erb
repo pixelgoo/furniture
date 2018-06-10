@@ -1,45 +1,43 @@
 <div class="product animated fadeIn">
 
   <div class="product__data">
-    <div class="product__image preload" data-preload-img="https://d3lbdc0bfetw94.cloudfront.net/products/<%= product.product_id %>_0.jpg">
+    <div class="product__image preload" data-preload-img="<%= Rails.configuration.cdn_host %>products/<%= product.product_id %>_0.jpg">
     </div>
-    <div class="product__info">
-        <div class="product__name"><span><%= product.title %></span></div>
-        <div class="product__tags">
-          <% %w(factory style facade product_type).each do |detail| %>
-              <% if product[detail].present? %>
-                  <div class="tag">
-                    <span class="icon-tag icon"></span>
-                    <span>
-                        <span class="product__feature"><%= t("product.#{detail}") %>:</span>
-                        <%= product[detail][0] == product[detail][0].upcase ? product[detail] : product[detail].capitalize %>
-                    </span>
-                  </div>
-              <% end %>
+    <div class="product__name"><span><%= product.title %></span></div>
+    <div class="product__tags">
+        <% %w(factory style facade product_type).each do |detail| %>
+          <% if product[detail].present? %>
+            <div class="tag">
+            <span class="icon-tag icon"></span>
+            <span>
+              <span class="product__feature"><%= t("product.#{detail}") %></span>
+              <%= product[detail][0] == product[detail][0].upcase ? product[detail] : product[detail].capitalize %>
+            </span>
+            </div>
           <% end %>
-        </div>
-    </div>
+        <% end %>
+      </div>
   </div>
 
   <div class="product__action">
-    <button type="button" class="box">
-        <%= link_to t('button.details'), product_path(product.id), class: 'btn-hidden' %>
-        <span class="box__content_wrap">
-            <span class="icon-pencil icon"></span>
-            <span class="box__content"><%= t('button.details') %></span>
-        </span>
-    </button>
-    
-    <% if current_user.customer? %>
-      <button type="button" class="box">
-          <%= button_to t('button.request'), { controller: "requests", action: "create" }, remote: false, 
-                form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'btn-hidden' %>
-          <span class="box__content_wrap">
-              <span class="icon-pencil icon"></span>
-              <span class="box__content"><%= t('button.request') %></span>
-          </span>
-      </button>
-    <% end %>
+  <div class="box">
+    <%= link_to t('button.details'), product_path(product.id), class: 'btn-hidden' %>
+    <span class="box__content_wrap">
+      <span class="icon-pencil icon"></span>
+      <span class="box__content"><%= t('button.details') %></span>
+    </span>
+  </div>
+  
+  <% if current_user.customer? %>
+    <div class="box">
+      <%= button_to t('button.request'), { controller: "requests", action: "create" }, remote: false, 
+        form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'btn-hidden' %>
+      <span class="box__content_wrap">
+        <span class="icon-pencil icon"></span>
+        <span class="box__content"><%= t('button.request') %></span>
+      </span>
+    </div>
+  <% end %>
   </div>
 
 </div>

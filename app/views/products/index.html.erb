@@ -1,17 +1,17 @@
  <div class="products">
 
-    <div id="loading">
-        <div class="lds-ripple"><div></div><div></div></div>
-    </div>
-    
-    <%= render 'filters' %>
-    
-    <div class="products__list" id="products">
-        <%= render @products %>
-    </div>
+  <div id="loading">
+    <div class="lds-ripple"><div></div><div></div></div>
+  </div>
+  
+  <%= render 'filters' %>
+  
+  <div class="products__list" id="products">
+    <%= render @products %>
+  </div>
 
-    <div class="products__paginator">
-        <%= paginate @products, window: 2, remote: true %>
-    </div>
+  <div class="products__paginator">
+    <%= paginate @products, window: 2, remote: true %>
+  </div>
 
 </div>

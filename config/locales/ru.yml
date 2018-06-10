@@ -303,7 +303,7 @@ ru:
   button:
     sign_up: "Регистрация"
     sign_in: "Войти"
-    subscribe: "Подписаться"
+    subscribe: "Приобрести"
     request: "Оставить заявку"
     details: "Подробнее"
     unsubscribe: "Отменить подписку"
@@ -313,6 +313,7 @@ ru:
     choose_tariff: "Выбрать тариф"
     change_tariff: "Сменить тариф"
     save: "Сохранить"
+    save_regions: "Сохранить выбранные области"
 
   # Profile
   profile:
@@ -328,6 +329,8 @@ ru:
     your_products: "Ваши товары"
     add_money: "Пополнить"
     choose_tariff: "Выбрать пакет"
+    regions_changed: "Выбранные регионы успешны сохранены."
+    all_regions: "Все области"
 
   # Payment
   payment:
@@ -356,6 +359,7 @@ ru:
     height: "Высота"
     depth: "Глубина"
     list-title: "СПИСОК ТОВАРОВ"
+    not_found: "<div class='products__not-found'>Tоваров по заданным фильтрам не найдено.</div>"
 
   request:
     new: 'Новые'

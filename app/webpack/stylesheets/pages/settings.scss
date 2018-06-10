@@ -1,6 +1,25 @@
-section#choose-tariff {
-  background: fixed url("../../images/startscreen.jpg") center no-repeat;
-  .section__header {
-    color: white;
+section {
+  
+  &#choose-tariff {
+    background: fixed url("../../images/startscreen.jpg") center no-repeat;
+    .section__header {
+      color: white;
+    }
+  }
+
+  &#choose-regions {
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .form-check {
+        &_all-regions {
+          padding: 0 16px;
+          background: #fff3ca;
+          border-radius: 10px;
+        }
+      }
+    }
   }
 }

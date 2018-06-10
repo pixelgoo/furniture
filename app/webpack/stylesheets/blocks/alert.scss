@@ -1,9 +1,16 @@
+@import "../variables.scss";
+
 .alert {
     position: absolute;
     width: 100%;
     border: 0;
     z-index: 200;
     border-radius: 0;
+
+    &.alert-aside {
+      width: calc(100% - #{$aside-width} - 3px);
+      margin-left: $aside-width + 3px;
+    }
 }
 
 .alert-error {

@@ -1,44 +1,44 @@
 <header>
 
-    <div class='navigation-top'>
+  <div class='navigation-top'>
 
-        <%= link_to '', root_path, class: 'navigation-top__logo' %>
-        
-        <div class='top-menu-item top-menu-item_outside'>
-            <span class='icon-phone'></span>
-            <span class='navigation-top__phone-number'><%= t('menu.phone') %></span>
-        </div>
-
-        <div class='navigation-top__menu'>
-
-            <% if user_signed_in? %>
-
-                <%= link_to profile_path, class: "top-menu-item #{current?(profile_path)}" do %>
-                    <span class='icon icon-key'></span>
-                    <span><%= t('menu.profile') %></span>
-                <% end %>
-
-                <%= link_to settings_path, class: "top-menu-item #{current?(settings_path)}" do %>
-                    <span class='icon icon-settings'></span>
-                    <span><%= t('menu.settings') %></span>
-                <% end %>
-
-                <%= link_to destroy_user_session_path, class: 'top-menu-item', method: :delete do %>
-                    <span class='icon icon-logout'></span>
-                    <span><%= t('menu.exit') %></span>
-                <% end %>
-
-            <% else %>
-
-                <%= link_to new_user_session_path, class: "top-menu-item #{current?(new_user_session_path)}", id: 'sign_in', 'data-turbolinks': false do %>
-                    <span class='icon icon-user'></span>
-                    <span><%= t('menu.login') %></span>
-                <% end %>
-
-            <% end %>
-        
-        </div>
-
+    <%= link_to '', root_path, class: 'navigation-top__logo' %>
+    
+    <div class='top-menu-item top-menu-item_outside'>
+      <span class='icon-phone'></span>
+      <span class='navigation-top__phone-number'><%= t('menu.phone') %></span>
     </div>
+
+    <div class='navigation-top__menu'>
+
+      <% if user_signed_in? %>
+
+        <%= link_to profile_path, class: "top-menu-item #{current?(profile_path)}" do %>
+          <span class='icon icon-key'></span>
+          <span><%= t('menu.profile') %></span>
+        <% end %>
+
+        <%= link_to settings_path, class: "top-menu-item #{current?(settings_path)}" do %>
+          <span class='icon icon-settings'></span>
+          <span><%= t('menu.settings') %></span>
+        <% end %>
+
+        <%= link_to destroy_user_session_path, class: 'top-menu-item', method: :delete do %>
+          <span class='icon icon-logout'></span>
+          <span><%= t('menu.exit') %></span>
+        <% end %>
+
+      <% else %>
+
+        <%= link_to new_user_session_path, class: "top-menu-item #{current?(new_user_session_path)}", id: 'sign_in', 'data-turbolinks': false do %>
+          <span class='icon icon-user'></span>
+          <span><%= t('menu.login') %></span>
+        <% end %>
+
+      <% end %>
+    
+    </div>
+
+  </div>
 
 </header>

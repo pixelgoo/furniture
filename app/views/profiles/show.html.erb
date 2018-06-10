@@ -1,52 +1,52 @@
 <section class="section profile-info">
-    <div class="profile-info__data">
+  <div class="profile-info__data">
 
-        <table class="table">
-            <tbody>
-            <tr>
-                <td><%= t('profile.name') %></td>
-                <td><%= current_user.full_name %></td>
-            </tr>
-            <tr>
-                <td><%= t('profile.phone') %></td>
-                <td><%= current_user.phone %></td>
-            </tr>
+    <table class="table">
+      <tbody>
+      <tr>
+        <td><%= t('profile.name') %></td>
+        <td><%= current_user.full_name %></td>
+      </tr>
+      <tr>
+        <td><%= t('profile.phone') %></td>
+        <td><%= current_user.phone %></td>
+      </tr>
 
-            <% if current_user.manufacturer? then %>
+      <% if current_user.manufacturer? then %>
 
-                <% unless current_user.tariff.nil? %>
-                    <tr>
-                        <td><span class="icon-question icon"></span> <%= t('profile.status') %></td>
-                        <td>
-                            <%= current_user.tariff_enddate.strftime("Действует до %d-%m-%Y") %>
-                        </td>
-                    </tr>
-                <% end %>
+        <% unless current_user.tariff.nil? %>
+          <tr>
+            <td><span class="icon-question icon"></span> <%= t('profile.status') %></td>
+            <td>
+              <%= current_user.tariff_enddate.strftime("Действует до %d-%m-%Y") %>
+            </td>
+          </tr>
+        <% end %>
 
-                <tr>
-                    <td><span class="icon-question icon"></span> <%= t('profile.tariff') %></td>
-                    <% if current_user.tariff.nil? %>
-                        <td><%= t('profile.no_tariff') %> <%= link_to 'Выбрать тариф', settings_path, style: "text-decoration: underline;color:grey;" %></td> <!-- TODO -->
-                    <% else %>
-                        <td><%= t("tariff.#{current_user.tariff.name}") %></td>
-                    <% end %>
-                </tr>
+        <tr>
+          <td><span class="icon-question icon"></span> <%= t('profile.tariff') %></td>
+          <% if current_user.tariff.nil? %>
+            <td><%= t('profile.no_tariff') %> <%= link_to 'Выбрать тариф', settings_path, style: "text-decoration: underline;color:grey;" %></td> <!-- TODO -->
+          <% else %>
+            <td><%= t("tariff.#{current_user.tariff.name}") %></td>
+          <% end %>
+        </tr>
 
-                <tr>
-                    <td><span class="icon-question icon"></span> <%= t('profile.score') %></td>
-                    <td><span><%= current_user.score %></span> ❤️</td>
-                </tr>
-                <tr>
-                    <td><span class="icon-question icon"></span> <%= t('profile.search_area') %></td>
-                    <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
-                </tr>
-                <tr>
-                    <td><span class="icon-question icon"></span> <%= t('profile.your_products') %></td>
-                    <td>Диваны, Кровати, Стулья, Столы</td>
-                </tr>
-            <% end %>
-            
-            </tbody>
-        </table>
-    </div>
+        <tr>
+          <td><span class="icon-question icon"></span> <%= t('profile.score') %></td>
+          <td><span><%= current_user.score %></span> ❤️</td>
+        </tr>
+        <tr>
+          <td><span class="icon-question icon"></span> <%= t('profile.search_area') %></td>
+          <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
+        </tr>
+        <tr>
+          <td><span class="icon-question icon"></span> <%= t('profile.your_products') %></td>
+          <td>Диваны, Кровати, Стулья, Столы</td>
+        </tr>
+      <% end %>
+      
+      </tbody>
+    </table>
+  </div>
 </section>

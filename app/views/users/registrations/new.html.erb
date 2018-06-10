@@ -1,187 +1,187 @@
 
 <div class="action">
 
-    <%= link_to root_path, class: 'action__link back' do %>
-        <div class="back__logo"></div>
-            
-        <div class="back__label">
-            <span class="icon-arrow-left-circle item__icon"></span>
-            <span>Назад</span>
-        </div>
-    <% end %>
+  <%= link_to root_path, class: 'action__link back' do %>
+    <div class="back__logo"></div>
+      
+    <div class="back__label">
+      <span class="icon-arrow-left-circle item__icon"></span>
+      <span>Назад</span>
+    </div>
+  <% end %>
 
-    <main class="action__container registration">
-        <div class="registration__form">
-            <p class="form__header">Регистрация</p>
+  <main class="action__container registration">
+    <div class="registration__form">
+      <p class="form__header">Регистрация</p>
 
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#register-customer">Пользователь</a></li>
-                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#register-manufacturer">Производитель</a></li>
-            </ul>
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#register-customer">Пользователь</a></li>
+        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#register-manufacturer">Производитель</a></li>
+      </ul>
 
-            <div class="tab-content">
-                <div id="register-customer" class="tab-pane in active" role="tabpanel">
-                    <div class="socials">
-                        <div class="socials-list">
-                            <a href="#" class="socials-list__item socials-list__item_gl">
-                                <span class="icon-social-google icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_fb">
-                                <span class="icon-social-facebook icon"></span>
-                            </a>
-                            <a href="#" class="socials-list__item socials-list__item_tw">
-                                <span class="icon-social-twitter icon"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-                    html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
-
-                    <%= devise_error_messages! %>
-
-                    <p class="font_white" align="center">или с помощью этой формы</p>
-
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[first_name]', nil, id: 'customer_first_name', class: 'form-control input-field',
-                            placeholder: 'Имя', required: true, autocomplete: 'off', maxlength: 14 %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[last_name]', nil, id: 'customer_last_name', class: 'form-control input-field',
-                            placeholder: 'Фамилия', autocomplete: 'off', maxlength: 14 %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[phone]', nil, id: 'customer_phone', class: 'form-control input-field',
-                            placeholder: 'Телефон', autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= email_field_tag 'user[email]', nil, id: 'customer_email', class: 'form-control input-field',
-                            placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[city]', nil, id: 'customer_city', class: 'form-control input-field',
-                            placeholder: 'Город', autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password]', nil, id: 'customer_password', class: 'form-control input-field',
-                            placeholder: 'Пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password_confirmation]', nil, id: 'customer_password_confirmation', class: 'form-control input-field',
-                            placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="">
-                        <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'customer_terms_of_service' %>
-                        <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
-                    </div>
-                    <div class="">
-                        <%= check_box_tag 'user[subscribe]', "1", true, id: 'customer_subscribe' %>
-                        <div class="checkbox__label">Подписаться на рассылку новостей</div>
-                    </div>
-                    <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
-
-                    <div type="button" class="box form-submit-button" id="registrationCustomerrSubmit">
-                        <%= f.submit "Логин", class: 'btn-hidden' %>
-                        <span class="box__content_wrap">
-                            <span class="icon-pencil icon"></span>
-                            <span class="box__content"><%= t('button.sign_up') %></span>
-                        </span>
-                    </div>
-
-                    <% end %>
-                </div>
-
-                <div id="register-manufacturer" class="tab-pane fade" role="tabpanel">
-
-                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-                    html: { id: "registrationManufacturer", class: "registration__form form" }) do |f| %>
-
-                    <%= devise_error_messages! %>
-
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[first_name]', nil, id: 'manufacturer_first_name', class: 'form-control input-field',
-                            placeholder: 'Имя', required: true, autocomplete: 'off', maxlength: 14 %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[last_name]', nil, id: 'manufacturer_last_name', class: 'form-control input-field',
-                            placeholder: 'Фамилия', autocomplete: 'off', maxlength: 14 %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[company]', nil, id: 'manufacturer_company', class: 'form-control input-field',
-                            placeholder: 'Название вашей компании', autocomplete: 'off', maxlength: 30 %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[phone]', nil, id: 'manufacturer_phone', class: 'form-control input-field',
-                            placeholder: 'Телефон', autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= email_field_tag 'user[email]', nil, id: 'manufacturer_email', class: 'form-control input-field',
-                            placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= text_field_tag 'user[city]', nil, id: 'manufacturer_city', class: 'form-control input-field',
-                            placeholder: 'Город', autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password]', nil, id: 'manufacturer_password', class: 'form-control input-field',
-                            placeholder: 'Пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <%= password_field_tag 'user[password_confirmation]', nil, id: 'manufacturer_password_confirmation', class: 'form-control input-field',
-                            placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
-                        </div>
-                    </div>
-                    <div class="">
-                        <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'manufacturer_terms_of_service' %>
-                        <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">соглашения для производителей</a></div>
-                    </div>
-                    <div class="">
-                        <%= check_box_tag 'user[subscribe]', "1", true, id: 'manufacturer_subscribe' %>
-                        <div class="checkbox__label">Подписаться на рассылку новостей</div>
-                    </div>
-                    <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'manufacturer_role_name' %>
-
-                    <div type="button" class="box form-submit-button" id="registrationManufacturerSubmit">
-                        <%= f.submit "Логин", class: 'btn-hidden' %>
-                        <span class="box__content_wrap">
-                            <span class="icon-pencil icon"></span>
-                            <span class="box__content"><%= t('button.sign_up') %></span>
-                        </span>
-                    </div>
-
-                    <% end %>
-                </div>
+      <div class="tab-content">
+        <div id="register-customer" class="tab-pane in active" role="tabpanel">
+          <div class="socials">
+            <div class="socials-list">
+              <a href="#" class="socials-list__item socials-list__item_gl">
+                <span class="icon-social-google icon"></span>
+              </a>
+              <a href="#" class="socials-list__item socials-list__item_fb">
+                <span class="icon-social-facebook icon"></span>
+              </a>
+              <a href="#" class="socials-list__item socials-list__item_tw">
+                <span class="icon-social-twitter icon"></span>
+              </a>
             </div>
+          </div>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+          html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
+
+          <%= devise_error_messages! %>
+
+          <p class="font_white" align="center">или с помощью этой формы</p>
+
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[first_name]', nil, id: 'customer_first_name', class: 'form-control input-field',
+              placeholder: 'Имя', required: true, autocomplete: 'off', maxlength: 14 %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[last_name]', nil, id: 'customer_last_name', class: 'form-control input-field',
+              placeholder: 'Фамилия', autocomplete: 'off', maxlength: 14 %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[phone]', nil, id: 'customer_phone', class: 'form-control input-field',
+              placeholder: 'Телефон', autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= email_field_tag 'user[email]', nil, id: 'customer_email', class: 'form-control input-field',
+              placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[city]', nil, id: 'customer_city', class: 'form-control input-field',
+              placeholder: 'Город', autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= password_field_tag 'user[password]', nil, id: 'customer_password', class: 'form-control input-field',
+              placeholder: 'Пароль', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= password_field_tag 'user[password_confirmation]', nil, id: 'customer_password_confirmation', class: 'form-control input-field',
+              placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="">
+            <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'customer_terms_of_service' %>
+            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
+          </div>
+          <div class="">
+            <%= check_box_tag 'user[subscribe]', "1", true, id: 'customer_subscribe' %>
+            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          </div>
+          <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
+
+          <div type="button" class="box form-submit-button" id="registrationCustomerrSubmit">
+            <%= f.submit "Логин", class: 'btn-hidden' %>
+            <span class="box__content_wrap">
+              <span class="icon-pencil icon"></span>
+              <span class="box__content"><%= t('button.sign_up') %></span>
+            </span>
+          </div>
+
+          <% end %>
         </div>
-    </main>
+
+        <div id="register-manufacturer" class="tab-pane fade" role="tabpanel">
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+          html: { id: "registrationManufacturer", class: "registration__form form" }) do |f| %>
+
+          <%= devise_error_messages! %>
+
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[first_name]', nil, id: 'manufacturer_first_name', class: 'form-control input-field',
+              placeholder: 'Имя', required: true, autocomplete: 'off', maxlength: 14 %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[last_name]', nil, id: 'manufacturer_last_name', class: 'form-control input-field',
+              placeholder: 'Фамилия', autocomplete: 'off', maxlength: 14 %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[company]', nil, id: 'manufacturer_company', class: 'form-control input-field',
+              placeholder: 'Название вашей компании', autocomplete: 'off', maxlength: 30 %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[phone]', nil, id: 'manufacturer_phone', class: 'form-control input-field',
+              placeholder: 'Телефон', autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= email_field_tag 'user[email]', nil, id: 'manufacturer_email', class: 'form-control input-field',
+              placeholder: 'Электронная почта', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= text_field_tag 'user[city]', nil, id: 'manufacturer_city', class: 'form-control input-field',
+              placeholder: 'Город', autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= password_field_tag 'user[password]', nil, id: 'manufacturer_password', class: 'form-control input-field',
+              placeholder: 'Пароль', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="select-wrapper">
+            <div class="select form-group">
+              <%= password_field_tag 'user[password_confirmation]', nil, id: 'manufacturer_password_confirmation', class: 'form-control input-field',
+              placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
+            </div>
+          </div>
+          <div class="">
+            <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'manufacturer_terms_of_service' %>
+            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">соглашения для производителей</a></div>
+          </div>
+          <div class="">
+            <%= check_box_tag 'user[subscribe]', "1", true, id: 'manufacturer_subscribe' %>
+            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          </div>
+          <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'manufacturer_role_name' %>
+
+          <div type="button" class="box form-submit-button" id="registrationManufacturerSubmit">
+            <%= f.submit "Логин", class: 'btn-hidden' %>
+            <span class="box__content_wrap">
+              <span class="icon-pencil icon"></span>
+              <span class="box__content"><%= t('button.sign_up') %></span>
+            </span>
+          </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
 
 </div>

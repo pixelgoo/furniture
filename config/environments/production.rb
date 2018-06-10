@@ -52,4 +52,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.exposed_host = 'https://woodmister.herokuapp.com'
+
+  config.cdn_host = 'https://d3lbdc0bfetw94.cloudfront.net/'
+  
 end

@@ -2,6 +2,11 @@
 setTimeout(function () {
   $('.product-filters').html('<%= escape_javascript render(partial: 'filters') %>');
   $('#products').html('<%= escape_javascript render(@products) %>');
+  <% if @products.present? %>
+    $('#products').html('<%= escape_javascript render(@products) %>');
+  <% else %>
+    $('#products').html('<%= raw t('product.not_found') %>');
+  <% end %>
   $('.products__paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
 });
 

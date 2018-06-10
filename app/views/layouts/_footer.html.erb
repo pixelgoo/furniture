@@ -1,11 +1,11 @@
 <footer class="footer <%= 'footer_aside' if controller_name == 'profiles' %>">
-    <div class="copyright">Woodmister © <%= Time.current.year %></div>
-    <div class="social">
-        
-        <% %w(facebook instagram twitter).each do |social| %>
-            <%= link_to '', class: 'social__item' do %>
-                <span class="icon-social-<%= social %>"></span>
-            <% end %>
-        <% end %>
-    </div>
+  <div class="copyright">Woodmister © <%= Time.current.year %></div>
+  <div class="social">
+    
+    <% %w(facebook instagram twitter).each do |social| %>
+      <%= link_to '', class: 'social__item' do %>
+        <span class="icon-social-<%= social %>"></span>
+      <% end %>
+    <% end %>
+  </div>
 </footer>

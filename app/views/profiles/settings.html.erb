@@ -1,126 +1,137 @@
-<% if current_user.manufacturer? %>
+<div class="p-settings">
+
+  <% if current_user.manufacturer? %>
 
     <section class="section">
 
-        <% if current_user.documents_confirmed %>
-            <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
-        <% else %>
-            <div class="status-badge status-badge_info">
-                Перед тем как использовать Woodmister вам необходимо предоставить документы, подтверждающие ваши права на торговлю товарами.
-                <ol>
-                    <li>Виписка з Єдиного державного реєстру юридичних осіб, фізичних осіб</li>
-                    <li>Витяг з реєстру платників єдиного податку, або про інші форми оподаткування</li>
-                </ol>
-            </div>
-            
-            <% if Rails.env.production? %>
-              <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
-                'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+      <% if current_user.documents_confirmed %>
+        <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
+      <% else %>
+        <div class="status-badge status-badge_info">
+          Перед тем как использовать Woodmister вам необходимо предоставить документы, подтверждающие ваши права на торговлю товарами.
+          <ol>
+            <li>Виписка з Єдиного державного реєстру юридичних осіб, фізичних осіб</li>
+            <li>Витяг з реєстру платників єдиного податку, або про інші форми оподаткування</li>
+          </ol>
+        </div>
+        
+        <% if Rails.env.production? %>
+        <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
+          'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
 
-                  <% (4 - current_user.files_uploaded).times do |i| %>
-                      <div class="field">
-                          <%= f.label 'Фото/скан документа' %>
-                          <%= f.file_field :document, id: "user_document_#{i}"%>
-                      </div>
-                  <% end %>
-              <% end %>
-            <% else %>
-              <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload' }) do |f| %>
-                  <% (4 - current_user.files_uploaded).times do |i| %>
-                      <div class="field">
-                          <%= f.label 'Фото/скан документа' %>
-                          <%= f.file_field :document, id: "user_document_#{i}"%>
-                      </div>
-                  <% end %>
-              <% end %>
-            <% end %>
-            
-            <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
-
-            <div>
-                
+          <% (4 - current_user.files_uploaded).times do |i| %>
+            <div class="field">
+              <%= f.label 'Фото/скан документа' %>
+              <%= f.file_field :document, id: "user_document_#{i}"%>
             </div>
+          <% end %>
         <% end %>
+        <% else %>
+        <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload' }) do |f| %>
+          <% (4 - current_user.files_uploaded).times do |i| %>
+          <div class="field">
+            <%= f.label 'Фото/скан документа' %>
+            <%= f.file_field :document, id: "user_document_#{i}"%>
+          </div>
+          <% end %>
+        <% end %>
+        <% end %>
+        
+        <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
+
+        <div>
+          
+        </div>
+      <% end %>
 
     </section>
 
     <section class="section" id="choose-tariff">
 
-        <% if current_user.tariff_active? %>
-            <div class="status-badge status-badge_success">Вы приобрели тарифный пакет"<%= current_user.tariff.name %>"
-            (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
-            Перейдите в <span class="icon icon-bell"></span> <%= link_to 'Заявки', requests_path %> для осмотра заявок от покупателей.</div>
-        <% else %>
-            <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
-            <div>
-                <h4 class="section__header"><%= t('tariff.choose') %></h4>
-                <div class="tariff-list">
-                    <% @tariffs.each do |tariff| %>
-                        <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
-                    <% end %>
-                </div>
-            </div>
+      <% if current_user.tariff_active? %>
+      <div class="status-badge status-badge_success">Вы приобрели тарифный пакет"<%= current_user.tariff.name %>"
+      (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+      Перейдите в <span class="icon icon-bell"></span> <%= link_to 'Заявки', requests_path %> для осмотра заявок от покупателей.</div>
+      <% else %>
+      <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+      <div>
+        <h4 class="section__header"><%= t('tariff.choose') %></h4>
+        <div class="tariff-list">
+        <% @tariffs.each do |tariff| %>
+          <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
         <% end %>
-        
+        </div>
+      </div>
+      <% end %>
+      
     </section>
 
-    <section class="section">
+    <section class="section" id="choose-regions">
 
-        <div class="status-badge status-badge_info">Укажите заявки из каких регионов вы желаете получать заявки.</div>
+      <div class="status-badge status-badge_info">Укажите из каких областей Украины вы желаете получать заявки.</div>
 
-        <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
-          <div class="form-group">
-            <% @regions.each do |region| %>
-              <div class="form-check form-check-inline">
-                <%= f.label region.id, class: 'form-check-label' do %>
-                  <%= f.check_box region.id, class: 'form-check-input' %>
-                  <%= region.name %>
-                <% end %>
-              </div>
+      <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
+        <div class="form-group">
+          <div class="form-check form-check-inline form-check_all-regions">
+            <%= f.label :all, class: 'form-check-label' do %>
+            <%= f.check_box :all, class: 'form-check-input form-check-input_all-regions', checked: @user_regions_ids == @regions_ids %>
+            <%= t('profile.all_regions') %>
             <% end %>
           </div>
-          <div class="box">
-              <%= f.submit 'Сохранить', class: 'btn-hidden' %>
-              <span class="box__content_wrap">
-                  <span class="icon-check icon"></span>
-                  <span class="box__content"><%= t('button.save') %></span>
-              </span>
+          <% @regions_ids.each do |region| %>
+          <div class="form-check form-check-inline">
+            <%= f.label region, class: 'form-check-label' do %>
+            <%= f.check_box region, class: 'form-check-input form-check-input_region', checked: @user_regions_ids.include?(region) %>
+            <%= @regions[region - 1].name %>
+            <% end %>
           </div>
-        <% end %>
-        
+          <% end %>
+        </div>
+        <div class="box">
+          <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+          <span class="box__content_wrap">
+            <span class="icon-check icon"></span>
+            <span class="box__content"><%= t('button.save_regions') %></span>
+          </span>
+        </div>
+      <% end %>
+      
     </section>
 
-<% end %>
+  <% end %>
 
-<section class="section">
+  <section class="section">
     <div class="settings">
-        <div class="settings__password password">
-            <h4 class="section__header">Изменить пароль</h4>
-            <div class="password__form">
-                <form id="passwordChange" class="form">
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <input type="password" name="oldpassword" required placeholder="Введите  старый пароль" class="form-control input-field">
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <input type="password" name="newpassword" required placeholder="Введите новый пароль" class="form-control input-field">
-                        </div>
-                    </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <input type="password" name="newrepassword" required placeholder="Подтвердите новый пароль" class="form-control input-field">
-                        </div>
-                    </div>
-                    <div class="form__btn box">
-                        <span class="box__content_wrap">
-                            <span class="icon-note icon"></span>
-                            <span class="box__content">Сохранить изменения</span>
-                        </span>
-                    </div>
-                </form>
+      <div class="settings__password password">
+        <h4 class="section__header">Изменить пароль</h4>
+        <div class="password__form">
+          <form id="passwordChange" class="form">
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="oldpassword" required placeholder="Введите  старый пароль" class="form-control input-field">
+              </div>
             </div>
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="newpassword" required placeholder="Введите новый пароль" class="form-control input-field">
+              </div>
+            </div>
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="newrepassword" required placeholder="Подтвердите новый пароль" class="form-control input-field">
+              </div>
+            </div>
+            <div class="form__btn box">
+              <span class="box__content_wrap">
+                <span class="icon-note icon"></span>
+                <span class="box__content">Сохранить изменения</span>
+              </span>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</section>
+  </section>
+
+</div>
+

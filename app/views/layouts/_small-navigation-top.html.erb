@@ -1,13 +1,13 @@
 <div class="small-navigation-top">
 
-    <%= link_to :back, class: 'small-navigation-top__item' do %>
-        <span class="icon-arrow-left-circle icon"></span>
-        <span><%= t('menu.back') %></span>
-    <% end %>
+  <%= link_to :back, class: 'small-navigation-top__item' do %>
+    <span class="icon-arrow-left-circle icon"></span>
+    <span><%= t('menu.back') %></span>
+  <% end %>
 
-    <%= link_to destroy_user_session_path, class: 'small-navigation-top__item', method: :delete do %>
-        <span class="icon-logout icon"></span>
-        <span><%= t('menu.exit') %></span>
-    <% end %>
+  <%= link_to destroy_user_session_path, class: 'small-navigation-top__item', method: :delete do %>
+    <span class="icon-logout icon"></span>
+    <span><%= t('menu.exit') %></span>
+  <% end %>
 
 </div>

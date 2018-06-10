@@ -1,22 +1,22 @@
 import Filters from "./Filters";
-import FileUpload from "./FileUpload";
+import Settings from "./Settings"
 
 export default class App {
 
-    constructor() { 
-        this.init();
+  constructor() { 
+    this.init();
+  }
+
+  init() {
+    console.log('App inited');
+
+    if($('.product-filters').length > 0) {
+      new Filters();
     }
 
-    init() {
-        console.log('App inited');
-
-        if($('.product-filters').length > 0) {
-            new Filters();
-        }
-
-        if ($('.directUpload').length > 0) {
-            new FileUpload();
-        }
+    if ($('.p-settings').length > 0) {
+      new Settings();
     }
+  }
 
 }

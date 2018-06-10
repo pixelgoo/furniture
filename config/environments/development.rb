@@ -41,4 +41,7 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   config.file_watcher = ActiveSupport::FileUpdateChecker
+
+  config.cdn_host = 'https://d3lbdc0bfetw94.cloudfront.net/'
+  
 end
