@@ -10,12 +10,10 @@ export default class App {
   init() {
     console.log('App inited');
 
+    new Settings();
+
     if($('.product-filters').length > 0) {
       new Filters();
-    }
-
-    if ($('.p-settings').length > 0) {
-      new Settings();
     }
   }
 

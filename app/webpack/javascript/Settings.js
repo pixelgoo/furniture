@@ -65,7 +65,7 @@ export default class Settings {
   }
 
   initRegionsCheckboxes() {
-    $('.form-check_all-regions').click(function() {
+    $(document).on('click', '.form-check_all-regions', function() {
       if($(this).find('.form-check-input_all-regions').prop('checked')) {
         $('.form-check-input_region').prop('checked', true);
       } else {
