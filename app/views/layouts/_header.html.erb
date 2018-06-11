@@ -18,11 +18,6 @@
           <span><%= t('menu.profile') %></span>
         <% end %>
 
-        <%= link_to settings_path, class: "top-menu-item #{current?(settings_path)}" do %>
-          <span class='icon icon-settings'></span>
-          <span><%= t('menu.settings') %></span>
-        <% end %>
-
         <%= link_to destroy_user_session_path, class: 'top-menu-item', method: :delete do %>
           <span class='icon icon-logout'></span>
           <span><%= t('menu.exit') %></span>

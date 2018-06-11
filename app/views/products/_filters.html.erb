@@ -1,16 +1,24 @@
 <div class="product-filters">
 
   <div class="product-filters__filter" id="filter-furnitures">
-    <div class="product-filters__title">Вид мебели</div>
+    <div class="product-filters__title">Вид мебели<span class="icon icon-arrow-down"></span></div>
+    <div class="filter-furnitures__item"><div class="product-filters__current"><div class="icon-mask"
+            style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ @current_filters[:furniture].title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
+              <span><%= @current_filters[:furniture].title %></span>
+            </div></div>
     <div class="product-filters__list">
       <% @filters[:furniture].each do |furniture| %>
         <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
         facade: nil, structure: nil, product_type: nil, page: 0)), class: "filter-furnitures__item", remote: true do %>
-          <% if@current_filters[:furniture] == furniture %>
-            <span class="product-filters__current"><div class="icon-mask"
-            style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div><%= furniture.title %></span>
+          <% if @current_filters[:furniture] == furniture %>
+            <div class="product-filters__current"><div class="icon-mask"
+            style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
+              <span><%= furniture.title %></span>
+            </div>
           <% else %>
-            <span><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %><%= furniture.title %></span>
+            <div><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %>
+              <span><%= furniture.title %></span>
+            </div>
           <% end %>                    
         <% end %>
       <% end %>

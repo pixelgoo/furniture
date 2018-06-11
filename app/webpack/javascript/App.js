@@ -1,5 +1,5 @@
 import Filters from "./Filters";
-import Settings from "./Settings"
+import Profile from "./Profile"
 
 export default class App {
 
@@ -10,11 +10,17 @@ export default class App {
   init() {
     console.log('App inited');
 
-    new Settings();
+    new Profile();
 
     if($('.product-filters').length > 0) {
       new Filters();
     }
+
+    this.initializeTooltips();
+  }
+
+  initializeTooltips() {
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
 }

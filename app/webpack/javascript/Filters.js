@@ -12,6 +12,8 @@ export default class Filters {
   init() {
     $(document).on('click', '.product-filters__title', function() {
       $(this).siblings('.product-filters__list').toggleClass('opened');
+      $(this).find('.icon').toggleClass('opened');
+      $(this).siblings('.filter-furnitures__item').toggle();
     })
 
     $(document).on('ajax:send', () => {

@@ -1,52 +1,148 @@
-<section class="section profile-info">
-  <div class="profile-info__data">
+<div class="p-settings">
 
-    <table class="table">
-      <tbody>
-      <tr>
-        <td><%= t('profile.name') %></td>
-        <td><%= current_user.full_name %></td>
-      </tr>
-      <tr>
-        <td><%= t('profile.phone') %></td>
-        <td><%= current_user.phone %></td>
-      </tr>
+  <% if current_user.manufacturer? %>
 
-      <% if current_user.manufacturer? then %>
+    <section class="section">
 
-        <% unless current_user.tariff.nil? %>
-          <tr>
-            <td><span class="icon-question icon"></span> <%= t('profile.status') %></td>
-            <td>
-              <%= current_user.tariff_enddate.strftime("Действует до %d-%m-%Y") %>
-            </td>
-          </tr>
+      <% if @user_documents_confirmed %>
+
+        <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
+
+      <% else %>
+
+        <% if @user_files_uploaded %>
+
+          <div class="status-badge status-badge_info">Ваши документы загружены и модерируются. После завершения модерации вы получите электронное письмо и откроете доступ к системе Woodmister.</div>
+
+        <% else %>
+
+          <div class="status-badge status-badge_info">
+            Перед тем как использовать Woodmister вам необходимо предоставить документы, подтверждающие ваши права на торговлю товарами.
+            <ol>
+              <li>Виписка з Єдиного державного реєстру юридичних осіб, фізичних осіб</li>
+              <li>Витяг з реєстру платників єдиного податку, або про інші форми оподаткування</li>
+            </ol>
+          </div>
+
+          <% if Rails.env.production? %>
+
+            <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 
+              'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+              <% (4 - current_user.files_uploaded).times do |i| %>
+                <div class="field">
+                  <%= f.label 'Фото/скан документа' %>
+                  <%= f.file_field :document, id: "user_document_#{i}"%>
+                </div>
+              <% end %>
+            <% end %>
+
+          <% else %>
+
+            <%= form_for(current_user, url: upload_documents_path, method: :patch, html: { class: 'directUpload' }) do |f| %>
+              <% (4 - current_user.files_uploaded).times do |i| %>
+              <div class="field">
+                <%= f.label 'Фото/скан документа' %>
+                <%= f.file_field :document, id: "user_document_#{i}"%>
+              </div>
+              <% end %>
+            <% end %>
+
+          <% end %>
+
+          <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
+
         <% end %>
 
-        <tr>
-          <td><span class="icon-question icon"></span> <%= t('profile.tariff') %></td>
-          <% if current_user.tariff.nil? %>
-            <td><%= t('profile.no_tariff') %> <%= link_to 'Выбрать тариф', settings_path, style: "text-decoration: underline;color:grey;" %></td> <!-- TODO -->
-          <% else %>
-            <td><%= t("tariff.#{current_user.tariff.name}") %></td>
-          <% end %>
-        </tr>
+      <% end %>
 
-        <tr>
-          <td><span class="icon-question icon"></span> <%= t('profile.score') %></td>
-          <td><span><%= current_user.score %></span> ❤️</td>
-        </tr>
-        <tr>
-          <td><span class="icon-question icon"></span> <%= t('profile.search_area') %></td>
-          <td>Киевская, Житомирская, Ровенская, Харьковская, Полтавская, Сумская, Кировоградская</td>
-        </tr>
-        <tr>
-          <td><span class="icon-question icon"></span> <%= t('profile.your_products') %></td>
-          <td>Диваны, Кровати, Стулья, Столы</td>
-        </tr>
+    </section>
+
+    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
+
+      <% if @user_tariff_active %>
+        <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>" 
+        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
+      <% else %>
+        <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+        <div>
+          <h4 class="section__header"><%= t('tariff.choose') %></h4>
+          <div class="tariff-list">
+          <% @tariffs.each do |tariff| %>
+            <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+          <% end %>
+          </div>
+        </div>
       <% end %>
       
-      </tbody>
-    </table>
-  </div>
-</section>
+    </section>
+
+    <section class="section" id="choose-regions">
+
+      <div class="status-badge status-badge_info">Укажите из каких областей Украины вы желаете получать заявки.</div>
+
+      <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
+        <div class="form-group">
+          <div class="form-check form-check-inline form-check_all-regions">
+            <%= f.label :all, class: 'form-check-label' do %>
+            <%= f.check_box :all, class: 'form-check-input form-check-input_all-regions', checked: @user_regions_ids == @regions_ids %>
+            <%= t('profile.all_regions') %>
+            <% end %>
+          </div>
+          <% @regions_ids.each do |region| %>
+          <div class="form-check form-check-inline">
+            <%= f.label region, class: 'form-check-label' do %>
+            <%= f.check_box region, class: 'form-check-input form-check-input_region', checked: @user_regions_ids.include?(region) %>
+            <%= @regions[region - 1].name %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+        <div class="box">
+          <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+          <span class="box__content_wrap">
+            <span class="icon-check icon"></span>
+            <span class="box__content"><%= t('button.save_regions') %></span>
+          </span>
+        </div>
+      <% end %>
+      
+    </section>
+
+  <% end %>
+
+  <section class="section">
+    <div class="settings">
+      <div class="settings__password password">
+        <h4 class="section__header">Изменить пароль</h4>
+        <div class="password__form">
+          <form id="passwordChange" class="form">
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="oldpassword" required placeholder="Введите  старый пароль" class="form-control input-field">
+              </div>
+            </div>
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="newpassword" required placeholder="Введите новый пароль" class="form-control input-field">
+              </div>
+            </div>
+            <div class="select-wrapper">
+              <div class="select form-group">
+                <input type="password" name="newrepassword" required placeholder="Подтвердите новый пароль" class="form-control input-field">
+              </div>
+            </div>
+            <div class="form__btn box">
+              <span class="box__content_wrap">
+                <span class="icon-note icon"></span>
+                <span class="box__content">Сохранить изменения</span>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+

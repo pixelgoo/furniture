@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :manufacturer_requests, :class_name => 'Request', :foreign_key => 'manufacturer_id'
   has_and_belongs_to_many :regions
 
+  MAX_FILES_UPLOADED = 4
+
   # =====================================================================================
   # General
   # =====================================================================================
@@ -44,6 +46,10 @@ class User < ApplicationRecord
 
   def customer?
     self.role_name == 'Customer'
+  end
+
+  def admin?
+    self.role_name == 'Admin'
   end
 
   # =====================================================================================

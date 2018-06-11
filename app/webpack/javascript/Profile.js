@@ -1,4 +1,4 @@
-export default class Settings {
+export default class Profile {
 
   constructor() { 
     this.init();
@@ -13,11 +13,11 @@ export default class Settings {
 
   initDirectUpload() {
     $('.directUpload').find("input:file").each(function (i, elem) {
-      var fileInput = $(elem);
-      var form = $(fileInput.parents('form:first'));
-      var submitButton = form.find('input[type="submit"]');
-      var progressBar = $("<div class='directUpload__bar'></div>");
-      var barContainer = $("<div class='directUpload__progress'></div>").append(progressBar);
+      let fileInput = $(elem);
+      let form = $(fileInput.parents('form:first'));
+      let submitButton = form.find('input[type="submit"]');
+      let progressBar = $("<div class='directUpload__bar'></div>");
+      let barContainer = $("<div class='directUpload__progress'></div>").append(progressBar);
       fileInput.after(barContainer);
       fileInput.fileupload({
         fileInput: fileInput,
@@ -33,31 +33,25 @@ export default class Settings {
           progressBar.css('width', progress + '%')
         },
         start: function (e) {
+          fileInput.hide();
           submitButton.prop('disabled', true);
           console.log('Uploading started...');
           progressBar.
-            css('background', 'green').
+            css('background', '#37bf37').
             css('display', 'block').
-            css('width', '0%').
-            text("Loading...");
+            css('width', '0%')
         },
         done: function (e, data) {
           submitButton.prop('disabled', false);
           progressBar.text("Файл успешно загружен");
           console.log('Uploaded!');
-
-          var key = $(data.jqXHR.responseXML).find("Key").text();
-          var url = '//' + form.data('host') + '/' + key;
-
-          var input = $("<input />", { type: 'hidden', name: fileInput.attr('documents_confirmed'), value: url })
-          form.append(input);
         },
         fail: function (e, data) {
           submitButton.prop('disabled', false);
           console.log('Upload failed.');
 
           progressBar.
-            css("background", "red").
+            css("background", "rgb(237, 77, 77) ").
             text("Загрузка не удалась. Перезагрузите страницу и попробуйте снова.");
         }
       });

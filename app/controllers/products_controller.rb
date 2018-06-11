@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
       end
       end
 
-      @products = apply_scopes(@current_filters[:furniture].products).all.page(params[:page]).per(13)
+      @products = apply_scopes(@current_filters[:furniture].products).all.page(params[:page]).per(16)
     else
       redirect_to root_path
     end

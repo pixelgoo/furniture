@@ -28,7 +28,7 @@
       <% end %>
 
       <li class="navigation-left__controls-item">
-        <%= link_to products_path, class: "left-menu-item #{current?('products')}" do %>
+        <%= link_to products_path + '#products-anchor', class: "left-menu-item #{current?('products')}" do %>
           <span class='icon icon-list'></span>
           <span><%= t('menu.catalog') %></span>
         <% end %>
@@ -41,12 +41,6 @@
         <% end %>
       </li>
 
-      <li class="navigation-left__controls-item">
-        <%= link_to settings_path, class: "left-menu-item #{current?(settings_path)}" do %>
-          <span class='icon icon-settings'></span>
-          <span><%= t('menu.settings') %></span>
-        <% end %>
-      </li>
     </ul>
   </nav>
 </aside>

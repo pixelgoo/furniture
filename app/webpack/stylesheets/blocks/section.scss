@@ -18,6 +18,10 @@
         text-transform: uppercase;
     }
 
+    &_no-bg {
+      background: none !important;
+    }
+
     @media screen and (max-width: $body-width) {
         margin: 30px;
     }

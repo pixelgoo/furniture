@@ -2,7 +2,10 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @requests_access = current_user.admin? ? true : current_user.documents_confirmed? && current_user.tariff_active?
+
     @status = params[:status]
+
     if Request::STATUSES.include?(@status)
       @active_requests = current_user.manufacturer_requests.where(status: 'active')
       if @status == 'new'

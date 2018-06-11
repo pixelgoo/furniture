@@ -10,6 +10,10 @@
     background-color: #f8f8f8;
   }
 
+  .next, .prev {
+    display: none;
+  }
+  
   .page {
     width: 30px;
     line-height: 26px;

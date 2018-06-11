@@ -3,16 +3,24 @@ class ProfilesController < ApplicationController
   before_action :set_s3_direct_post, only: [:settings]
 
   def show
-  end
-
-  def settings
-    @tariffs = Tariff.all
+    if current_user.manufacturer?
+      @user_files_uploaded = current_user.files_uploaded == User::MAX_FILES_UPLOADED
+      @user_tariff_active = current_user.tariff_active?
+      @user_documents_confirmed = current_user.documents_confirmed
+      @tariffs = Tariff.all
+      @regions_ids = Region.all.collect { |region| region.id }
+      @user_regions_ids = current_user.regions.collect { |region| region.id }
+    end
     @regions = Region.all
-    @regions_ids = Region.all.collect { |region| region.id }
-    @user_regions_ids = current_user.regions.collect { |region| region.id }
   end
 
   def upload_documents
+    if current_user.files_uploaded + 1 > User::MAX_FILES_UPLOADED
+      logger.warn "File uploading: detected file upload excess count"
+    else
+      current_user.files_uploaded += 1
+      current_user.save
+    end
   end
 
   def update_regions
@@ -27,7 +35,7 @@ class ProfilesController < ApplicationController
       end
     end
     flash[:success] = I18n.t('profile.regions_changed')
-    redirect_to settings_path
+    redirect_to profile_path
   end
 
   private

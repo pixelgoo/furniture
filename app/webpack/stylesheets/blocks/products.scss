@@ -42,7 +42,7 @@
   transition: ease 0.3s;
   cursor: default;
   
-  @for $i from 1 through 10 {
+  @for $i from 1 through 16 {
     &:nth-child(#{$i}) {
       animation-delay: $i * 0.1s + 0.1s;
     }
