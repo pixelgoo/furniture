@@ -28,7 +28,7 @@
       </span>
     </div>
     
-    <% if current_user.customer? %>
+    <% if current_user.present? && current_user.customer? %>
       <div class="box">
         <%= button_to t('button.request'), { controller: "requests", action: "create" }, remote: false,
           form: { "data-type" => "json"}, params: { :product_id => product.id }, class: 'btn-hidden' %>
