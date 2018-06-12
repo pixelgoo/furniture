@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_s3_direct_post, only: [:settings]
+  before_action :set_s3_direct_post, only: [:show]
 
   def show
     if current_user.manufacturer?
