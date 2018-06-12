@@ -11,6 +11,8 @@ export default class App {
   init() {
     console.log('App inited');
 
+    new Profile();
+
     this.initializePage();
     this.initializeTooltips();
   }
