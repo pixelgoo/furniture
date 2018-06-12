@@ -13,7 +13,7 @@ export default class Filters {
     $(document).on('click', '.product-filters__title', function() {
       $(this).siblings('.product-filters__list').toggleClass('opened');
       $(this).find('.icon').toggleClass('opened');
-      $(this).siblings('.filter-furnitures__item').toggle();
+      $(this).siblings('.filter-furnitures__item, .product-filters__current').toggle();
     })
 
     $(document).on('ajax:send', () => {
@@ -25,6 +25,7 @@ export default class Filters {
 
     $(document).on('ajax:success', () => {
       console.log('AJAX completed');
+      $('.products__list').scrollTop(0);
       this.setProductsList();
     });
 

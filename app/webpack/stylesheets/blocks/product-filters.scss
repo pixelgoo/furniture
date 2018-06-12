@@ -9,8 +9,12 @@
   box-sizing: border-box;
   padding: 20px;
   background: white;
-  box-shadow: 0 0 2px 2px #e7e7e7;
+  box-shadow: -1px -4px 2px 2px #e7e7e7;
   z-index: 5;
+
+  &.ps .product-filters {
+    z-index: -1;
+  }
   
   &.fixed {
     position: fixed;
@@ -26,6 +30,18 @@
     position: relative;
     color: $pastel-yellow;
     font-weight: 700;
+
+    &::before {
+      content: '›';
+      position: absolute;
+      left: 2px;
+      line-height: 30px;
+      color: $pastel-yellow;
+    }
+  }
+
+  &_chosen {
+    padding: 0 10px 8px 18px;
 
     &::before {
       content: '›';
@@ -94,9 +110,28 @@
     padding: 0 10px 8px 18px;
 
     img {
-      margin-right: 10px;
+      margin-right: 6px;
       width: 30px;
       height: 30px;
+    }
+  }
+}
+
+#filter-categories, .product-filters__filter_feature {
+  .product-filters__current {
+    margin-left: 18px;
+
+    &::before {
+      left: -14px;
+      line-height: 24px;
+    }
+  }
+
+  .filter-furnitures__item {
+    padding: 0 10px 8px 18px;
+
+    .product-filters__current {
+      margin-left: 0;
     }
   }
 }
