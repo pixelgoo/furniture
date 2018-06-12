@@ -33,5 +33,9 @@ jqueryUpload();
 import App from '../javascript/App.js'
 
 window.addEventListener("DOMContentLoaded", function () {
-    new App()
+    let app = new App()
+
+    $(document).on('turbolinks:load', function() {
+      app.initializePage();
+    });
 });

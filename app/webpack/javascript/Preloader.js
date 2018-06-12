@@ -63,7 +63,9 @@ export default class Preloader {
 
       function rejected() {
         self.imageLoadedCallback('error');
-        el.parents('.product').hide();
+        
+        // For products list do not show cards with broken/missing images
+        el.parents('.product-card').hide();
       }
 
     ); 

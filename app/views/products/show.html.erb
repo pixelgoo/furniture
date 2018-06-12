@@ -1,15 +1,15 @@
 <section id="productInfo" class="section">
-  <div class="product product__page row">
-    <div class="product__image image col-md-6">
-      <%= Rails.configuration.cdn_host + "products/#{@product.product_id}_1.jpg" %>
+  <div class="product-block row">
+    <div class="product-block__image image col-md-6">
+      <img src="<%= Rails.configuration.cdn_host %>products/<%= @product.product_id %>_0.jpg" alt="<%= @product.title %>">
       <% if @product.image_count > 1 %>
-      <div class="image__list">
-        <% (@product.image_count - 1).times do |i| %>
-        <div class="image_small">
-          <%= Rails.configuration.cdn_host + "products/#{@product.product_id}_#{i + 1}.jpg" %>
+        <div class="image__list">
+          <% (@product.image_count - 1).times do |i| %>
+          <div class="image_small">
+            <img src="<%= Rails.configuration.cdn_host + "products/#{@product.product_id}_#{i + 1}.jpg" %>">
+          </div>
+          <% end %>
         </div>
-        <% end %>
-      </div>
       <% end %>
     </div>
     <div class="product__info info col-md-6">
@@ -17,7 +17,7 @@
       <table class="table">
       <p class="table__label">Характеристики</p>
       <tbody>
-      <% %w(factory style facade product_type structure transformation_type width height depth).each do |detail| %>
+      <% %w(factory style product_type facade structure transformation_type width height depth).each do |detail| %>
         <% unless @product[detail].nil? then %>
           <tr>
           <td><%= t("product.#{detail}") %></td>
@@ -27,13 +27,16 @@
       <% end %>
       </tbody>
       </table>
-      <div class="info__btn box">
+
+      <div class="box">
+        <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
+          form: { "data-type" => "json"}, params: { :product_id => @product.id }, class: 'btn-hidden' %>
         <span class="box__content_wrap">
-          <span class="icon-share-alt icon"></span>
-          <%= button_to "Оставить заявку", { controller: "requests", action: "create" }, remote: false, 
-          form: { "data-type" => "json"}, params: { :product_id => @product.id }, class: 'box__content' %>
+          <span class="icon-pencil icon"></span>
+          <span class="box__content"><%= t('button.request') %></span>
         </span>
       </div>
+
     </div>
   </div>
 </section>

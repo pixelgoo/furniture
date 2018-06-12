@@ -28,67 +28,74 @@
     box-shadow: 0 -25px 30px -25px #cacaca;
     z-index: 2;
   }
-}
 
-.product {
-  display: flex;
-  flex-direction: column;
-  max-width: 324px;
-  height: 492px;
-  margin: 15px;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 4px 1px #e7e7e7;
-  background-color: white;
-  transition: ease 0.3s;
-  cursor: default;
-  
-  @for $i from 1 through 16 {
-    &:nth-child(#{$i}) {
-      animation-delay: $i * 0.1s + 0.1s;
-    }
+  &_random {
+    display: flex;
+    justify-content: center;
+    height: 516px;
+    background: white;
   }
 
-  &:hover {
-    box-shadow: 0 0 20px 2px #c7c7c7;
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 324px;
+    height: 492px;
+    margin: 15px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 4px 1px #e7e7e7;
+    background-color: white;
     transition: ease 0.3s;
-  }
-
-  &__image {
-    img {
-      width: 284px;
+    cursor: default;
+    
+    @for $i from 1 through 16 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.1s + 0.1s;
+      }
     }
-  }
-
-  &__info {
-    margin-left: 20px;
-  }
-
-  &__name {
-    max-width: 400px;
-    margin: 10px 0;
-    font-weight: 700;
-    text-align: center;
-  }
-
-  &__tags {
-    .icon {
-      color: $pastel-yellow;
+  
+    &:hover {
+      box-shadow: 0 0 20px 2px #c7c7c7;
+      transition: ease 0.3s;
     }
-
-    .tag {
-      line-height: 30px;
+  
+    &__image {
+      img {
+        width: 284px;
+      }
     }
-  }
-
-  &__feature {
-    background: rgba(255, 239, 217, 0.6);
-    color: #50210b;
-    padding: 2px 7px;
-    border-radius: 4px;
-  }
-
-  &__action {
-    margin-top: auto;
+  
+    &__info {
+      margin-left: 20px;
+    }
+  
+    &__name {
+      max-width: 400px;
+      margin: 10px 0;
+      font-weight: 700;
+      text-align: center;
+    }
+  
+    &__tags {
+      .icon {
+        color: $pastel-yellow;
+      }
+  
+      .tag {
+        line-height: 30px;
+      }
+    }
+  
+    &__feature {
+      background: rgba(255, 239, 217, 0.6);
+      color: #50210b;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+  
+    &__action {
+      margin-top: auto;
+    }
   }
 }

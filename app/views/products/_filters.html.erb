@@ -29,7 +29,6 @@
 
   </div>
 
-
   <div class="product-filters__filter" id="filter-categories">
 
     <div class="product-filters__title">Выберите категорию<span class="icon icon-arrow-down"></span></div>
@@ -55,7 +54,7 @@
 
   <% if @current_filters[:category].present? %>
 
-    <% %w(factory style facade structure product_type).each do |filter| %>
+    <% %w(factory style product_type facade structure).each do |filter| %>
 
       <div class="product-filters__filter product-filters__filter_feature" id="filter-<%= filter %>">
 

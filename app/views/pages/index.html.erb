@@ -77,91 +77,10 @@
         <h2 class="section__header">Топ товаров</h2>
         <hr width="60px" size="2" align="center" color="#C8A165">
     </div>
-    <div class="flex-list flex-list_landing">
-        <div class="result result_card">
-            <div class="result__product product">
-                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
-                <div class="product__info info">
-                    <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
-                    <div class="info__tags tag__list">
-                        <div class="tag"><span class="icon-tag icon"></span><span>Диваны Bonnel</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Тик-так (пантограф)</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Dizi</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>142x200</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="result__action">
-                <div class="form__btn box">
-                    <span class="box__content_wrap">
-                        <span class="icon-doc icon"></span>
-                        <span class="box__content">Подробнее</span>
-                    </span>
-                </div>
-                <div class="form__btn box">
-                    <span class="box__content_wrap">
-                        <span class="icon-share-alt icon"></span>
-                        <span class="box__content">Оставить заявку</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="result result_card">
-            <div class="result__product product">
-                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
-                <div class="product__info info">
-                    <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
-                    <div class="info__tags tag__list">
-                        <div class="tag"><span class="icon-tag icon"></span><span>Диваны Bonnel</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Тик-так (пантограф)</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Dizi</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>142x200</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="result__action">
-                <div class="form__btn box box_center">
-                    <span class="box__content_wrap">
-                        <span class="icon-doc icon"></span>
-                        <span class="box__content">Подробнее</span>
-                    </span>
-                </div>
-                <div class="form__btn box box_center">
-                    <span class="box__content_wrap">
-                        <span class="icon-share-alt icon"></span>
-                        <span class="box__content">Оставить заявку</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="result result_card">
-            <div class="result__product product">
-                <div class="product__image"><%= image_tag asset_pack_path('images/about.jpg'), width: '100%' %></div>
-                <div class="product__info info">
-                    <div class="info__name"><span>Диван Сафир-2 Лайт</span></div>
-                    <div class="info__tags tag__list">
-                        <div class="tag"><span class="icon-tag icon"></span><span>Диваны Bonnel</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Тик-так (пантограф)</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>Dizi</span></div>
-                        <div class="tag"><span class="icon-tag icon"></span><span>142x200</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="result__action">
-                <button class="form__btn box box_center">
-                    <span class="box__content_wrap">
-                        <span class="icon-doc icon"></span>
-                        <span class="box__content">Подробнее</span>
-                    </span>
-                </button>
-                <button class="form__btn box box_center">
-                    <span class="box__content_wrap">
-                        <span class="icon-share-alt icon"></span>
-                        <span class="box__content">Оставить заявку</span>
-                    </span>
-                </button>
-            </div>
-        </div>
+    <div class="products products_random">
+      <% @random_products.each do |item| %>
+        <%= render partial: 'products/product', locals: { product: item} %>
+      <% end %>
     </div>
 </section>
 
