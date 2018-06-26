@@ -17,8 +17,7 @@ feature "[payments] Manufacturer can" do
     tariff = create(:tariff)
 
     visit "/profile"
-    expect(page).to have_xpath("//a[@href='/settings']")
-    visit "/settings"
+    expect(page).to have_selector(:css, "section#choose-tariff")
     expect(page).to have_content(I18n.t('button.subscribe'))
 
     # Liqpay payment here actually
