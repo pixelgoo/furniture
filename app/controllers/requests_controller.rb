@@ -8,8 +8,12 @@ class RequestsController < ApplicationController
 
     if Request::STATUSES.include?(@status)
       @active_requests = current_user.manufacturer_requests.where(status: 'active')
+      @request_visibility = current_user.tariff.request_visibility
+
       if @status == 'new'
-        @requests = Request.where(status: 'new').where.not(token: current_user.manufacturer_requests.pluck(:token))
+        @requests = Request.where(status: 'new')
+                      .where.not(token: current_user.manufacturer_requests.pluck(:token))
+                      .where('created_at <= :request_visibility_hours', request_visibility_hours: Time.now - @request_visibility.hours)
       else
         @requests = current_user.manufacturer_requests.where(status: @status)
       end

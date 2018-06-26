@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :request do
-    user
+    association :customer, factory: :user
     product
   end
 

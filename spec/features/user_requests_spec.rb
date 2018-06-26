@@ -22,4 +22,28 @@ feature "[requests] User can" do
     expect(Request.last.product).to eq(product)
   end
 
+  scenario "not see request due to Tariff restriction" do
+    user = User.last
+    tariff = create(:tariff, name: 'Tariff_1', request_visibility: 10)
+    user.set_tariff('Tariff_1')
+    create(:product)
+    create(:request)
+
+    visit "/requests/new"
+
+    expect(page).to have_content(I18n.t('request.no-requests'))
+  end
+
+  scenario "see request when Tariff restriction over" do
+    user = User.last
+    tariff = create(:tariff, name: 'Tariff_1', request_visibility: 0)
+    user.set_tariff('Tariff_1')
+    create(:product)
+    create(:request)
+
+    visit "/requests/new"
+
+    expect(page).to have_content('Nice Couch')
+  end
+
 end

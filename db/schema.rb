@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20180626042750) do
     t.integer "months"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "request_visibility"
+    t.integer "request_visibility"
   end
 
   create_table "textiles", force: :cascade do |t|
