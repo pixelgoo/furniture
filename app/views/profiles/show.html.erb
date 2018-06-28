@@ -109,6 +109,39 @@
       
     </section>
 
+    <section class="section" id="choose-furnitures">
+
+      <div class="status-badge status-badge_info">Укажите какими видами товаров вы располагаете для продажи. Вы будете видеть заявки именно из этих категорий.</div>
+
+      <%= form_for(:set_furniture, url: update_furnitures_path, method: :patch, html: { class: 'furnitures' }) do |f| %>
+        <div class="form-group">
+          <div class="form-check form-check-inline form-check_all-furnitures">
+            <%= f.label :all, class: 'form-check-label' do %>
+            <%= f.check_box :all, class: 'form-check-input form-check-input_all-furnitures', checked: @user_furnitures_ids == @furnitures_ids %>
+            <%= t('profile.all_furnitures') %>
+            <% end %>
+          </div>
+          <% @furnitures_ids.each do |furniture| %>
+          <div class="form-check form-check-inline">
+            <%= image_tag asset_pack_path("images/#{ @furnitures[furniture - 1].title }.svg") %>
+            <%= f.label furniture, class: 'form-check-label' do %>
+            <%= f.check_box furniture, class: 'form-check-input form-check-input_furniture', checked: @user_furnitures_ids.include?(furniture) %>
+            <%= @furnitures[furniture - 1].title %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+        <div class="box">
+          <%= f.submit 'Сохранить', class: 'btn-hidden', id: 'submit-furnitures' %>
+          <span class="box__content_wrap">
+            <span class="icon-check icon"></span>
+            <span class="box__content"><%= t('button.save_furnitures') %></span>
+          </span>
+        </div>
+      <% end %>
+      
+    </section>
+
   <% end %>
 
   <section class="section">

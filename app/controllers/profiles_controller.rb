@@ -8,8 +8,13 @@ class ProfilesController < ApplicationController
       @user_tariff_active = current_user.tariff_active?
       @user_documents_confirmed = current_user.documents_confirmed
       @tariffs = Tariff.all
+
       @regions_ids = Region.all.collect { |region| region.id }
       @user_regions_ids = current_user.regions.collect { |region| region.id }
+
+      @furnitures = Furniture.all
+      @user_furnitures_ids = current_user.furnitures.collect { |furniture| furniture.id }
+      @furnitures_ids = Furniture.all.collect { |furniture| furniture.id }
     end
     @regions = Region.all
   end
@@ -35,6 +40,21 @@ class ProfilesController < ApplicationController
       end
     end
     flash[:success] = I18n.t('profile.regions_changed')
+    redirect_to profile_path
+  end
+
+  def update_furnitures
+    furnitures = Furniture.all
+    user_furnitures = current_user.furnitures
+    params[:set_furniture].each do |index, checked|
+      furniture = furnitures[index.to_i - 1]
+      if checked == '1'
+        user_furnitures << furniture unless user_furnitures.include? furniture
+      else 
+        user_furnitures.delete furniture if user_furnitures.include? furniture
+      end
+    end
+    flash[:success] = I18n.t('profile.furnitures_changed')
     redirect_to profile_path
   end
 

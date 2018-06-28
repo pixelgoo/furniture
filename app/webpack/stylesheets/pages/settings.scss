@@ -7,17 +7,26 @@ section {
     }
   }
 
-  &#choose-regions {
+  &#choose-regions, &#choose-furnitures {
     .form-group {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
 
       .form-check {
-        &_all-regions {
+        &_all-regions, &_all-furnitures {
           padding: 0 16px;
           background: #fff3ca;
           border-radius: 10px;
+        }
+
+        &_all-furnitures {
+          padding-top: 4px;
+        }
+
+        img {
+          width: 35px;
+          margin-right: 5px;
         }
       }
     }

@@ -318,6 +318,7 @@ ru:
     change_tariff: "Сменить тариф"
     save: "Сохранить"
     save_regions: "Сохранить выбранные области"
+    save_furnitures: "Сохранить выбранные категории"
 
   # Profile
   profile:
@@ -334,7 +335,9 @@ ru:
     add_money: "Пополнить"
     choose_tariff: "Выбрать пакет"
     regions_changed: "Выбранные регионы успешны сохранены."
+    furnitures_changed: "Выбранные категории товаров успешны сохранены."
     all_regions: "Все области"
+    all_furnitures: "Все категории"
 
   # Payment
   payment:

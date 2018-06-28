@@ -7,15 +7,21 @@ class RequestsController < ApplicationController
     @status = params[:status]
 
     if Request::STATUSES.include?(@status)
-      @active_requests = current_user.manufacturer_requests.where(status: 'active')
-      @request_visibility = current_user.tariff.request_visibility
+      if current_user.tariff_active? && current_user.documents_confirmed?
+        @active_requests = current_user.manufacturer_requests.where(status: 'active')
+        @request_visibility = current_user.tariff.request_visibility
 
-      if @status == 'new'
-        @requests = Request.where(status: 'new')
-                      .where.not(token: current_user.manufacturer_requests.pluck(:token))
-                      .where('created_at <= :request_visibility_hours', request_visibility_hours: Time.now - @request_visibility.hours)
-      else
-        @requests = current_user.manufacturer_requests.where(status: @status)
+        if @status == 'new'
+          @requests = Request.where(status: 'new')
+                        .where.not(token: current_user.manufacturer_requests.pluck(:token))
+                        .where('created_at <= :request_visibility_hours', request_visibility_hours: Time.now - @request_visibility.hours)
+          user_furnitures = current_user.furnitures
+          @requests = @requests.reject do |request|
+            user_furnitures.exclude? request.product.category.furniture
+          end
+        else
+          @requests = current_user.manufacturer_requests.where(status: @status)
+        end
       end
     else
       logger.warn "index#requests: Invalid status parameter received"

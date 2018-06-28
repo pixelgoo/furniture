@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :customer_requests, :class_name => 'Request', :foreign_key => 'customer_id'
   has_many :manufacturer_requests, :class_name => 'Request', :foreign_key => 'manufacturer_id'
   has_and_belongs_to_many :regions
+  has_and_belongs_to_many :furnitures
 
   MAX_FILES_UPLOADED = 4
 

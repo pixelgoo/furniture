@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get '/profile' => :show
     patch '/upload_documents' => :upload_documents
     patch '/update_regions' => :update_regions
+    patch '/update_furnitures' => :update_furnitures
   end
 
   get '/payment/:tariff', to: 'payments#subscribe', as: 'subscribe'
