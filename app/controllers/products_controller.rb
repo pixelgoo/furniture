@@ -7,29 +7,33 @@ class ProductsController < ApplicationController
   has_scope :facade
   has_scope :structure
   has_scope :product_type
+  has_scope :search
 
   def index
-    if request.query_parameters[:furniture]
-      @query = request.query_parameters
-      @current_filters = { }
-      @filters = { 
+    @filters = { 
       furniture: Furniture.all,
-      category: Category.where(furniture_id: @query['furniture'])
-      }
+    }
+    @current_filters = { }
+
+    if params[:search]
+      @products = apply_scopes(Product.all).all.page(params[:page]).per(16)
+    elsif request.query_parameters[:furniture]
+      @query = request.query_parameters
+      @filters[:category] = Category.where(furniture_id: @query['furniture'])
       
       @filters.each do |filter, value| 
-      @current_filters[filter] = value.find(@query[filter]) if @query[filter].present?
+        @current_filters[filter] = value.find(@query[filter]) if @query[filter].present?
       end
 
       if @current_filters[:category].present?
-      Product::FILTERS.each do |product_filter|
-        filter_values = @current_filters[:category].products.pluck(product_filter).uniq
-        @filters[product_filter] = filter_values if filter_values.present?
+        Product::FILTERS.each do |product_filter|
+          filter_values = @current_filters[:category].products.pluck(product_filter).uniq
+          @filters[product_filter] = filter_values if filter_values.present?
 
-        if @query[product_filter].present?
-        @current_filters[product_filter] = @query[product_filter]
+          if @query[product_filter].present?
+            @current_filters[product_filter] = @query[product_filter]
+          end
         end
-      end
       end
 
       @products = apply_scopes(@current_filters[:furniture].products).all.page(params[:page]).per(16)

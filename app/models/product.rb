@@ -11,4 +11,8 @@ class Product < ApplicationRecord
   scope :facade, -> facade { where facade: facade }
   scope :structure, -> structure { where structure: structure }
   scope :product_type, -> product_type { where product_type: product_type}
+
+  scope :search, -> search do
+    where "title ILIKE ?", "%#{search}%"
+  end
 end

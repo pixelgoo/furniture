@@ -22,8 +22,34 @@
     height: 100vh;
   }
 
-  &__filter {
-    margin-bottom: 15px;
+  &__search {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 0 !important;
+
+    input#search {
+      width: 100%;
+      padding: 6px 36px 6px 10px;
+      border: 1px solid #dadada;
+      border-radius: 4px;
+      outline: none;
+      font-style: italic;
+    }
+
+    #products-search-button {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      width: 22px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background: url('../../images/search.svg') center no-repeat;
+      background-size: contain;
+    }
   }
 
   &__current {
