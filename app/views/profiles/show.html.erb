@@ -2,6 +2,26 @@
 
   <% if current_user.manufacturer? %>
 
+    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
+
+      <% if @user_tariff_active %>
+      <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
+        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
+      <% else %>
+      <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+      <div>
+        <h4 class="section__header"><%= t('tariff.choose') %></h4>
+        <div class="tariff-list">
+          <% @tariffs.each do |tariff| %>
+          <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+    </section>
+
     <section class="section">
 
       <% if @user_documents_confirmed %>
@@ -55,26 +75,6 @@
 
       <% end %>
 
-    </section>
-
-    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
-
-      <% if @user_tariff_active %>
-        <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>" 
-        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
-        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
-      <% else %>
-        <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
-        <div>
-          <h4 class="section__header"><%= t('tariff.choose') %></h4>
-          <div class="tariff-list">
-          <% @tariffs.each do |tariff| %>
-            <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
-          <% end %>
-          </div>
-        </div>
-      <% end %>
-      
     </section>
 
     <section class="section" id="choose-regions">
