@@ -12,12 +12,27 @@ header {
         max-width: $body-width;
         margin: 0 auto;
         background-color: $light-white;
-    
+
+        &__header {
+            width: 100%;
+            max-width: 490px;
+            display: flex;
+            font-size: 0.75rem;
+
+            span {
+                margin: auto;
+            }
+        }
+
         &__logo {
             width: 100px;
             height: $header-height;
             background: url('../../images/logo.png') center no-repeat;
             background-size: 80%;
+        }
+
+        &__menu {
+            margin-left: auto;
         }
 
         @media screen and (max-width: $body-width) {
