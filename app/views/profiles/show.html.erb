@@ -22,7 +22,7 @@
 
     </section>
 
-    <section class="section">
+    <section class="section"  id="choose-data">
 
       <% if @user_documents_confirmed %>
 
@@ -69,6 +69,14 @@
 
           <% end %>
 
+          <div class="form-group">
+            <div class="form-check form-check-inline form-check_confirm-using-data">
+              <label class="form-check-label" for="confirm_data">
+                <input name="confirm_data" type="hidden" value="0"><input class="form-check-input form-check_confirm-using-data" type="checkbox" value="1" checked="checked" name="confirm_data" id="confirm_data">
+                Я разрешаю использование моих персональных данных
+              </label>
+            </div>
+          </div>
           <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
 
         <% end %>

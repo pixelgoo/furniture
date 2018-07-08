@@ -7,14 +7,14 @@ section {
     }
   }
 
-  &#choose-regions, &#choose-furnitures {
+  &#choose-regions, &#choose-furnitures, &#choose-data {
     .form-group {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
 
       .form-check {
-        &_all-regions, &_all-furnitures {
+        &_all-regions, &_all-furnitures, &_confirm-using-data {
           padding: 0 16px;
           background: #fff3ca;
           border-radius: 10px;
