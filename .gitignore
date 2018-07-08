@@ -32,7 +32,6 @@ yarn-debug.log*
 config/secrets.yml.key
 config/secrets.yml.enc
 config/secrets.yml
-config/database.yml
 
 
 lib/assets
