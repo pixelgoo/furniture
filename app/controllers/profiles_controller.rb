@@ -9,52 +9,51 @@ class ProfilesController < ApplicationController
       @user_documents_confirmed = current_user.documents_confirmed
       @tariffs = Tariff.all
 
-      @regions_ids = Region.all.collect { |region| region.id }
-      @user_regions_ids = current_user.regions.collect { |region| region.id }
+      furnitures = Furniture.all
+      regions = Region.all
+      @settings = {
+        'regions' => regions,
+        'regions_ids' => regions.ids,
+        'user_regions_ids' => current_user.region_ids,
 
-      @furnitures = Furniture.all
-      @user_furnitures_ids = current_user.furnitures.collect { |furniture| furniture.id }
-      @furnitures_ids = Furniture.all.collect { |furniture| furniture.id }
+        'furnitures' => furnitures,
+        'furnitures_ids' => furnitures.ids,
+        'user_furnitures_ids' => current_user.furniture_ids
+      }
     end
-    @regions = Region.all
   end
 
   def upload_documents
     if current_user.files_uploaded + 1 > User::MAX_FILES_UPLOADED
-      logger.warn "File uploading: detected file upload excess count"
+      logger.warn "profiles#upload_documents: Detected file upload excess count"
     else
       current_user.files_uploaded += 1
       current_user.save
     end
   end
 
-  def update_regions
-    regions = Region.all
-    user_regions = current_user.regions
-    params[:set_region].each do |index, checked|
-      region = regions[index.to_i - 1]
-      if checked == '1'
-        user_regions << region unless user_regions.include? region
-      else 
-        user_regions.delete region if user_regions.include? region
+  # Updates user habtm associations (regions, furnitures)
+  def update_setting
+    if(User::SETTINGS_AVAILABLE.include?(params[:model].to_sym))
+      model = params[:model]
+      model_objects = model.capitalize.constantize.all
+      user_model_objects = current_user.send("#{model}s")
+      user_model_objects_ids = user_model_objects.ids
+      objects_to_delete = []
+      params[:set_model].delete("set_all_#{model}")
+      params[:set_model].each do |index, checked|
+        model_object = model_objects[index.scan(/\d+/).first.to_i - 1]
+        if checked == '1'
+          user_model_objects << model_object unless user_model_objects_ids.include? model_object.id
+        else 
+          objects_to_delete.push model_object.id
+        end
       end
+      user_model_objects.delete(*(objects_to_delete & user_model_objects.ids))
+      flash[:success] = I18n.t("profile.#{model}s_changed")
+    else
+      logger.warn "profiles#update_setting: Mismatching model params received"
     end
-    flash[:success] = I18n.t('profile.regions_changed')
-    redirect_to profile_path
-  end
-
-  def update_furnitures
-    furnitures = Furniture.all
-    user_furnitures = current_user.furnitures
-    params[:set_furniture].each do |index, checked|
-      furniture = furnitures[index.to_i - 1]
-      if checked == '1'
-        user_furnitures << furniture unless user_furnitures.include? furniture
-      else 
-        user_furnitures.delete furniture if user_furnitures.include? furniture
-      end
-    end
-    flash[:success] = I18n.t('profile.furnitures_changed')
     redirect_to profile_path
   end
 

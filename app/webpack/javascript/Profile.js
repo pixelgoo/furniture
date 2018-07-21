@@ -8,7 +8,7 @@ export default class Profile {
     console.log('Settings inited');
 
     this.initDirectUpload();
-    this.initRegionsCheckboxes();
+    this.initSettingsCheckboxes();
   }
 
   initDirectUpload() {
@@ -58,7 +58,7 @@ export default class Profile {
     });
   }
 
-  initRegionsCheckboxes() {
+  initSettingsCheckboxes() {
     $(document).on('click', '.form-check_all-regions', function() {
       if($(this).find('.form-check-input_all-regions').prop('checked')) {
         $('.form-check-input_region').prop('checked', true);

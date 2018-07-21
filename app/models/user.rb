@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :furnitures
 
   MAX_FILES_UPLOADED = 4
+  SETTINGS_AVAILABLE = [:region, :furniture]
 
   # =====================================================================================
   # General

@@ -76,71 +76,49 @@
       <% end %>
       
     </section>
+    
+    
+    <% ['region', 'furniture'].each do |model| %>
 
-    <section class="section" id="choose-regions">
+      <section class="section" id="choose-<%= model %>s">
 
-      <div class="status-badge status-badge_info">Укажите из каких областей Украины вы желаете получать заявки.</div>
+        <div class="status-badge status-badge_info"><%= t("profile.settings_#{model}s") %></div>
 
-      <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
-        <div class="form-group">
-          <div class="form-check form-check-inline form-check_all-regions">
-            <%= f.label :all, class: 'form-check-label' do %>
-            <%= f.check_box :all, class: 'form-check-input form-check-input_all-regions', checked: @user_regions_ids == @regions_ids %>
-            <%= t('profile.all_regions') %>
-            <% end %>
-          </div>
-          <% @regions_ids.each do |region| %>
-          <div class="form-check form-check-inline">
-            <%= f.label region, class: 'form-check-label' do %>
-            <%= f.check_box region, class: 'form-check-input form-check-input_region', checked: @user_regions_ids.include?(region) %>
-            <%= @regions[region - 1].name %>
-            <% end %>
-          </div>
+          <%= form_for(:set_model, url: update_setting_path, method: :patch, html: { class: "#{model}s" }) do |f| %>
+            <%= hidden_field_tag :model, "#{model}", id: "#{model}_setting" %>
+            <div class="form-group">
+            
+              <div class="form-check form-check-inline form-check_all-<%= model %>s">
+                <%= f.label "set_all_#{model}", class: 'form-check-label' do %>
+                  <%= f.check_box "set_all_#{model}", class: "form-check-input form-check-input_all-#{model}s", checked: @settings["user_#{model}s_ids"] == @settings["#{model}s_ids"] %>
+                  <%= t("profile.all_#{model}s") %>
+                <% end %>
+              </div>
+              <% @settings["#{model}s_ids"].each do |model_object| %>
+                <div class="form-check form-check-inline">
+                  <% if model == 'furniture' %>
+                    <%= image_tag asset_pack_path("images/#{ @settings['furnitures'][model_object - 1].title }.svg") %>
+                  <% end %>
+                  <%= f.label "#{model}_#{model_object}", class: 'form-check-label' do %>
+                    <%= f.check_box "#{model}_#{model_object}", class: "form-check-input form-check-input_#{model}", 
+                      checked: @settings["user_#{model}s_ids"].include?(model_object) %>
+                    <%= @settings["#{model}s"][model_object - 1].title %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="box">
+              <%= f.submit 'Сохранить', class: 'btn-hidden', id: "submit-#{model}s" %>
+              <span class="box__content_wrap">
+                <span class="icon-check icon"></span>
+                <span class="box__content"><%= t("button.save_#{model}s") %></span>
+              </span>
+            </div>
           <% end %>
-        </div>
-        <div class="box">
-          <%= f.submit 'Сохранить', class: 'btn-hidden', id: 'submit-regions' %>
-          <span class="box__content_wrap">
-            <span class="icon-check icon"></span>
-            <span class="box__content"><%= t('button.save_regions') %></span>
-          </span>
-        </div>
-      <% end %>
-      
-    </section>
+        
+      </section>
 
-    <section class="section" id="choose-furnitures">
-
-      <div class="status-badge status-badge_info">Укажите какими видами товаров вы располагаете для продажи. Вы будете видеть заявки именно из этих категорий.</div>
-
-      <%= form_for(:set_furniture, url: update_furnitures_path, method: :patch, html: { class: 'furnitures' }) do |f| %>
-        <div class="form-group">
-          <div class="form-check form-check-inline form-check_all-furnitures">
-            <%= f.label :all, class: 'form-check-label' do %>
-            <%= f.check_box :all, class: 'form-check-input form-check-input_all-furnitures', checked: @user_furnitures_ids == @furnitures_ids %>
-            <%= t('profile.all_furnitures') %>
-            <% end %>
-          </div>
-          <% @furnitures_ids.each do |furniture| %>
-          <div class="form-check form-check-inline">
-            <%= image_tag asset_pack_path("images/#{ @furnitures[furniture - 1].title }.svg") %>
-            <%= f.label furniture, class: 'form-check-label' do %>
-            <%= f.check_box furniture, class: 'form-check-input form-check-input_furniture', checked: @user_furnitures_ids.include?(furniture) %>
-            <%= @furnitures[furniture - 1].title %>
-            <% end %>
-          </div>
-          <% end %>
-        </div>
-        <div class="box">
-          <%= f.submit 'Сохранить', class: 'btn-hidden', id: 'submit-furnitures' %>
-          <span class="box__content_wrap">
-            <span class="icon-check icon"></span>
-            <span class="box__content"><%= t('button.save_furnitures') %></span>
-          </span>
-        </div>
-      <% end %>
-      
-    </section>
+    <% end %>
 
   <% end %>
 
