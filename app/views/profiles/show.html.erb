@@ -2,7 +2,27 @@
 
   <% if current_user.manufacturer? %>
 
-    <section class="section">
+    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
+
+      <% if @user_tariff_active %>
+      <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
+        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
+      <% else %>
+      <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+      <div>
+        <h4 class="section__header"><%= t('tariff.choose') %></h4>
+        <div class="tariff-list">
+          <% @tariffs.each do |tariff| %>
+          <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+
+    </section>
+
+    <section class="section"  id="choose-data">
 
       <% if @user_documents_confirmed %>
 
@@ -49,6 +69,14 @@
 
           <% end %>
 
+          <div class="form-group">
+            <div class="form-check form-check-inline form-check_confirm-using-data">
+              <label class="form-check-label" for="confirm_data">
+                <input name="confirm_data" type="hidden" value="0"><input class="form-check-input form-check_confirm-using-data" type="checkbox" value="1" checked="checked" name="confirm_data" id="confirm_data">
+                Я разрешаю использование моих персональных данных
+              </label>
+            </div>
+          </div>
           <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
 
         <% end %>

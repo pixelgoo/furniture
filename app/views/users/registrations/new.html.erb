@@ -84,13 +84,17 @@
               placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
             </div>
           </div>
-          <div class="">
+          <!--<div class="">
             <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'customer_terms_of_service' %>
             <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
           </div>
           <div class="">
             <%= check_box_tag 'user[subscribe]', "1", true, id: 'customer_subscribe' %>
             <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          </div>-->
+          <div class="">
+            <%= check_box_tag 'user[privacy]', "1", true, id: 'customer_privacy' %>
+            <div class="checkbox__label">Я принимаю <a target="_blank" href="#" class="link_blue">политику конфеденциальности</a> и даю согласие на обработку персональных данных</div>
           </div>
           <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
 
@@ -160,13 +164,22 @@
               placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
             </div>
           </div>
-          <div class="">
+          <!--<div class="">
             <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'manufacturer_terms_of_service' %>
             <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">соглашения для производителей</a></div>
           </div>
           <div class="">
             <%= check_box_tag 'user[subscribe]', "1", true, id: 'manufacturer_subscribe' %>
             <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          </div>-->
+
+          <div class="">
+            <%= check_box_tag 'user[privacy]', "1", true, id: 'manufacturer_privacy' %>
+            <div class="checkbox__label">Я принимаю <a target="_blank" href="#" class="link_blue">политику конфеденциальности</a> и даю согласие на обработку персональных данных</div>
+          </div>
+          <div class="">
+            <%= check_box_tag 'user[offert]', "1", true, id: 'manufacturer_offert' %>
+            <div class="checkbox__label">Я принимаю <a target="_blank" href="#" class="link_blue">договор публичной оферты</a></div>
           </div>
           <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'manufacturer_role_name' %>
 

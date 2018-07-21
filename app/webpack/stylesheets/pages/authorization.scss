@@ -58,6 +58,13 @@
     width: 100%;
     max-width: 380px;
     margin: auto;
+
+    .alert {
+      width: 100%;
+      max-width: 500px;
+      top: 0;
+      margin-left: -80px;
+    }
   }
   .form {
     &__header {
@@ -145,5 +152,5 @@
 
 .checkbox__label {
   color: white;
-  font-size: 16px;
+  font-size: 14px;
 }

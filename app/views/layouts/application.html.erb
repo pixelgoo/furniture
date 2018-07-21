@@ -10,8 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <% if Rails.env.development? %>
-      <%= stylesheet_pack_tag 'stylesheets', 'data-turbolinks-track': 'reload' unless Webpacker.dev_server.hot_module_replacing? %>
-    <% else %>
+	<%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
+<% else %>
       <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <% end %>
 
