@@ -4,8 +4,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super do
+      if resource.manufacturer?
         resource.furnitures << Furniture.all
         resource.save
+      end
     end
   end
 
