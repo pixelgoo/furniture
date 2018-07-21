@@ -8,7 +8,8 @@ export default class Profile {
     console.log('Settings inited');
 
     this.initDirectUpload();
-    this.initSettingsCheckboxes();
+    this.initSettingsCheckboxes($('.furnitures'));
+    this.initSettingsCheckboxes($('.regions'));
   }
 
   initDirectUpload() {
@@ -58,14 +59,10 @@ export default class Profile {
     });
   }
 
-  initSettingsCheckboxes() {
-    $(document).on('click', '.form-check_all-regions', function() {
-      if($(this).find('.form-check-input_all-regions').prop('checked')) {
-        $('.form-check-input_region').prop('checked', true);
-      } else {
-        $('.form-check-input_region').prop('checked', false);
-      }
-    })
+  initSettingsCheckboxes(form) {
+    $(form).find('.form-check-input_all').click(function(){
+      $(form).find('input:checkbox').not(this).prop('checked', this.checked);
+    });
   }
 
 }
