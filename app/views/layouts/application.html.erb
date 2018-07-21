@@ -8,10 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,700&amp;subset=cyrillic" rel="stylesheet">
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if Rails.env.development? %>
-	<%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
-<% else %>
+    <% if Rails.env.production? %>
       <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <% end %>
 

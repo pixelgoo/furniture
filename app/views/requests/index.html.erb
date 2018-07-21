@@ -1,7 +1,9 @@
 
 <section class="section section_no-padding">
 
-<% if @requests_access %>
+<% if (RequestsPolicy.requirements_access(current_user) || 
+      RolePolicy.admin_access(current_user) ||
+      TrialPolicy.trial_access(current_user)) %>
 
   <div class="card text-center">
     <div class="card-header">

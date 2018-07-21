@@ -4,9 +4,6 @@ class ProfilesController < ApplicationController
 
   def show
     if current_user.manufacturer?
-      @user_files_uploaded = current_user.files_uploaded == User::MAX_FILES_UPLOADED
-      @user_tariff_active = current_user.tariff_active?
-      @user_documents_confirmed = current_user.documents_confirmed
       @tariffs = Tariff.all
 
       furnitures = Furniture.all

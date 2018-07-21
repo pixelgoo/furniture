@@ -1,36 +1,36 @@
 <div class="p-settings">
 
-  <% if current_user.manufacturer? %>
+  <% if RolePolicy.manufacturer_access(current_user) %>
 
-    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
+    <section class="section <%= 'section_no-bg' if TariffPolicy.tariff_access(current_user) %>" id="choose-tariff">
 
-      <% if @user_tariff_active %>
-      <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
-        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
-        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
+      <% if TariffPolicy.tariff_access(current_user) %>
+        <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
+          (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+          Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
       <% else %>
-      <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
-      <div>
-        <h4 class="section__header"><%= t('tariff.choose') %></h4>
-        <div class="tariff-list">
-          <% @tariffs.each do |tariff| %>
-          <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
-          <% end %>
+        <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+        <div>
+          <h4 class="section__header"><%= t('tariff.choose') %></h4>
+          <div class="tariff-list">
+            <% @tariffs.each do |tariff| %>
+            <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+            <% end %>
+          </div>
         </div>
-      </div>
       <% end %>
 
     </section>
 
     <section class="section"  id="choose-data">
 
-      <% if @user_documents_confirmed %>
+      <% if UserPolicy.confirmed_access(current_user) %>
 
         <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
 
       <% else %>
 
-        <% if @user_files_uploaded %>
+        <% if UserPolicy.documents_uploaded_access(current_user) %>
 
           <div class="status-badge status-badge_info">Ваши документы загружены и модерируются. После завершения модерации вы получите электронное письмо и откроете доступ к системе Woodmister.</div>
 
@@ -84,28 +84,7 @@
       <% end %>
 
     </section>
-
-    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
-
-      <% if @user_tariff_active %>
-        <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>" 
-        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
-        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
-      <% else %>
-        <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
-        <div>
-          <h4 class="section__header"><%= t('tariff.choose') %></h4>
-          <div class="tariff-list">
-          <% @tariffs.each do |tariff| %>
-            <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
-          <% end %>
-          </div>
-        </div>
-      <% end %>
-      
-    </section>
-    
-    
+  
     <% ['region', 'furniture'].each do |model| %>
 
       <section class="section" id="choose-<%= model %>s">
@@ -116,19 +95,20 @@
             <%= hidden_field_tag :model, "#{model}", id: "#{model}_setting" %>
             <div class="form-group">
             
-              <div class="form-check form-check-inline form-check_all-<%= model %>s">
+              <div class="form-check form-check-inline form-check_all">
                 <%= f.label "set_all_#{model}", class: 'form-check-label' do %>
-                  <%= f.check_box "set_all_#{model}", class: "form-check-input form-check-input_all-#{model}s", checked: @settings["user_#{model}s_ids"] == @settings["#{model}s_ids"] %>
+                  <%= f.check_box "set_all_#{model}", class: "form-check-input form-check-input_all", checked: @settings["user_#{model}s_ids"] == @settings["#{model}s_ids"] %>
                   <%= t("profile.all_#{model}s") %>
                 <% end %>
               </div>
+              
               <% @settings["#{model}s_ids"].each do |model_object| %>
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline form-check_single">
                   <% if model == 'furniture' %>
                     <%= image_tag asset_pack_path("images/#{ @settings['furnitures'][model_object - 1].title }.svg") %>
                   <% end %>
                   <%= f.label "#{model}_#{model_object}", class: 'form-check-label' do %>
-                    <%= f.check_box "#{model}_#{model_object}", class: "form-check-input form-check-input_#{model}", 
+                    <%= f.check_box "#{model}_#{model_object}", class: "form-check-input form-check-input_single", 
                       checked: @settings["user_#{model}s_ids"].include?(model_object) %>
                     <%= @settings["#{model}s"][model_object - 1].title %>
                   <% end %>
