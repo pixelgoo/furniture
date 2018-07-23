@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
   
-  root to: 'pages#show', page: 'index'
+  root to: 'pages#index'
 
-  %w(help).each do |page|
-    get "/pages/${page}", to: 'pages#show', as: page, page: page
-  end
+
+  # Static pages
+  get "/privacy", to: 'pages#privacy'
+  get "/help", to: 'pages#help'
+  get "/terms", to: 'pages#terms'
 
   controller :profiles do
     get '/profile' => :show
