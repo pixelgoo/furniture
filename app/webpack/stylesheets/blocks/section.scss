@@ -18,8 +18,27 @@
         text-transform: uppercase;
     }
 
+    &_no-shadow {
+        box-shadow: none!important;
+        border-radius: 0;
+    }
+
+    &_text-only {
+        > ul {
+            list-style: none;
+
+            > li {
+                margin: 7px 0;
+            }
+
+            ul {
+                list-style: disc;
+            }
+        }
+    }
+
     &_no-bg {
-      background: none !important;
+      background: none!important;
     }
 
     @media screen and (max-width: $body-width) {
