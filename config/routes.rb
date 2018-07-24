@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Static pages
   get "/privacy", to: 'pages#privacy'
+  get "/offert", to: 'pages#offert'
   get "/help", to: 'pages#help'
   get "/terms", to: 'pages#terms'
 
