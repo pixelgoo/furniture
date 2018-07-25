@@ -60,6 +60,7 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
   config.include FormHelpers, type: :feature
+  config.include Helpers, type: :feature
   config.include Rails.application.routes.url_helpers
     
   config.before(:all) do

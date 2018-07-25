@@ -31,7 +31,11 @@
 
 <% else %>
 
-  <div class="status-badge status-badge_info">Для работы с системой Woodmister необходимо предоставить документы подтверждающие ваши права на торговлю товарами, а также приобрести один из тарифных пакетов. Загрузить документы и приобрести тарифный пакет можно в <span class="icon icon-key"></span><%= link_to 'Профиле', profile_path %>.</div>
+  <% unless TrialPolicy.trial_access(current_user) %>
+    <div class="status-badge status-badge_info"><%= t('request.trial_over') %></div>
+  <% end %> 
+
+  <div class="status-badge status-badge_info"><%= t('request.no_tariff') %><span class="icon icon-key"></span><%= link_to t('button.no_tariff_to_profile'), profile_path %>.</div>
 
 <% end %>
   

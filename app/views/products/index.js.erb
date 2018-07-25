@@ -5,7 +5,7 @@ setTimeout(function () {
   <% if @products.present? %>
     $('#products').html('<%= escape_javascript render(@products) %>');
   <% else %>
-    $('#products').append($.parseHTML('<div class="products__not-found">Товаров не найдено по заданным фильтрам</div>'));
+    $('#products').append($.parseHTML('<div class="products__not-found"><%= t('product.no_products') %></div>'));
   <% end %>
   $('.products__paginator').html('<%= escape_javascript(paginate(@products, :remote => true).to_s) %>');
 });
