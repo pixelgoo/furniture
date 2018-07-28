@@ -69,10 +69,6 @@ class User < ApplicationRecord
     self.tariff_enddate.present? ? self.tariff_enddate > DateTime.now : false
   end
 
-  def trial_active?
-    
-  end
-
   # =====================================================================================
   # Requests
   # =====================================================================================

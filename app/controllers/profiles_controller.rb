@@ -5,18 +5,7 @@ class ProfilesController < ApplicationController
   def show
     if current_user.manufacturer?
       @tariffs = Tariff.all
-
-      furnitures = Furniture.all
-      regions = Region.all
-      @settings = {
-        'regions' => regions,
-        'regions_ids' => regions.ids,
-        'user_regions_ids' => current_user.region_ids,
-
-        'furnitures' => furnitures,
-        'furnitures_ids' => furnitures.ids,
-        'user_furnitures_ids' => current_user.furniture_ids
-      }
+      @settings = UserSettingsService.settings(current_user)
     end
   end
 
@@ -31,25 +20,12 @@ class ProfilesController < ApplicationController
 
   # Updates user habtm associations (regions, furnitures)
   def update_setting
-    if(User::SETTINGS_AVAILABLE.include?(params[:model].to_sym))
-      model = params[:model]
-      model_objects = model.capitalize.constantize.all
-      user_model_objects = current_user.send("#{model}s")
-      user_model_objects_ids = user_model_objects.ids
-      objects_to_delete = []
-      params[:set_model].delete("set_all_#{model}")
-      params[:set_model].each do |index, checked|
-        model_object = model_objects[index.scan(/\d+/).first.to_i - 1]
-        if checked == '1'
-          user_model_objects << model_object unless user_model_objects_ids.include? model_object.id
-        else 
-          objects_to_delete.push model_object.id
-        end
-      end
-      user_model_objects.delete(*(objects_to_delete & user_model_objects.ids))
-      flash[:success] = I18n.t("profile.#{model}s_changed")
-    else
-      logger.warn "profiles#update_setting: Mismatching model params received"
+    settings = UserSettingsService.new(params, current_user)
+    if settings.validate
+      settings.update
+      flash[:success] = I18n.t("profile.#{params[:model]}s_changed")
+    else  
+      logger.warn "profiles#update_setting: Settings update wasn't validated"
     end
     redirect_to profile_path
   end
