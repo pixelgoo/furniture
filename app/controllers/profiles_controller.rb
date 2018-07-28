@@ -27,6 +27,7 @@ class ProfilesController < ApplicationController
     else  
       logger.warn "profiles#update_setting: Settings update wasn't validated"
     end
+
     redirect_to profile_path
   end
 

@@ -1,6 +1,6 @@
 class UserSettingsService
 
-  self.settings(user)
+  def self.settings(user)
     furnitures = Furniture.all
     regions = Region.all
     settings = {
@@ -48,10 +48,8 @@ class UserSettingsService
   end
 
   def is_applicable?
-    if(@model == 'region') {
-      return user.tariff.regions_counter > user.regions.length
-    }
-
+    return true if TrialPolicy.trial_access(@user)
+    return @user.tariff.region_counter > @user.regions.length if @model == 'region'
     true
   end
 
