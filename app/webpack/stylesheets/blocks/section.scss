@@ -26,6 +26,7 @@
     &_text-only {
         > ul {
             list-style: none;
+            margin-bottom: 30px;
 
             > li {
                 margin: 7px 0;
@@ -34,6 +35,10 @@
             ul {
                 list-style: disc;
             }
+        }
+
+        h1 {
+          margin-bottom: 20px;
         }
     }
 
