@@ -257,7 +257,7 @@
     .info {
       margin: auto 0;
       z-index: 2;
-      width: 77%;
+      width: 76%;
       padding: 0 100px 0 20%;
 
       &_wrap {
@@ -860,6 +860,10 @@
     max-width: 1240px!important;
   }
 
+  .furniture-list {
+    max-width: 1240px;
+  }
+  
   .page_right .section {
     max-width: 1180px;
     padding: 40px;
