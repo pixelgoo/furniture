@@ -266,17 +266,17 @@
         width: 100%;
       }
       h1 {
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: inherit;
         text-transform: uppercase;
         font-weight: 700;
-        font-size: 42px;
+        font-size: 3.27rem;
         margin-bottom: 8px;
       }
       h3 {
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: inherit;
         text-transform: uppercase;
         font-weight: 300;
-        font-size: 26px;
+        font-size: 2.18rem;
         line-height: 1;
       }
       &__btn {
@@ -855,20 +855,45 @@
   .container_lg {
     max-width: 1440px;
   }
+
   .section, .section-list {
     max-width: 1240px!important;
   }
+
   .page_right .section {
     max-width: 1180px;
     padding: 40px;
   }
+
   .page__head {
     padding: 0 0 0 17%;
   }
+
+  .main__screen .carousel .carousel-item {
+    background-position: 85% 0!important;
+  }
+
   .main__screen .carousel .info {
+    width: 72%;
+    padding: 0 100px 0 12%;
     font-size: 0.75rem;
+
+    h1 {
+      font-size: 2.4rem;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+    }
   }
 }
+
+@media screen and (max-width: 1250px) {
+  .main__screen .carousel .carousel-item {
+    background-position: 65% 0 !important;
+  }
+}
+
 @media screen and (max-width: 1120px) {
   .tariff {
     display: block;
