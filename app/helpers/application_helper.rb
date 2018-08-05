@@ -17,12 +17,14 @@ module ApplicationHelper
     controller.class.name == 'ProfilesController' ||
     controller.class.name == 'RequestsController' ||
     controller.class.name == 'Users::RegistrationsController' ||
-    controller.class.name == 'Users::SessionsController'
+    controller.class.name == 'Users::SessionsController' ||
+    controller.class.name == 'Users::PasswordsController'
   end
 
   def hide_footer?
     controller.class.name == 'Users::RegistrationsController' ||
-    controller.class.name == 'Users::SessionsController'
+    controller.class.name == 'Users::SessionsController' ||
+    controller.class.name == 'Users::PasswordsController'
   end
 
   def content_aside?

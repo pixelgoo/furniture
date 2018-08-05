@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords' 
+  }
   
   root to: 'pages#index'
-
 
   # Static pages
   get "/privacy", to: 'pages#privacy'
@@ -23,11 +26,6 @@ Rails.application.routes.draw do
 
   # Products
   resources :products
-
-  # Filters API
-  get '/filters/furnitures', to: 'filters#furnitures'
-  get '/filters/categories', to: 'filters#categories'
-  get '/filters/features', to: 'filters#features'
 
   # Requests
   get '/requests/:status', to: 'requests#index', as: 'requests'

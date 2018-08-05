@@ -16,6 +16,9 @@ ru:
         last_sign_in_ip: IP последнего входа
         locked_at: "Дата блокировки"
         password: "Пароль"
+        phone: "Телефон"
+        first_name: "Имя"
+        last_name: "Фамилия"
         password_confirmation: "Подтверждение пароля"
         remember_created_at: "Дата создания запоминания"
         remember_me: "Запомнить меня"
