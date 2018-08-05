@@ -69,13 +69,13 @@
         text-transform: uppercase;
         font-weight: 700;
         font-size: 24px;
-        margin-bottom: 8px;
+        margin-bottom: 20px;
       }
       h3 {
         font-family: inherit;
         text-transform: uppercase;
         font-weight: 300;
-        font-size: 32px;
+        font-size: 25px;
         line-height: 1;
       }
       &__btn {
@@ -221,5 +221,11 @@
     p {
       margin-bottom: 1rem;
     }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .main__screen .carousel .info h3 {
+    font-size: 23px;
   }
 }

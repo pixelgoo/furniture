@@ -53,6 +53,7 @@
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  padding-left: 200px;
 
   .form {
     &__header {
@@ -179,4 +180,14 @@
 .checkbox__label {
   color: white;
   font-size: 14px;
+  display: inline;
+  vertical-align: middle;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+[type=checkbox] {
+  vertical-align: middle;
 }
