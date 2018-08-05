@@ -3,13 +3,19 @@
   <% if RolePolicy.manufacturer_access(current_user) %>
 
     <section class="section <%= 'section_no-bg' if TariffPolicy.tariff_access(current_user) %>" id="choose-tariff">
-
-      <% if TariffPolicy.tariff_access(current_user) %>
+      <% if TrialPolicy.trial_access(current_user) %>
+        <div class="status-badge status-badge_success" style="margin-bottom: 10px;">Действует пробный период, который продлитя еще <strong><%= days_left(current_user.trial_days_left) %></strong>. После окончания пробного периода вам необходимо будет приобрести один из тарифных пакетов.</div>
+      <% end %>
+      <% if TariffPolicy.tariff_access(current_user) &&  %>
         <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
           (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
           Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
       <% else %>
-        <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+      
+        <% unless TrialPolicy.trial_access(current_user) %>
+          <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+        <% end %>
+
         <div>
           <h4 class="section__header"><%= t('tariff.choose') %></h4>
           <div class="tariff-list">

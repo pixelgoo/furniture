@@ -13,6 +13,17 @@ module ApplicationHelper
     "current" if controller_name == name || current_page?(name)
   end
 
+  def days_left(days)
+    if(days == 1 || days == 21)
+      days_text = I18n.t('time.days_1')
+    elsif([2, 3, 4].include? days)
+      days_text = I18n.t('time.days_2')
+    else
+      days_text = I18n.t('time.days_3')
+    end
+    "#{days} #{days_text}"
+  end
+
   def hide_header?
     controller.class.name == 'ProfilesController' ||
     controller.class.name == 'RequestsController' ||

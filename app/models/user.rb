@@ -69,6 +69,10 @@ class User < ApplicationRecord
     self.tariff_enddate.present? ? self.tariff_enddate > DateTime.now : false
   end
 
+  def trial_days_left
+    ((self.trial.days.from_now - self.created_at) / 1.day).to_i
+  end
+
   # =====================================================================================
   # Requests
   # =====================================================================================
