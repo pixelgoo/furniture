@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def offert
-    end
+  end
 
   def help
   end
