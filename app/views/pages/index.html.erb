@@ -149,36 +149,38 @@
                 </div>
             </div>
             <div class="contacts__form_wrap">
-            
-                <form id="contactsForm" class="contacts__form form">
-                    <div class="contacts__text text">
-                        <div class="text__header_wrap">
-                            <p class="text__header">Связаться с нами</p>
-                            <hr width="30px" size="2" align="left" color="#C8A165">
-                        </div>
+              <%= form_for @feedback, url: { action: "create", controller: "feedbacks" }, 
+              html: { class: "contacts__form form", id: "contactsForm" } do |f| %>
+                <div class="contacts__text text">
+                    <div class="text__header_wrap">
+                        <p class="text__header">Связаться с нами</p>
+                        <hr width="30px" size="2" align="left" color="#C8A165">
                     </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <input type="text" name="name" required placeholder="Имя" class="form-control input-field">
-                        </div>
+                </div>
+                <div class="select-wrapper">
+                    <div class="select form-group">
+                        <%= f.text_field :name, class: "form-control input-field", placeholder: t('forms.name') %>
                     </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <input type="email" name="email" required placeholder="E-mail" class="form-control input-field">
-                        </div>
+                </div>
+                <div class="select-wrapper">
+                    <div class="select form-group">
+                        <%= f.text_field :email, class: "form-control input-field", placeholder: t('forms.email') %>
                     </div>
-                    <div class="select-wrapper">
-                        <div class="select form-group">
-                            <textarea rows="5" required placeholder="Your comment" class="form-control input-field"></textarea>
-                        </div>
+                </div>
+                <div class="select-wrapper">
+                    <div class="select form-group">
+                        <%= f.text_area :email, class: "form-control input-field", placeholder: t('forms.text') %>
                     </div>
-                    <button class="form__btn box">
-                        <span class="box__content_wrap">
-                            <span class="icon-question icon"></span>
-                            <span class="box__content">Задать вопрос</span>
-                        </span>
-                    </button>
-                </form>
+                </div>
+                <button class="form__btn box">
+                    <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+                    <span class="box__content_wrap">
+                        <span class="icon-question icon"></span>
+                        <span class="box__content"><%= t('forms.ask') %></span>
+                    </span>
+                </button>
+                
+              <% end %>
             </div>
         </div>
         <div class="map">

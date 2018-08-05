@@ -15,12 +15,17 @@ Rails.application.routes.draw do
   get "/help", to: 'pages#help'
   get "/terms", to: 'pages#terms'
 
+  # Feedbacks
+  resources :feedbacks, only: [:create]
+
+  # Profiles
   controller :profiles do
     get '/profile' => :show
     patch '/upload_documents' => :upload_documents
     patch '/update_setting' => :update_setting
   end
 
+  # Payments
   get '/payment/:tariff', to: 'payments#subscribe', as: 'subscribe'
   post '/payment/callback', to: 'payments#callback', as: 'callback'
 
