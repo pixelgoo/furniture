@@ -54,5 +54,6 @@ Rails.application.configure do
   config.exposed_host = 'https://woodmister.herokuapp.com'
 
   config.cdn_host = 'https://d3lbdc0bfetw94.cloudfront.net/'
-  
+
+  config.assets.compile = false
 end
