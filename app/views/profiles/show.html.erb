@@ -130,5 +130,39 @@
 
   <% end %>
 
+  <% if RolePolicy.customer_access(current_user) %>
+    
+    <section class="section" id="choose-furniture">
+
+      <% if @requests.empty? %>
+        <div class="status-badge status-badge_info" style="margin: 20px 0;">Здесь вы сможете отслеживать ваши заявки. Выберите желаемую мебель из поиска и оставьте заявку по ней. Производители свяжутся с вами по телефону или электронной почте!</div>
+      <% else %>
+
+        <div class="section__header">Ваши заявки</div>
+        <hr width="60px" size="2" align="center" color="#C8A165">
+
+        <div class="card text-center">
+          <div class="card-body">
+            <% @requests.each do |request| %>
+              <%= render partial: "requests/request", locals: { request: request, status: @status } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="section__header">Выберите категорию</div>
+      <hr width="60px" size="2" align="center" color="#C8A165">
+
+      <div class="furniture-list">
+        <% @furnitures.each do |furniture| %>
+          <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id)), class: 'furniture-list__item', "data-turbolinks": "false" do %>
+            <div class="furniture-list__item-image"><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '100%' %></div>
+            <div class="furniture-list__item-title"><span><%= furniture.title %></span></div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+
 </div>
 

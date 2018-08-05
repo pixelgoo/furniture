@@ -5,7 +5,7 @@ class RequestsPolicy < Policy
   end
 
   def self.tariff_access(user, request)
-    request.created_at <= Time.now - user.tariff.request_visibility.hours
+    user.manufacturer? ? request.created_at <= Time.now - user.tariff.request_visibility.hours : true
   end
 
 end

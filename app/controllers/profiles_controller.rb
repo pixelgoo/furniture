@@ -7,6 +7,10 @@ class ProfilesController < ApplicationController
       @tariffs = Tariff.all
       @settings = UserSettingsService.settings(current_user)
     end
+    if current_user.customer?
+      @furnitures = Furniture.all
+      @requests = current_user.customer_requests
+    end
   end
 
   def upload_documents
