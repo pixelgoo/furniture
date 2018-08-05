@@ -340,6 +340,9 @@ ru:
     save_furnitures: "Сохранить выбранные категории"
     no_tariff_to_profile: "Профиле"
 
+  feedback:
+    success: "Cпасибо за ваш отзыв! Мы ответим вам на электронную почту в ближайшее время!"
+
   # Profile
   profile:
     active: "Активен"

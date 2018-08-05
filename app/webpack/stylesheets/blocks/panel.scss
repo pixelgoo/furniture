@@ -1,0 +1,27 @@
+.panel {
+  height: calc(100vh - 94px);
+  display: flex;
+
+  &_success {
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #eee;
+  }
+
+  &__icon {
+    margin-bottom: 20px;
+    font-size: 8em;
+    line-height: 1;
+    color: $pastel-yellow;
+
+    .icon {
+      margin: 0;
+    }
+  }
+
+  &__text {
+    margin-bottom: 0;
+    font-size: 1.215em;
+  }
+}
