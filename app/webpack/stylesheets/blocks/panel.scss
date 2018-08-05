@@ -2,11 +2,13 @@
   height: calc(100vh - 94px);
   display: flex;
 
-  &_success {
-    margin: auto;
-    padding: 30px;
-    text-align: center;
-    border: 1px solid #eee;
+  &__inner {
+    &_success {
+      margin: auto;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid #eee;
+    }
   }
 
   &__icon {
