@@ -15,11 +15,11 @@ module ApplicationHelper
 
   def days_left(days)
     if(days == 1 || days == 21)
-      days_text = I18n.t('time.days_1')
+      days_text = I18n.t('times_helpers.days_1')
     elsif([2, 3, 4].include? days)
-      days_text = I18n.t('time.days_2')
+      days_text = I18n.t('times_helpers.days_2')
     else
-      days_text = I18n.t('time.days_3')
+      days_text = I18n.t('times_helpers.days_3')
     end
     "#{days} #{days_text}"
   end

@@ -11,7 +11,7 @@
           (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
           Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
       <% else %>
-      
+
         <% unless TrialPolicy.trial_access(current_user) %>
           <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
         <% end %>
@@ -156,8 +156,15 @@
         </div>
       <% end %>
 
-      <div class="section__header">Выберите категорию</div>
+      <div class="section__header" style="margin-top:30px">Приобрести товар</div>
       <hr width="60px" size="2" align="center" color="#C8A165">
+
+      <div>
+        <%= form_tag(products_path, method: "get", remote: true, class: "product-filters__search") do %>
+          <%= text_field_tag :search, params[:search], placeholder: t('product.search_placeholder'), autocomplete: 'off' %>
+          <%= submit_tag "", name: nil, id: "products-search-button" %>
+        <% end %>
+      </div>
 
       <div class="furniture-list">
         <% @furnitures.each do |furniture| %>
