@@ -22,47 +22,46 @@ if Rails.env.development? then
 end
 
 Tariff.create([
-    { name: 'basic', price: '3000', months: 3 },
-    { name: 'standard', price: '5500', months: 6 },
-    { name: 'premium', price: '10000', months: 12 }
+    { name: 'basic', price: '3000', months: 3, region_counter: 1 },
+    { name: 'standard', price: '5500', months: 6, region_counter: 3 },
+    { name: 'premium', price: '10000', months: 12, region_counter: 24 }
 ])
 
 Region.create([
-    { name: 'Винницкая' },
-    { name: 'Волынская' },
-    { name: 'Днепропетровская' },
-    { name: 'Донецкая' },
-    { name: 'Житомирская' },
-    { name: 'Закарпатская' },
-    { name: 'Запорожская' },
-    { name: 'Ивано-Франковская' },
-    { name: 'Киевская' },
-    { name: 'Кировоградская' },
-    { name: 'Луганская' },
-    { name: 'Львовская' },
-    { name: 'Николаевская' },
-    { name: 'Одесская' },
-    { name: 'Полтавская' },
-    { name: 'Ровенская' },
-    { name: 'Сумская' },
-    { name: 'Тернопольская' },
-    { name: 'Харьковская' },
-    { name: 'Херсонская' },
-    { name: 'Хмельницкая' },
-    { name: 'Черкасская' },
-    { name: 'Черниговская' },
-    { name: 'Черновицкая' },
+    { title: 'Винницкая' },
+    { title: 'Волынская' },
+    { title: 'Днепропетровская' },
+    { title: 'Донецкая' },
+    { title: 'Житомирская' },
+    { title: 'Закарпатская' },
+    { title: 'Запорожская' },
+    { title: 'Ивано-Франковская' },
+    { title: 'Киевская' },
+    { title: 'Кировоградская' },
+    { title: 'Луганская' },
+    { title: 'Львовская' },
+    { title: 'Николаевская' },
+    { title: 'Одесская' },
+    { title: 'Полтавская' },
+    { title: 'Ровенская' },
+    { title: 'Сумская' },
+    { title: 'Тернопольская' },
+    { title: 'Харьковская' },
+    { title: 'Херсонская' },
+    { title: 'Хмельницкая' },
+    { title: 'Черкасская' },
+    { title: 'Черниговская' },
+    { title: 'Черновицкая' },
 ])
 
 Furniture.create([
-    { title: 'Кровати' },
+    { title: 'Мебель для спальни' },
     { title: 'Мягкая мебель' },
     { title: 'Деревянная мебель' },
     { title: 'Шкафы' },
     { title: 'Комоды и тумбы' },
     # TODO: write Categories for these Furnituries
     { title: 'Столы и стулья' },
-    { title: 'Мебель для ванной' },
     { title: 'Мебель для гостиной' },
     { title: 'Мебель для прихожей' }
 ])

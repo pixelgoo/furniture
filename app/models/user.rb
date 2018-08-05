@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :furnitures
 
   MAX_FILES_UPLOADED = 4
+  SETTINGS_AVAILABLE = [:region, :furniture]
 
   # =====================================================================================
   # General
@@ -66,6 +67,10 @@ class User < ApplicationRecord
 
   def tariff_active?
     self.tariff_enddate.present? ? self.tariff_enddate > DateTime.now : false
+  end
+
+  def trial_days_left
+    ((self.trial.days.from_now - self.created_at) / 1.day).to_i
   end
 
   # =====================================================================================

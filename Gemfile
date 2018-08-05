@@ -19,6 +19,7 @@ gem 'liqpay', github: 'liqpay/sdk-ruby'
 gem 'money-rails', '~>1'
 gem 'aws-sdk', '~> 2'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rails_admin', '~> 1.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

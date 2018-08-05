@@ -1,30 +1,36 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords' 
+  }
   
-  root to: 'pages#show', page: 'index'
+  root to: 'pages#index'
 
-  %w(help).each do |page|
-    get "/pages/${page}", to: 'pages#show', as: page, page: page
-  end
+  # Static pages
+  get "/privacy", to: 'pages#privacy'
+  get "/offert", to: 'pages#offert'
+  get "/help", to: 'pages#help'
+  get "/terms", to: 'pages#terms'
 
+  # Feedbacks
+  resources :feedbacks, only: [:create]
+
+  # Profiles
   controller :profiles do
     get '/profile' => :show
     patch '/upload_documents' => :upload_documents
-    patch '/update_regions' => :update_regions
-    patch '/update_furnitures' => :update_furnitures
+    patch '/update_setting' => :update_setting
   end
 
+  # Payments
   get '/payment/:tariff', to: 'payments#subscribe', as: 'subscribe'
   post '/payment/callback', to: 'payments#callback', as: 'callback'
 
   # Products
   resources :products
-
-  # Filters API
-  get '/filters/furnitures', to: 'filters#furnitures'
-  get '/filters/categories', to: 'filters#categories'
-  get '/filters/features', to: 'filters#features'
 
   # Requests
   get '/requests/:status', to: 'requests#index', as: 'requests'

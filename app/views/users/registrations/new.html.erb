@@ -1,22 +1,23 @@
+<%= devise_error_messages! %>
 
 <div class="action">
 
-  <%= link_to root_path, class: 'action__link back' do %>
+  <%= link_to url_for(:back), class: 'action__link back' do %>
     <div class="back__logo"></div>
       
     <div class="back__label">
       <span class="icon-arrow-left-circle item__icon"></span>
-      <span>Назад</span>
+      <span><%= t('menu.back') %></span>
     </div>
   <% end %>
 
   <main class="action__container registration">
     <div class="registration__form">
-      <p class="form__header">Регистрация</p>
+      <p class="form__header"><%= t('button.sign_up') %></p>
 
       <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#register-customer">Пользователь</a></li>
-        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#register-manufacturer">Производитель</a></li>
+        <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#register-customer"><%= t('user.customer') %></a></li>
+        <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#register-manufacturer"><%= t('user.manufacturer') %></a></li>
       </ul>
 
       <div class="tab-content">
@@ -38,9 +39,7 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
           html: { id: "registrationCustomer", class: "registration__form form" }) do |f| %>
 
-          <%= devise_error_messages! %>
-
-          <p class="font_white" align="center">или с помощью этой формы</p>
+          <p class="font_white" style="margin-bottom: 10px" align="center"><%= t('login.or_with') %></p>
 
           <div class="select-wrapper">
             <div class="select form-group">
@@ -84,13 +83,9 @@
               placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
             </div>
           </div>
-          <div class="">
-            <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'customer_terms_of_service' %>
-            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">пользовательского соглашения</a></div>
-          </div>
-          <div class="">
-            <%= check_box_tag 'user[subscribe]', "1", true, id: 'customer_subscribe' %>
-            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          <div>
+            <%= check_box_tag 'user[privacy]', "1", true, id: 'customer_privacy' %>
+            <div class="checkbox__label">Я принимаю <%= link_to 'политику конфеденциальности', privacy_path, target: '_blank' %> и даю согласие на обработку персональных данных</div>
           </div>
           <%= hidden_field_tag 'user[role_name]', "Customer", id: 'customer_role_name' %>
 
@@ -102,6 +97,11 @@
             </span>
           </div>
 
+          <div class="form__links">
+            <%= t('login.already_acc') %>
+            <%= link_to t('login.enter'), new_user_session_path %>
+          </div>
+
           <% end %>
         </div>
 
@@ -109,8 +109,6 @@
 
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
           html: { id: "registrationManufacturer", class: "registration__form form" }) do |f| %>
-
-          <%= devise_error_messages! %>
 
           <div class="select-wrapper">
             <div class="select form-group">
@@ -160,13 +158,13 @@
               placeholder: 'Подтвердите пароль', required: true, autocomplete: 'off' %>
             </div>
           </div>
-          <div class="">
-            <%= check_box_tag 'user[terms_of_service]', "1", true, id: 'manufacturer_terms_of_service' %>
-            <div class="checkbox__label">Я принимаю условия <a target="_blank" href="#" class="link_blue">соглашения для производителей</a></div>
+          <div>
+            <%= check_box_tag 'user[privacy]', "1", true, id: 'manufacturer_privacy' %>
+            <div class="checkbox__label">Я принимаю <%= link_to 'политику конфеденциальности', privacy_path, target: '_blank' %> и даю согласие на обработку персональных данных</div>
           </div>
-          <div class="">
-            <%= check_box_tag 'user[subscribe]', "1", true, id: 'manufacturer_subscribe' %>
-            <div class="checkbox__label">Подписаться на рассылку новостей</div>
+          <div>
+            <%= check_box_tag 'user[offert]', "1", true, id: 'manufacturer_offert' %>
+            <div class="checkbox__label">Я принимаю <%= link_to 'договор публичной оферты', offert_path, target: '_blank' %> </a></div>
           </div>
           <%= hidden_field_tag 'user[role_name]', "Manufacturer", id: 'manufacturer_role_name' %>
 
@@ -176,6 +174,11 @@
               <span class="icon-pencil icon"></span>
               <span class="box__content"><%= t('button.sign_up') %></span>
             </span>
+          </div>
+
+          <div class="form__links">
+            <%= t('login.already_acc') %>
+            <%= link_to t('login.enter'), new_user_session_path %>
           </div>
 
           <% end %>

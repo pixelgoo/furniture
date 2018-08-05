@@ -10,16 +10,40 @@
     &__header {
         width: 100%;
         margin: 0;
-        padding: 35px 0px;
+        padding: 25px 0 0 0;
         text-align: center;
-        font-family: 'Alegreya Sans', sans-serif;
+        font-family: inherit;
         font-weight: 300;
-        font-size: 44px;
+        font-size: 26px;
         text-transform: uppercase;
     }
 
+    &_no-shadow {
+        box-shadow: none!important;
+        border-radius: 0;
+    }
+
+    &_text-only {
+        > ul {
+            list-style: none;
+            margin-bottom: 30px;
+
+            > li {
+                margin: 7px 0;
+            }
+
+            ul {
+                list-style: disc;
+            }
+        }
+
+        h1 {
+          margin-bottom: 20px;
+        }
+    }
+
     &_no-bg {
-      background: none !important;
+      background: none!important;
     }
 
     @media screen and (max-width: $body-width) {

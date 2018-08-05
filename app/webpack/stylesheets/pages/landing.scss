@@ -1,0 +1,231 @@
+.main__screen {
+  .carousel {
+    &__control {
+      border: 30px solid transparent;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 50%;
+      margin-top: -30px;
+      .icon {
+        transition: ease 0.4s;
+        width: 17px;
+        position: absolute;
+        right: -25px;
+        font-size: 12px;
+      }
+      &_left {
+        transition: ease 0.4s;
+        border-left: 32px solid #fff;
+        .icon {
+          transition: ease 0.4s;
+          left: -30px;
+        }
+        &:hover {
+          transition: ease 0.4s;
+          border-left: 32px solid #C8A165;
+          .icon {
+            transition: ease 0.4s;
+            color: #fff;
+          }
+        }
+      }
+      &_right {
+        border-right: 32px solid #fff;
+        .icon {
+          right: -30px;
+        }
+        &:hover {
+          transition: ease 0.4s;
+          border-right: 32px solid #C8A165;
+          .icon {
+            transition: ease 0.4s;
+            color: #fff;
+          }
+        }
+      }
+    }
+    .carousel-indicators {
+      li {
+        background-color: rgba(200, 161, 101, 0.5);
+      }
+      .active {
+        background-color: rgba(200, 161, 101, 1);
+      }
+    }
+    .info {
+      margin: auto 0;
+      z-index: 2;
+      width: 76%;
+      padding: 0 100px 0 20%;
+
+      &_wrap {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+      }
+      h1 {
+        font-family: inherit;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      h3 {
+        font-family: inherit;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 25px;
+        line-height: 1;
+      }
+      &__btn {
+        max-width: 380px;
+        margin: 20px 0 0 0;
+      }
+    }
+    .carousel-item:nth-child(1) {
+      height: 570px;
+      background: url("../../images/top__item_1.jpg")  no-repeat center;
+      background-size: cover;
+    }
+    .carousel-item:nth-child(2) {
+      height: 570px;
+      background: url("../../images/top__item_2.jpg")  no-repeat center;
+      background-size: cover;
+    }
+  }
+}
+
+.contacts {
+  width: 100%;
+
+  &_wrap {
+    transition: ease 0.4s;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 40px;
+
+    .map {
+      width: 60%;
+    }
+  }
+
+  &_small {
+     max-width: 360px;
+  }
+
+  &_middle {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__form {
+    width: 100%;
+    padding: 0 !important;
+
+    .input-field {
+      background-color: #f8f8f8!important;
+    }
+
+    &_wrap {
+      margin-top: 40px;
+    }
+
+    textarea {
+      height: auto;
+    }
+
+    .box {
+      margin-bottom: 0;
+    }
+  }
+}
+.contact {
+  width: 100%;
+  margin: 10px 0;
+  &__icon {
+    transition: ease 0.4s;
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin-right: 11px;
+  }
+  &__info {
+    display: inline-block;
+    vertical-align: middle;
+    a {
+      transition: ease 0.4s;
+      &:hover {
+        transition: ease 0.4s;
+        text-decoration: underline!important;
+      }
+    }
+  }
+  &:hover {
+    .contact__icon {
+      transition: ease 0.4s;
+      background-color: #C8A165;
+      color: #fff;
+    }
+  }
+}
+
+.client {
+  &_example {
+    transition: ease 0.4s;
+    width: 100%;
+    max-width: 160px;
+    margin: 20px;
+    opacity: .5;
+    &:hover {
+      transition: ease 0.4s;
+      opacity: 1;
+    }
+  }
+  &__list {
+    transition: ease 0.4s;
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    -webkit-flex-flow: row wrap;
+  }
+}
+
+.about {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: ease 0.4s;
+  background-color: #fff;
+  padding: 40px;
+  position: relative;
+  &__img {
+    width: 100%;
+    max-width: 700px;
+  }
+  &__text {
+    width: 100%;
+    max-width: 700px;
+    background-color: #f8f8f8;
+    padding: 30px;
+    margin: auto 0 auto -200px;
+    text-align: left;
+    font-size: 16px;
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .main__screen .carousel .info h3 {
+    font-size: 23px;
+  }
+}

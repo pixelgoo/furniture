@@ -41,7 +41,27 @@ feature "[sessions] User" do
     expect(User.last.email).to eq "tester@example.tld"
   end
 
-  scenario "has all Furnitures after sign up" do
+  scenario "has all Furnitures after sign up if it's Manufacturer" do
+    visit "/"
+
+    click_link "sign_up"
+    expect(current_path).to eq(new_user_registration_path)
+
+    fill_in "manufacturer_first_name", with: "Tony"
+    fill_in "manufacturer_last_name", with: "Example"
+    fill_in "manufacturer_phone", with: "+3809999999"
+    fill_in "manufacturer_email", with: "tester@example.tld"
+    fill_in "manufacturer_city", with: "Kiev"
+    fill_in "manufacturer_password", with: "123456"
+    fill_in "manufacturer_password_confirmation", with: "123456"
+
+    form = find '#registrationManufacturer'
+    page.submit form
+
+    expect(User.last.furnitures).to eq Furniture.all
+  end
+  
+  scenario "doesn't have Furnitures if its Customer" do
     visit "/"
 
     click_link "sign_up"
@@ -58,6 +78,6 @@ feature "[sessions] User" do
     form = find '#registrationCustomer'
     page.submit form
 
-    expect(User.last.furnitures).to eq Furniture.all
+    expect(User.last.furnitures).to eq Furniture.none
   end
 end

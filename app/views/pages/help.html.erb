@@ -1,0 +1,80 @@
+<section class="section section_no-shadow section_text-only">
+    <div class="contacts contacts_middle">
+        <%= form_for @feedback, url: { action: "create", controller: "feedbacks" }, 
+          html: { class: "contacts__form form", id: "contactsForm" } do |f| %>
+            <div class="contacts__text text">
+                <div class="text__header_wrap">
+                    <p class="text__header">Связаться с нами</p>
+                    <hr width="30px" size="2" align="left" color="#C8A165">
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="select form-group">
+                    <%= f.text_field :name, class: "form-control input-field", placeholder: t('forms.name') %>
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="select form-group">
+                    <%= f.text_field :email, class: "form-control input-field", placeholder: t('forms.email') %>
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="select form-group">
+                    <%= f.text_area :email, class: "form-control input-field", placeholder: t('forms.text') %>
+                </div>
+            </div>
+            <button class="form__btn box">
+                <%= f.submit 'Сохранить', class: 'btn-hidden' %>
+                <span class="box__content_wrap">
+                    <span class="icon-question icon"></span>
+                    <span class="box__content"><%= t('forms.ask') %></span>
+                </span>
+            </button>
+        <% end %>
+    </div>
+
+    <div id="faq" class="faq">
+        <div class="card">
+            <div class="card-header" id="question1" data-toggle="collapse" data-target="#answer1" aria-expanded="true" aria-controls="answer1">
+                <h5>Сколько надо выпить «Кока-колы», чтобы разъело желудок?</h5>
+                <div class="arrow-collapse"><span class="icon icon-arrow-down-circle"></span></div>
+            </div>
+
+            <div id="answer1" class="collapse show" aria-labelledby="question1" data-parent="#faq">
+                <div class="card-body">
+                    Вы можете выпить хоть океан кока-колы. Говорят, что в коле столько кислоты, что помести в стакан с ней железный гвоздь — и он через несколько дней растворится. Это правда — гвоздь действительно растворится.
+                    Но, если вы положите этот гвоздь в стакан с грейпфрутовым соком, ваш гвоздь растворится даже быстрее — грейпфрутовый сок кислотнее кока-колы. При этом никто не кричит о его вреде. Почему?
+                    Здесь самое время вспомнить, что наш желудок — это кислая среда. Кислотность колы для желудка — детский лепет.
+                    Я не говорю, что кока-кола — невредный напиток. Но вред наносит не его кислотность, а количество сахара в составе. Если вы выпьете океан колы, то получите много лишнего веса, но никак не дырку в животе.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header collapsed" id="question2" data-toggle="collapse" data-target="#answer2" aria-expanded="false" aria-controls="answer2">
+                <h5>Каков процент смертности детенышей жирафа при рождении от падения с высоты роста матери?</h5>
+                <div class="arrow-collapse"><span class="icon icon-arrow-down-circle"></span></div>
+            </div>
+
+            <div id="answer2" class="collapse" aria-labelledby="question2" data-parent="#faq">
+                <div class="card-body">
+                    Несмотря на падение с большой высоты, такие роды не несут угрозы детёнышу; он приземляется на плечо, шея гибкая и легко уходит в сторону. Тут можно было бы сломать ключицу, но у жирафа, как и у всех копытных, её нет — она мешает бегать (а вот у жокеев ключица есть, и они часто её ломают при падении с лошади). Так что долететь до земли — самое простое; но с первой же минуты жирафят ждут большие испытания: за первый месяц жизни хищники съедают половину, ещё за 11 месяцев — ещё четверть всех жирафят. Правда потом жизнь делается легче: взрослого здорового жирафа почти никто не может добыть, он убивает льва одним ударом копыта.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header collapsed" id="question3" data-toggle="collapse" data-target="#answer3" aria-expanded="false" aria-controls="answer3">
+                <h5>Почему иногда мы зависаем и долго смотрим в одну точку?</h5>
+                <div class="arrow-collapse"><span class="icon icon-arrow-down-circle"></span></div>
+            </div>
+
+            <div id="answer3" class="collapse" aria-labelledby="question3" data-parent="#faq">
+                <div class="card-body">
+                    Такое зависание - это либо "перегрузка", либо "режим сна".
+                    По аналогии с компьютером:
+                    - Открыто слишком много программ, и компьютер не успевает обработать их все. Так и у людей - если надо решить сразу очень много проблем, или они очень сложные, то человек начинает "виснуть".
+                    - Либо наоборот - когда нет никаких активных и важных задач, можно не тратить мыслетопливо и зависнуть. В такой момент мозг отдыхает.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

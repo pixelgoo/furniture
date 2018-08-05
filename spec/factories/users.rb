@@ -12,6 +12,7 @@ FactoryBot.define do
       password_confirmation "123456"
       role
       documents_confirmed true
+      trial 14
   end
 
 end

@@ -1,19 +1,10 @@
 require 'rails_helper'
 
 feature "[payments] Manufacturer can" do
-
-  before(:each) do
-    create(:user, role_name: 'Manufacturer', email: "login@example.com", password: "123456", confirmed_at: DateTime.now)
-    visit "/"
-    click_link "sign_in"
-    fill_in "user_email", with: "login@example.com"
-    fill_in "user_password", with: "123456"
-    form = find '#login'
-    page.submit form
-  end
   
   scenario "subscribe to Tariff" do
-    user = User.last
+    user = login_as('Manufacturer')
+
     tariff = create(:tariff)
 
     visit "/profile"

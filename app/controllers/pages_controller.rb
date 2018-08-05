@@ -1,11 +1,20 @@
 class PagesController < ApplicationController
-  def show
-    case params[:page]
-    when 'index'
-      @furnitures = Furniture.all
-      @random_products = Product.order("RANDOM()").first(3)
-    end
+  def index
+    @furnitures = Furniture.all
+    @random_products = Product.order("RANDOM()").first(3)
+    @feedback = Feedback.new
+  end
 
-    render template: "pages/#{params[:page]}"
+  def privacy
+  end
+
+  def offert
+  end
+
+  def help
+    @feedback = Feedback.new
+  end
+
+  def terms
   end
 end

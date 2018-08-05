@@ -16,7 +16,7 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Fira Sans', sans-serif !important;
+    font-family: 'Roboto', sans-serif!important;
     line-height: 1.5;
     font-size: 14px;
     font-weight: 400;
@@ -54,4 +54,8 @@ a {
 
 #error_explanation {
     color: white;
+}
+
+.wood {
+  color: $pastel-yellow!important;
 }

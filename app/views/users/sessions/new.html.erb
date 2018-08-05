@@ -1,11 +1,13 @@
+<%= devise_error_messages! %>
+
 <div class="action">
 
-  <%= link_to root_path, class: 'action__link back' do %>
+  <%= link_to url_for(:back), class: 'action__link back' do %>
     <div class="back__logo"></div>
       
     <div class="back__label">
       <span class="icon-arrow-left-circle item__icon"></span>
-      <span>Назад</span>
+      <span><%= t('menu.back') %></span>
     </div>
   <% end %>
 
@@ -13,9 +15,7 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name),
     html: { id: "login", class: "registration__form form" }) do |f| %>
 
-    <%= devise_error_messages! %>
-
-    <p class="form__header">Войти в систему</p>
+    <p class="form__header"><%= t('login.enter') %></p>
 
     <div class="select-wrapper">
       <div class="select form-group">
@@ -31,16 +31,22 @@
     </div>
     <div class="">
         <%= check_box_tag 'user[remember_me]', id: 'user_remember_me' %>
-        <div class="checkbox__label">Запомнить меня</div>
+        <div class="checkbox__label"><%= t('login.remember_me') %></div>
     </div>
 
      <div class="box form-submit-button" id="loginSubmit">
       <%= f.submit "Логин", class: 'btn-hidden' %>
       <span class="box__content_wrap">
-        <span class="icon-pencil icon"></span>
+        <span class="icon-login icon"></span>
         <span class="box__content"><%= t('button.sign_in') %></span>
       </span>
-    </div>     
+    </div>   
+
+    <div class="form__links">
+      <%= t('login.no_acc') %>
+      <%= link_to t('login.create'), new_user_registration_path %>
+      <%= link_to t('login.forgot_pass'), new_user_password_path %>
+    </div>
 
     <% end %>
   </main>

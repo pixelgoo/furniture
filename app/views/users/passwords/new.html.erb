@@ -1,0 +1,37 @@
+<%= devise_error_messages! %>
+
+<div class="action">
+
+  <%= link_to url_for(:back), class: 'action__link back' do %>
+    <div class="back__logo"></div>
+      
+    <div class="back__label">
+      <span class="icon-arrow-left-circle item__icon"></span>
+      <span><%= t('menu.back') %></span>
+    </div>
+  <% end %>
+
+  <main class="action__container recover">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),
+    html: { id: "recover", class: "recover__form form" }) do |f| %>
+
+    <p class="form__header"><%= t('login.recover') %></p>
+
+    <div class="select-wrapper">
+      <div class="select form-group">
+        <%= email_field_tag 'user[email]', nil, id: 'user_email', class: 'form-control input-field', 
+        placeholder: 'Электронная почта', autofocus: true, autocomplete: 'email' %>
+      </div>
+    </div>
+    
+    <div class="box form-submit-button" id="loginSubmit">
+      <%= f.submit "Логин", class: 'btn-hidden' %>
+      <span class="box__content_wrap">
+        <span class="icon-user-following icon"></span>
+        <span class="box__content"><%= t('button.recover') %></span>
+      </span>
+    </div>   
+
+    <% end %>
+  </main>
+</div>

@@ -47,11 +47,47 @@
   }
 }
 .action__container {
-  min-height: 100vh;
-  width: 100%;
-  padding: 50px 0 50px 17%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding-left: 200px;
+
+  .form {
+    &__header {
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      color: white;
+    }
+    &__footer {
+      font-size: 14px;
+      text-align: center;
+    }
+    &__links {
+      display: flex;
+      color: white !important;
+      font-size: 14px;
+      margin-top: 18px;
+      opacity: 0.95;
+      
+      a {
+        text-decoration: underline;
+        margin-left: 5px;
+
+        &:first-child {
+          margin-right: auto;
+        }
+      }
+    }
+    .form-control {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
 }
 .registration {
   &__form {
@@ -66,19 +102,10 @@
       margin-left: -80px;
     }
   }
-  .form {
-    &__header {
-      width: 100%;
-      font-size: 26px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    &__footer {
-      font-size: 14px;
-      text-align: center;
-    }
-  }
+  
   .nav-tabs {
+    display: flex;
+    justify-content: center;
     width: 100%;
     border-color: rgba(255, 255, 255, 0.3);
     a {
@@ -88,6 +115,7 @@
       padding: 0px 20px;
       border: none!important;
       border-radius: 0!important;
+      font-size: 14px;
     }
     .active {
       background-color: rgba(255, 255, 255, .7) !important;
@@ -104,10 +132,10 @@
   margin: 10px auto;
   &__item {
     margin: 0 10px;
-    transition: ease 0.4s;
+    transition: ease 0.2s;
     display: flex;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 100%;
     .icon {
       color: #fff;
@@ -124,10 +152,9 @@
       background-color: #1dcaff;
     }
     &:hover {
-      transition: ease 0.4s;
       background-color: #fff;
       .icon {
-        transition: ease 0.4s;
+        transition: ease 0.3s;
         color: #C8A165;
       }
     }
@@ -152,5 +179,15 @@
 
 .checkbox__label {
   color: white;
-  font-size: 16px;
+  font-size: 14px;
+  display: inline;
+  vertical-align: middle;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+[type=checkbox] {
+  vertical-align: middle;
 }

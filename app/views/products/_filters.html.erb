@@ -1,17 +1,17 @@
 <div class="product-filters">
 
   <div class="product-filters__help">
-    Используйте поиск по названию или выберите товар с помощью фильтров
+    <%= t('product.filters_desc') %>
   </div>
 
   <%= form_tag(products_path, method: "get", remote: true, class: "product-filters__search") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Поиск товара...", autocomplete: 'off' %>
+    <%= text_field_tag :search, params[:search], placeholder: t('product.search_placeholder'), autocomplete: 'off' %>
     <%= submit_tag "", name: nil, id: "products-search-button" %>
   <% end %>
 
   <div class="product-filters__filter" id="filter-furnitures">
 
-    <div class="product-filters__title">Вид мебели<span class="icon icon-arrow-down"></span></div>
+    <div class="product-filters__title"><%= t('product.filter_furniture') %><span class="icon icon-arrow-down"></span></div>
 
     <% if @current_filters[:furniture] %>
       <div class="filter-furnitures__item">
@@ -46,7 +46,7 @@
 
     <div class="product-filters__filter" id="filter-categories">
 
-      <div class="product-filters__title">Выберите категорию<span class="icon icon-arrow-down"></span></div>
+      <div class="product-filters__title"><%= t('product.filter_furniture') %><span class="icon icon-arrow-down"></span></div>
 
       <% if @current_filters[:category] %>
         <div class="product-filters__current"><%= @current_filters[:category].title %></div>

@@ -4,57 +4,34 @@ class ProfilesController < ApplicationController
 
   def show
     if current_user.manufacturer?
-      @user_files_uploaded = current_user.files_uploaded == User::MAX_FILES_UPLOADED
-      @user_tariff_active = current_user.tariff_active?
-      @user_documents_confirmed = current_user.documents_confirmed
       @tariffs = Tariff.all
-
-      @regions_ids = Region.all.collect { |region| region.id }
-      @user_regions_ids = current_user.regions.collect { |region| region.id }
-
-      @furnitures = Furniture.all
-      @user_furnitures_ids = current_user.furnitures.collect { |furniture| furniture.id }
-      @furnitures_ids = Furniture.all.collect { |furniture| furniture.id }
+      @settings = UserSettingsService.settings(current_user)
     end
-    @regions = Region.all
+    if current_user.customer?
+      @furnitures = Furniture.all
+      @requests = current_user.customer_requests
+    end
   end
 
   def upload_documents
     if current_user.files_uploaded + 1 > User::MAX_FILES_UPLOADED
-      logger.warn "File uploading: detected file upload excess count"
+      logger.warn "profiles#upload_documents: Detected file upload excess count"
     else
       current_user.files_uploaded += 1
       current_user.save
     end
   end
 
-  def update_regions
-    regions = Region.all
-    user_regions = current_user.regions
-    params[:set_region].each do |index, checked|
-      region = regions[index.to_i - 1]
-      if checked == '1'
-        user_regions << region unless user_regions.include? region
-      else 
-        user_regions.delete region if user_regions.include? region
-      end
+  # Updates user habtm associations (regions, furnitures)
+  def update_setting
+    settings = UserSettingsService.new(params, current_user)
+    if settings.validate
+      settings.update
+      flash[:success] = I18n.t("profile.#{params[:model]}s_changed")
+    else  
+      logger.warn "profiles#update_setting: Settings update wasn't validated"
     end
-    flash[:success] = I18n.t('profile.regions_changed')
-    redirect_to profile_path
-  end
 
-  def update_furnitures
-    furnitures = Furniture.all
-    user_furnitures = current_user.furnitures
-    params[:set_furniture].each do |index, checked|
-      furniture = furnitures[index.to_i - 1]
-      if checked == '1'
-        user_furnitures << furniture unless user_furnitures.include? furniture
-      else 
-        user_furnitures.delete furniture if user_furnitures.include? furniture
-      end
-    end
-    flash[:success] = I18n.t('profile.furnitures_changed')
     redirect_to profile_path
   end
 

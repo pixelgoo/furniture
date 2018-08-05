@@ -1,36 +1,42 @@
 <div class="p-settings">
 
-  <% if current_user.manufacturer? %>
+  <% if RolePolicy.manufacturer_access(current_user) %>
 
-    <section class="section <%= 'section_no-bg' if @user_tariff_active %>" id="choose-tariff">
-
-      <% if @user_tariff_active %>
-      <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
-        (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
-        Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
+    <section class="section <%= 'section_no-bg' if TariffPolicy.tariff_access(current_user) %>" id="choose-tariff">
+      <% if TrialPolicy.trial_access(current_user) %>
+        <div class="status-badge status-badge_success" style="margin-bottom: 10px;">Действует пробный период, который продлитя еще <strong><%= days_left(current_user.trial_days_left) %></strong>. После окончания пробного периода вам необходимо будет приобрести один из тарифных пакетов.</div>
+      <% end %>
+      <% if TariffPolicy.tariff_access(current_user) &&  %>
+        <div class="status-badge status-badge_success">Вы приобрели тарифный пакет "<%= t("tariff.#{current_user.tariff.name}") %>"
+          (действителен до <%= current_user.tariff_enddate.strftime("%d-%m-%Y") %>).
+          Перейдите в <span class="icon icon-bell"></span><%= link_to 'Заявки', requests_path(:new) %> для просмотра заявок от покупателей.</div>
       <% else %>
-      <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
-      <div>
-        <h4 class="section__header"><%= t('tariff.choose') %></h4>
-        <div class="tariff-list">
-          <% @tariffs.each do |tariff| %>
-          <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
-          <% end %>
+
+        <% unless TrialPolicy.trial_access(current_user) %>
+          <div class="status-badge status-badge_info">Для начала работы с Woodmister вам необходимо приобрести один из тарифных пакетов.</div>
+        <% end %>
+
+        <div>
+          <h4 class="section__header"><%= t('tariff.choose') %></h4>
+          <div class="tariff-list">
+            <% @tariffs.each do |tariff| %>
+            <%= render partial: "blocks/tariff", locals: { tariff: tariff } %>
+            <% end %>
+          </div>
         </div>
-      </div>
       <% end %>
 
     </section>
 
-    <section class="section">
+    <section class="section"  id="choose-data">
 
-      <% if @user_documents_confirmed %>
+      <% if UserPolicy.confirmed_access(current_user) %>
 
         <div class="status-badge status-badge_success">Ваш аккаунт и документы подтверждены администрацией.</div>
 
       <% else %>
 
-        <% if @user_files_uploaded %>
+        <% if UserPolicy.documents_uploaded_access(current_user) %>
 
           <div class="status-badge status-badge_info">Ваши документы загружены и модерируются. После завершения модерации вы получите электронное письмо и откроете доступ к системе Woodmister.</div>
 
@@ -69,6 +75,14 @@
 
           <% end %>
 
+          <div class="form-group">
+            <div class="form-check form-check-inline form-check_confirm-using-data">
+              <label class="form-check-label" for="confirm_data">
+                <input name="confirm_data" type="hidden" value="0"><input class="form-check-input form-check_confirm-using-data" type="checkbox" value="1" checked="checked" name="confirm_data" id="confirm_data">
+                Я разрешаю использование моих персональных данных
+              </label>
+            </div>
+          </div>
           <div class="status-badge status-badge_info">После модерации ваших документов вы получите электронное письмо и откроете доступ к системе.</div>
 
         <% end %>
@@ -76,106 +90,92 @@
       <% end %>
 
     </section>
+  
+    <% ['region', 'furniture'].each do |model| %>
 
-    <section class="section" id="choose-regions">
+      <section class="section" id="choose-<%= model %>s">
 
-      <div class="status-badge status-badge_info">Укажите из каких областей Украины вы желаете получать заявки.</div>
+        <div class="status-badge status-badge_info"><%= t("profile.settings_#{model}s") %></div>
 
-      <%= form_for(:set_region, url: update_regions_path, method: :patch, html: { class: 'regions' }) do |f| %>
-        <div class="form-group">
-          <div class="form-check form-check-inline form-check_all-regions">
-            <%= f.label :all, class: 'form-check-label' do %>
-            <%= f.check_box :all, class: 'form-check-input form-check-input_all-regions', checked: @user_regions_ids == @regions_ids %>
-            <%= t('profile.all_regions') %>
-            <% end %>
-          </div>
-          <% @regions_ids.each do |region| %>
-          <div class="form-check form-check-inline">
-            <%= f.label region, class: 'form-check-label' do %>
-            <%= f.check_box region, class: 'form-check-input form-check-input_region', checked: @user_regions_ids.include?(region) %>
-            <%= @regions[region - 1].name %>
-            <% end %>
-          </div>
+          <%= form_for(:set_model, url: update_setting_path, method: :patch, html: { class: "#{model}s" }) do |f| %>
+            <%= hidden_field_tag :model, "#{model}", id: "#{model}_setting" %>
+            <div class="form-group">
+            
+              <div class="form-check form-check-inline form-check_all">
+                <%= f.label "set_all_#{model}", class: 'form-check-label' do %>
+                  <%= f.check_box "set_all_#{model}", class: "form-check-input form-check-input_all", checked: @settings["user_#{model}s_ids"] == @settings["#{model}s_ids"] %>
+                  <%= t("profile.all_#{model}s") %>
+                <% end %>
+              </div>
+              
+              <% @settings["#{model}s_ids"].each do |model_object| %>
+                <div class="form-check form-check-inline form-check_single">
+                  <% if model == 'furniture' %>
+                    <%= image_tag asset_pack_path("images/#{ @settings['furnitures'][model_object - 1].title }.svg") %>
+                  <% end %>
+                  <%= f.label "#{model}_#{model_object}", class: 'form-check-label' do %>
+                    <%= f.check_box "#{model}_#{model_object}", class: "form-check-input form-check-input_single", 
+                      checked: @settings["user_#{model}s_ids"].include?(model_object) %>
+                    <%= @settings["#{model}s"][model_object - 1].title %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="box">
+              <%= f.submit 'Сохранить', class: 'btn-hidden', id: "submit-#{model}s" %>
+              <span class="box__content_wrap">
+                <span class="icon-check icon"></span>
+                <span class="box__content"><%= t("button.save_#{model}s") %></span>
+              </span>
+            </div>
           <% end %>
-        </div>
-        <div class="box">
-          <%= f.submit 'Сохранить', class: 'btn-hidden', id: 'submit-regions' %>
-          <span class="box__content_wrap">
-            <span class="icon-check icon"></span>
-            <span class="box__content"><%= t('button.save_regions') %></span>
-          </span>
-        </div>
-      <% end %>
-      
-    </section>
+        
+      </section>
 
-    <section class="section" id="choose-furnitures">
-
-      <div class="status-badge status-badge_info">Укажите какими видами товаров вы располагаете для продажи. Вы будете видеть заявки именно из этих категорий.</div>
-
-      <%= form_for(:set_furniture, url: update_furnitures_path, method: :patch, html: { class: 'furnitures' }) do |f| %>
-        <div class="form-group">
-          <div class="form-check form-check-inline form-check_all-furnitures">
-            <%= f.label :all, class: 'form-check-label' do %>
-            <%= f.check_box :all, class: 'form-check-input form-check-input_all-furnitures', checked: @user_furnitures_ids == @furnitures_ids %>
-            <%= t('profile.all_furnitures') %>
-            <% end %>
-          </div>
-          <% @furnitures_ids.each do |furniture| %>
-          <div class="form-check form-check-inline">
-            <%= image_tag asset_pack_path("images/#{ @furnitures[furniture - 1].title }.svg") %>
-            <%= f.label furniture, class: 'form-check-label' do %>
-            <%= f.check_box furniture, class: 'form-check-input form-check-input_furniture', checked: @user_furnitures_ids.include?(furniture) %>
-            <%= @furnitures[furniture - 1].title %>
-            <% end %>
-          </div>
-          <% end %>
-        </div>
-        <div class="box">
-          <%= f.submit 'Сохранить', class: 'btn-hidden', id: 'submit-furnitures' %>
-          <span class="box__content_wrap">
-            <span class="icon-check icon"></span>
-            <span class="box__content"><%= t('button.save_furnitures') %></span>
-          </span>
-        </div>
-      <% end %>
-      
-    </section>
+    <% end %>
 
   <% end %>
 
-  <section class="section">
-    <div class="settings">
-      <div class="settings__password password">
-        <h4 class="section__header">Изменить пароль</h4>
-        <div class="password__form">
-          <form id="passwordChange" class="form">
-            <div class="select-wrapper">
-              <div class="select form-group">
-                <input type="password" name="oldpassword" required placeholder="Введите  старый пароль" class="form-control input-field">
-              </div>
-            </div>
-            <div class="select-wrapper">
-              <div class="select form-group">
-                <input type="password" name="newpassword" required placeholder="Введите новый пароль" class="form-control input-field">
-              </div>
-            </div>
-            <div class="select-wrapper">
-              <div class="select form-group">
-                <input type="password" name="newrepassword" required placeholder="Подтвердите новый пароль" class="form-control input-field">
-              </div>
-            </div>
-            <div class="form__btn box">
-              <span class="box__content_wrap">
-                <span class="icon-note icon"></span>
-                <span class="box__content">Сохранить изменения</span>
-              </span>
-            </div>
-          </form>
+  <% if RolePolicy.customer_access(current_user) %>
+    
+    <section class="section" id="choose-furniture">
+
+      <% if @requests.empty? %>
+        <div class="status-badge status-badge_info" style="margin: 20px 0;">Здесь вы сможете отслеживать ваши заявки. Выберите желаемую мебель из поиска и оставьте заявку по ней. Производители свяжутся с вами по телефону или электронной почте!</div>
+      <% else %>
+
+        <div class="section__header">Ваши заявки</div>
+        <hr width="60px" size="2" align="center" color="#C8A165">
+
+        <div class="card text-center">
+          <div class="card-body">
+            <% @requests.each do |request| %>
+              <%= render partial: "requests/request", locals: { request: request, status: @status } %>
+            <% end %>
+          </div>
         </div>
+      <% end %>
+
+      <div class="section__header" style="margin-top:30px">Приобрести товар</div>
+      <hr width="60px" size="2" align="center" color="#C8A165">
+
+      <div>
+        <%= form_tag(products_path, method: "get", remote: true, class: "product-filters__search") do %>
+          <%= text_field_tag :search, params[:search], placeholder: t('product.search_placeholder'), autocomplete: 'off' %>
+          <%= submit_tag "", name: nil, id: "products-search-button" %>
+        <% end %>
       </div>
-    </div>
-  </section>
+
+      <div class="furniture-list">
+        <% @furnitures.each do |furniture| %>
+          <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id)), class: 'furniture-list__item', "data-turbolinks": "false" do %>
+            <div class="furniture-list__item-image"><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '100%' %></div>
+            <div class="furniture-list__item-title"><span><%= furniture.title %></span></div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
 
 </div>
 

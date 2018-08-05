@@ -2,26 +2,23 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @requests_access = current_user.admin? ? true : current_user.documents_confirmed? && current_user.tariff_active?
-
     @status = params[:status]
 
     if Request::STATUSES.include?(@status)
-      if current_user.tariff_active? && current_user.documents_confirmed?
-        @active_requests = current_user.manufacturer_requests.where(status: 'active')
-        @request_visibility = current_user.tariff.request_visibility
+      @active_requests = current_user.manufacturer_requests.where(status: 'active')
 
-        if @status == 'new'
-          @requests = Request.where(status: 'new')
-                        .where.not(token: current_user.manufacturer_requests.pluck(:token))
-                        .where('created_at <= :request_visibility_hours', request_visibility_hours: Time.now - @request_visibility.hours)
-          user_furnitures = current_user.furnitures
-          @requests = @requests.reject do |request|
-            user_furnitures.exclude? request.product.category.furniture
-          end
-        else
-          @requests = current_user.manufacturer_requests.where(status: @status)
+      if @status == 'new'
+        @requests = Request
+                      .where(status: 'new')
+                      .where.not(token: current_user.manufacturer_requests.pluck(:token)) # Exclude new requests user already accepted
+       
+        # Cut out requests with furniture that is not in user settings
+        user_furnitures = current_user.furnitures
+        @requests = @requests.reject do |request|
+          user_furnitures.exclude? request.product.category.furniture
         end
+      else
+        @requests = current_user.manufacturer_requests.where(status: @status)
       end
     else
       logger.warn "index#requests: Invalid status parameter received"

@@ -1,11 +1,11 @@
 FactoryBot.define do
   
-  sequence :name do |n|
+  sequence :title do |n|
     "Region#{n}"
   end
 
   factory :region do
-    name
+    title
   end
 
 end

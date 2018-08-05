@@ -1,1 +1,12 @@
-<%= @liqpay_button.html_safe %>
+<div class="panel">
+    <div class="panel__inner panel__inner_success">
+        <div class="panel__icon">
+            <span class="icon-basket icon"></span>
+        </div>
+        <h2 class="panel__title">Вы покупаете тарифный пакет: <span class="wood">Премиум</span></h2>
+        <p class="panel__text">Перейти к оплате?</p>
+        <div class="panel__button">
+            <%= @liqpay_button.html_safe %>
+        </div>
+    </div>
+</div>
