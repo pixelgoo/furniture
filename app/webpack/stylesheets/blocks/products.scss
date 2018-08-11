@@ -99,3 +99,25 @@
     }
   }
 }
+
+.product-block {
+  &__image {
+    img {
+      width: 100%;
+    }
+  }
+
+  .image-list {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    margin-top: 5px;
+
+    &__item  {
+      min-width: 24.4%;
+      max-width: 24.4%;
+      margin: 0 5px 0 0;
+    }
+  }
+}

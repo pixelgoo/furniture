@@ -1,11 +1,11 @@
 <section id="productInfo" class="section">
   <div class="product-block row">
-    <div class="product-block__image image col-md-6">
+    <div class="product-block__image col-md-6">
       <img src="<%= Rails.configuration.cdn_host %>products/<%= @product.product_id %>_0.jpg" alt="<%= @product.title %>">
       <% if @product.image_count > 1 %>
-        <div class="image__list">
+        <div class="image-list">
           <% (@product.image_count - 1).times do |i| %>
-          <div class="image_small">
+          <div class="image-list__item">
             <img src="<%= Rails.configuration.cdn_host + "products/#{@product.product_id}_#{i + 1}.jpg" %>">
           </div>
           <% end %>
