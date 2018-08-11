@@ -22,9 +22,10 @@ if Rails.env.development? then
 end
 
 Tariff.create([
-    { name: 'basic', price: '3000', months: 3, region_counter: 1 },
-    { name: 'standard', price: '5500', months: 6, region_counter: 3 },
-    { name: 'premium', price: '10000', months: 12, region_counter: 24 }
+    { name: 'econom', price: '300', months: 1, region_counter: 1 },
+    { name: 'standard', price: '850', months: 3, region_counter: 3 },
+    { name: 'premium', price: '1600', months: 6, region_counter: 6 },
+    { name: 'vip', price: '3000', months: 12, region_counter: 24 }
 ])
 
 Region.create([

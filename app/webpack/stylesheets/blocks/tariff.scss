@@ -1,8 +1,8 @@
 .tariff {
   display: inline-block;
-  max-width: 305px;
+  max-width: 282px;
   height: 420px;
-  padding: 25px;
+  padding: 25px 19px;
   background-color: #fff;
   border-radius: 12px;
   transition: ease 0.4s;
@@ -82,12 +82,21 @@
   justify-content: center;
   align-items: flex-start;
   padding: 0 10px;
+  margin-top: 20px;
 
   > div {
-    margin: 0 8px;
+    margin: 8px;
   }
 
   &_landing {
     margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1480px) {
+  .tariff-list {
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
   }
 }
