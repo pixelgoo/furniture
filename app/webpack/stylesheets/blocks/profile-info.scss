@@ -5,3 +5,27 @@
         padding: 1.2rem;
     }
 }
+
+@media screen and (max-width: 767px) {
+    #choose-furnitures {
+        .form-check-inline+.form-check-inline {
+            margin-left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .p-settings {
+        padding-bottom: 1px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #choose-furnitures {
+        .form-check_single {
+            img {
+                display: none!important;
+            }
+        }
+    }
+}

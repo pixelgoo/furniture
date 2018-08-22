@@ -3,12 +3,8 @@
     max-width: 1440px;
   }
 
-  .section, .section-list {
+  .section, .section-list, .furniture-list {
     max-width: 1240px!important;
-  }
-
-  .furniture-list {
-    max-width: 1240px;
   }
 
   .page_right .section {
@@ -162,5 +158,51 @@
   }
   .navigation .social__list {
     display: none;
+  }
+  .main__screen .carousel .carousel-item {
+    background-position: 36% 0!important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .tariff-list {
+    padding: 0!important;
+
+    > div {
+      margin: 8px 0!important;
+    }
+  }
+
+  .tariff {
+    height: auto!important;
+    padding: 15px!important;
+
+    &__price {
+      font-size: 22px!important;
+    }
+
+    &__name {
+      font-size: 22px!important;
+    }
+
+    &__features {
+      height: auto!important;
+    }
+  }
+
+  .form-check-inline {
+    display: inline-block;
+    width: 100%;
+    text-align: left!important;
+    margin-left: 0!important;
+  }
+
+  input[type="hidden" i], input[type="image" i], input[type="file" i] {
+      width: 100%;
+      font-size: 14px;
+  }
+
+  form:not(.button_to) {
+    padding: 20px 0!important;
   }
 }

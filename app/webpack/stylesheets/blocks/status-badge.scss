@@ -18,3 +18,15 @@
     margin: 0;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .status-badge, .form-check_confirm-using-data {
+      padding: 10px 15px!important;
+  }
+
+  .status-badge_info {
+    ol {
+      padding-left: 20px;
+    }
+  }
+}

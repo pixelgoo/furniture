@@ -9,3 +9,10 @@
         margin: 0 0 0 $aside-width;
     }
 }
+
+@media screen and (max-width: 991px) {
+    .content-container.content-container_aside {
+        width: calc(100% - 60px);
+        margin: 0 0 0 60px;
+    }
+}

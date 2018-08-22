@@ -1,106 +1,121 @@
-<div class="product-filters">
+<div class="product-filters filter_hidden" id="filter">
+  <div id="toggle" onclick="collapseFilter();"><span>Фильтры</span></div>
+  <script>
+    function collapseFilter() {
+      var filter = document.getElementById("filter");
+      
+      if (filter.classList.contains('filter_hidden')) {
+        filter.classList.remove('filter_hidden');
+        filter.classList.add('filter_visible');
+      }
+      else {
+        filter.classList.remove('filter_visible');
+        filter.classList.add('filter_hidden');
+      }
+    }
+  </script>
 
-  <div class="product-filters__help">
-    <%= t('product.filters_desc') %>
-  </div>
-
-  <%= form_tag(products_path, method: "get", remote: true, class: "product-filters__search") do %>
-    <%= text_field_tag :search, params[:search], placeholder: t('product.search_placeholder'), autocomplete: 'off' %>
-    <%= submit_tag "", name: nil, id: "products-search-button" %>
-  <% end %>
-
-  <div class="product-filters__filter" id="filter-furnitures">
-
-    <div class="product-filters__title"><%= t('product.filter_furniture') %><span class="icon icon-arrow-down"></span></div>
-
-    <% if @current_filters[:furniture] %>
-      <div class="filter-furnitures__item">
-        <div class="product-filters__current">
-          <div class="icon-mask" style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ @current_filters[:furniture].title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
-          <span><%= @current_filters[:furniture].title %></span>
-        </div>
-      </div>
-    <% end %>
-
-    <div class="product-filters__list <%= 'opened' unless @filters[:category] %>">
-      <% @filters[:furniture].each do |furniture| %>
-        <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
-        facade: nil, structure: nil, product_type: nil, page: 0, search: nil)), class: "filter-furnitures__item", remote: true do %>
-          <% if @current_filters[:furniture] == furniture %>
-            <div class="product-filters__current"><div class="icon-mask"
-            style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
-              <span><%= furniture.title %></span>
-            </div>
-          <% else %>
-            <div><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %>
-              <span><%= furniture.title %></span>
-            </div>
-          <% end %>                    
-        <% end %>
-      <% end %>
+  <div class="product-filters__panel">
+    <div class="product-filters__help">
+      <%= t('product.filters_desc') %>
     </div>
 
-  </div>
+    <%= form_tag(products_path, method: "get", remote: true, class: "product-filters__search") do %>
+      <%= text_field_tag :search, params[:search], placeholder: t('product.search_placeholder'), autocomplete: 'off' %>
+      <%= submit_tag "", name: nil, id: "products-search-button" %>
+    <% end %>
 
-  <% if @current_filters[:furniture] %>
-
-    <div class="product-filters__filter" id="filter-categories">
+    <div class="product-filters__filter" id="filter-furnitures">
 
       <div class="product-filters__title"><%= t('product.filter_furniture') %><span class="icon icon-arrow-down"></span></div>
 
-      <% if @current_filters[:category] %>
-        <div class="product-filters__current"><%= @current_filters[:category].title %></div>
-      <% end %>
-      
-      <% if @filters[:category].present? %>
-        <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
-          <% @filters[:category].each do |category| %>
-            <%= link_to products_path(request.query_parameters.merge(category: category.id, factory: nil, style: nil, 
-            facade: nil, structure: nil, product_type: nil, page: 0, search: nil)), class: "filter-furnitures__item", remote: true do %>
-              <% if @current_filters[:category].present? && @current_filters[:category] == category %>
-                <span class="product-filters__current"><%= category.title %></span>
-              <% else %>
-                <span><%= category.title %></span>
-              <% end %>
-            <% end %>
-          <% end %>
+      <% if @current_filters[:furniture] %>
+        <div class="filter-furnitures__item">
+          <div class="product-filters__current">
+            <div class="icon-mask" style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ @current_filters[:furniture].title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
+            <span><%= @current_filters[:furniture].title %></span>
+          </div>
         </div>
       <% end %>
 
+      <div class="product-filters__list <%= 'opened' unless @filters[:category] %>">
+        <% @filters[:furniture].each do |furniture| %>
+          <%= link_to products_path(request.query_parameters.merge(furniture: furniture.id, category: nil, factory: nil, style: nil, 
+          facade: nil, structure: nil, product_type: nil, page: 0, search: nil)), class: "filter-furnitures__item", remote: true do %>
+            <% if @current_filters[:furniture] == furniture %>
+              <div class="product-filters__current"><div class="icon-mask"
+              style="-webkit-mask: url(<%= URI.escape(asset_pack_path("images/#{ furniture.title }.svg")) %>) 0 center; -webkit-mask-size: contain;"></div>
+                <span><%= furniture.title %></span>
+              </div>
+            <% else %>
+              <div><%= image_tag asset_pack_path("images/#{ furniture.title }.svg"), width: '50px' %>
+                <span><%= furniture.title %></span>
+              </div>
+            <% end %>                    
+          <% end %>
+        <% end %>
+      </div>
+
     </div>
 
-  <% end %>
+    <% if @current_filters[:furniture] %>
 
-  <% if @current_filters[:category].present? %>
+      <div class="product-filters__filter" id="filter-categories">
 
-    <% %w(factory style product_type facade structure).each do |filter| %>
+        <div class="product-filters__title"><%= t('product.filter_furniture') %><span class="icon icon-arrow-down"></span></div>
 
-      <div class="product-filters__filter product-filters__filter_feature" id="filter-<%= filter %>">
-
-        <div class="product-filters__title"><%= t("product.#{filter}") %><span class="icon icon-arrow-down"></span></div>
-
-        <% if @current_filters[filter] %>
-          <div class="product-filters__current"><%= @current_filters[filter] %></div>
+        <% if @current_filters[:category] %>
+          <div class="product-filters__current"><%= @current_filters[:category].title %></div>
+        <% end %>
+        
+        <% if @filters[:category].present? %>
+          <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
+            <% @filters[:category].each do |category| %>
+              <%= link_to products_path(request.query_parameters.merge(category: category.id, factory: nil, style: nil, 
+              facade: nil, structure: nil, product_type: nil, page: 0, search: nil)), class: "filter-furnitures__item", remote: true do %>
+                <% if @current_filters[:category].present? && @current_filters[:category] == category %>
+                  <span class="product-filters__current"><%= category.title %></span>
+                <% else %>
+                  <span><%= category.title %></span>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
 
-        <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
-        <% if @filters[filter].present? %>
-          <% @filters[filter].each do |value| %>
-            <% if value.present? %>
-              <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
-                <% if @current_filters[filter] == value %>
-                  <span class="product-filters__current"><%= value %></span>
-                <% else %>
-                  <span><%= value %></span>
+      </div>
+
+    <% end %>
+
+    <% if @current_filters[:category].present? %>
+
+      <% %w(factory style product_type facade structure).each do |filter| %>
+
+        <div class="product-filters__filter product-filters__filter_feature" id="filter-<%= filter %>">
+
+          <div class="product-filters__title"><%= t("product.#{filter}") %><span class="icon icon-arrow-down"></span></div>
+
+          <% if @current_filters[filter] %>
+            <div class="product-filters__current"><%= @current_filters[filter] %></div>
+          <% end %>
+
+          <div class="product-filters__list <% @current_filters[:category].present? ? 'opened' : '' %>">
+          <% if @filters[filter].present? %>
+            <% @filters[filter].each do |value| %>
+              <% if value.present? %>
+                <%= link_to products_path(request.query_parameters.merge("#{filter}": value, page: 0)), class: "filter-furnitures__item", remote: true do %>
+                  <% if @current_filters[filter] == value %>
+                    <span class="product-filters__current"><%= value %></span>
+                  <% else %>
+                    <span><%= value %></span>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
-
-  <% end %>
-
+  </div>
 </div>

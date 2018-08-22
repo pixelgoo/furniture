@@ -125,3 +125,37 @@
 .btn-danger {
   background: #e85a5a !important;
 }
+
+@media screen and (max-width: 600px) {
+  .card-header {
+    padding: 10px!important;
+
+    .card-header-tabs {
+      margin: 0!important;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-tabs .nav-item {
+      margin-bottom: 0;
+    }
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+      border-color: transparent;
+    }
+
+    .nav-link {
+      padding: 3px 5px;
+    }
+  }
+
+  .card-text {
+    margin: 0;
+    padding: 10px 15px;
+    text-align: left;
+  }
+
+  .no-requests {
+    width: 100%;
+  }
+}

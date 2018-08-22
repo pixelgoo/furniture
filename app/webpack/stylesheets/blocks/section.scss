@@ -54,3 +54,10 @@
 .section_no-padding {
     padding: 0;
 }
+
+@media screen and (max-width: 767px) {
+    .section {
+        margin: 15px;
+        padding: 15px;
+    }
+}

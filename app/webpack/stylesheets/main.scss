@@ -59,3 +59,9 @@ a {
 .wood {
   color: $pastel-yellow!important;
 }
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px!important;
+  }
+}

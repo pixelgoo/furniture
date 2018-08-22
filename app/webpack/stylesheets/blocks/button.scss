@@ -133,3 +133,16 @@ button {
     background-color: #f4f69f;
   }
 }
+
+@media screen and (max-width: 450px) {
+  .box {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+
+    .box__content_wrap {
+      margin: auto;
+    }
+  }
+}

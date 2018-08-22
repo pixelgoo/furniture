@@ -59,3 +59,35 @@ aside {
         border-right: 2px solid $pastel-yellow;
     }
 }
+
+@media screen and (max-width: 991px) {
+    aside {
+        width: 60px;
+        height: 100%;
+
+        .navigation-left__logo {
+            padding: 0 5px;
+            margin: 10px 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .navigation-left__login-wrap {
+            font-size: 12px;
+        }
+    }
+
+    .left-menu-item {
+        height: 60px;
+        line-height: 60px;
+        padding: 0;
+        text-align: center;
+
+        span:nth-child(2) {
+            display: none;
+        }
+    }
+  }

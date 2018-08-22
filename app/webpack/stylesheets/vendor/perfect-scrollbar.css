@@ -110,3 +110,9 @@
     overflow: auto !important;
   }
 }
+
+@media screen and (max-width: 991px) {
+  .ps.product-filters {
+    overflow: visible!important;
+  }
+}

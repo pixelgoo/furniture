@@ -73,3 +73,30 @@ header {
         }
     }
 }
+
+@media screen and (max-width: 767px) {
+    .top-menu-item_outside {
+        display: none;
+    }
+
+    .navigation-top__menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        height: 60px;
+        margin: auto;
+
+        .top-menu-item {
+            margin: auto 0;
+            display: block;
+            height: auto;
+            line-height: 1;
+        }
+    }
+
+    header .navigation-top__logo {
+        width: 50px;
+        height: 50px;
+        margin: auto 0;
+    }
+}

@@ -18,3 +18,14 @@
         }
     }
 }
+
+@media screen and (max-width: 991px) {
+    .small-navigation-top {
+        width: calc(100% - 60px);
+        margin-left: 60px;
+
+        &__item {
+            padding: 0;
+        }
+    }
+}

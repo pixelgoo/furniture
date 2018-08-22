@@ -56,3 +56,18 @@
     }
   }
 }
+
+@media screen and (max-width: 991px) {
+  .furniture-list {
+    flex-wrap: wrap;
+
+    &__item {
+      width: 25%;
+      max-width: 185px;
+    }
+
+    &__item-image {
+      width: 100%;
+    }
+  }
+}
