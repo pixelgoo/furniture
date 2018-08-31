@@ -191,3 +191,13 @@
 [type=checkbox] {
   vertical-align: middle;
 }
+
+@media screen and (max-width: 767px) {
+  .action__link {
+    display: none;
+  }
+
+  .action__container {
+    padding: 20px 10px;
+  }
+}
