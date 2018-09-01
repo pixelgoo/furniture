@@ -329,8 +329,8 @@ ru:
 
   # User
   user:
-    customer: "Пользователь"
-    manufacturer: "Производитель"
+    customer: "Покупатель"
+    manufacturer: "Продавец"
     admin: "Администратор"
 
   # Button
